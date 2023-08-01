@@ -2,7 +2,7 @@
 #include <libgen.h>
 
 #include <base.hpp>
-#include <liorsmagic.hpp>
+#include <magisk.hpp>
 #include <daemon.hpp>
 #include <selinux.hpp>
 #include <flags.h>

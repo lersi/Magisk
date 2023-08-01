@@ -2,7 +2,7 @@
 #include <dlfcn.h>
 #include <sys/stat.h>
 
-#include <liorsmagic.hpp>
+#include <magisk.hpp>
 #include <db.hpp>
 #include <socket.hpp>
 #include <base.hpp>

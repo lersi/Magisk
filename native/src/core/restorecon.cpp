@@ -1,6 +1,6 @@
 #include <string_view>
 
-#include <liorsmagic.hpp>
+#include <magisk.hpp>
 #include <selinux.hpp>
 #include <base.hpp>
 

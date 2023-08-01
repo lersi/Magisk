@@ -1,6 +1,6 @@
 #include <sys/mount.h>
 
-#include <liorsmagic.hpp>
+#include <magisk.hpp>
 #include <sepolicy.hpp>
 #include <base.hpp>
 

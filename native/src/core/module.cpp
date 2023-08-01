@@ -4,7 +4,7 @@
 #include <utility>
 
 #include <base.hpp>
-#include <liorsmagic.hpp>
+#include <magisk.hpp>
 #include <daemon.hpp>
 #include <selinux.hpp>
 

@@ -1,7 +1,7 @@
 #include <sys/wait.h>
 #include <sys/mount.h>
 
-#include <liorsmagic.hpp>
+#include <magisk.hpp>
 #include <base.hpp>
 
 #include "deny.hpp"

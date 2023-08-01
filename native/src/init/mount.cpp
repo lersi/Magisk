@@ -6,7 +6,7 @@
 #include <base.hpp>
 #include <flags.h>
 #include <selinux.hpp>
-#include <liorsmagic.hpp>
+#include <magisk.hpp>
 
 #include "init.hpp"
 

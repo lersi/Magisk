@@ -3,7 +3,7 @@
 
 #include <base.hpp>
 #include <selinux.hpp>
-#include <liorsmagic.hpp>
+#include <magisk.hpp>
 
 #include "su.hpp"
 

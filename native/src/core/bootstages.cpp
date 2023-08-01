@@ -6,7 +6,7 @@
 #include <set>
 #include <string>
 
-#include <liorsmagic.hpp>
+#include <magisk.hpp>
 #include <db.hpp>
 #include <base.hpp>
 #include <daemon.hpp>

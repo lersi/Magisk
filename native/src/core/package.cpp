@@ -1,5 +1,5 @@
 #include <base.hpp>
-#include <liorsmagic.hpp>
+#include <magisk.hpp>
 #include <daemon.hpp>
 #include <db.hpp>
 #include <flags.h>

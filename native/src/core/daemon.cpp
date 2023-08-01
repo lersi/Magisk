@@ -3,7 +3,7 @@
 #include <sys/un.h>
 #include <sys/mount.h>
 
-#include <liorsmagic.hpp>
+#include <magisk.hpp>
 #include <base.hpp>
 #include <daemon.hpp>
 #include <selinux.hpp>

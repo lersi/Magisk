@@ -13,7 +13,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#include <liorsmagic.hpp>
+#include <magisk.hpp>
 #include <base.hpp>
 #include <flags.h>
 

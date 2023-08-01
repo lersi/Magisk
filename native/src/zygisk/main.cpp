@@ -2,7 +2,7 @@
 #include <android/dlext.h>
 #include <dlfcn.h>
 
-#include <liorsmagic.hpp>
+#include <magisk.hpp>
 #include <base.hpp>
 #include <socket.hpp>
 #include <daemon.hpp>

@@ -6,7 +6,7 @@
 #include <dirent.h>
 #include <set>
 
-#include <liorsmagic.hpp>
+#include <magisk.hpp>
 #include <base.hpp>
 #include <db.hpp>
 

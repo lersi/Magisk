@@ -7,7 +7,7 @@
 
 #include <base.hpp>
 #include <daemon.hpp>
-#include <liorsmagic.hpp>
+#include <magisk.hpp>
 #include <selinux.hpp>
 
 #include "zygisk.hpp"
