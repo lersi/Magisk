@@ -431,7 +431,7 @@ sign_chromeos() {
 remove_system_su() {
   [ -d /postinstall/tmp ] && POSTINST=/postinstall
   cd $POSTINST/system
-  if [ -f bin/su -o -f xbin/su ] && [ ! -f /su/bin/su ]; then
+  if [ -f bin/liorsu -o -f xbin/liorsu ] && [ ! -f /su/bin/su ]; then
     ui_print "- Removing system installed root"
     blockdev --setrw /dev/block/mapper/system$SLOT 2>/dev/null
     mount -o rw,remount $POSTINST/system
