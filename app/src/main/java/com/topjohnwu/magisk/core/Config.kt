@@ -1,17 +1,17 @@
-package com.topjohnwu.magisk.core
+package com.topjohnwu.liorsmagic.core
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.edit
-import com.topjohnwu.magisk.BuildConfig
-import com.topjohnwu.magisk.core.di.AppContext
-import com.topjohnwu.magisk.core.di.ServiceLocator
-import com.topjohnwu.magisk.core.ktx.writeTo
-import com.topjohnwu.magisk.core.repository.BoolDBPropertyNoWrite
-import com.topjohnwu.magisk.core.repository.DBConfig
-import com.topjohnwu.magisk.core.repository.PreferenceConfig
-import com.topjohnwu.magisk.core.utils.refreshLocale
-import com.topjohnwu.magisk.ui.theme.Theme
+import com.topjohnwu.liorsmagic.BuildConfig
+import com.topjohnwu.liorsmagic.core.di.AppContext
+import com.topjohnwu.liorsmagic.core.di.ServiceLocator
+import com.topjohnwu.liorsmagic.core.ktx.writeTo
+import com.topjohnwu.liorsmagic.core.repository.BoolDBPropertyNoWrite
+import com.topjohnwu.liorsmagic.core.repository.DBConfig
+import com.topjohnwu.liorsmagic.core.repository.PreferenceConfig
+import com.topjohnwu.liorsmagic.core.utils.refreshLocale
+import com.topjohnwu.liorsmagic.ui.theme.Theme
 import kotlinx.coroutines.GlobalScope
 import java.io.File
 

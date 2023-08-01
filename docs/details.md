@@ -4,18 +4,18 @@
 
 ### Paths in "Magisk tmpfs directory"
 
-Magisk will mount a `tmpfs` directory to store some temporary data. For devices with the `/sbin` folder, it will be chosen as it will also act as an overlay to inject binaries into `PATH`. From Android 11 onwards, the `/sbin` folder might not exist, so Magisk will randomly create a folder under `/dev` and use it as the base folder.
+Magisk will mount a `tmpfs` directory to store some temporary data. For devices with the `/liorsbin` folder, it will be chosen as it will also act as an overlay to inject binaries into `PATH`. From Android 11 onwards, the `/liorsbin` folder might not exist, so Magisk will randomly create a folder under `/dev` and use it as the base folder.
 
 ```
 # In order to get the current base folder Magisk is using,
-# use the command `magisk --path`.
-# Binaries like magisk, magiskinit, and all symlinks to
+# use the command `liorsmagic --path`.
+# Binaries like liorsmagic, liorsmagicinit, and all symlinks to
 # applets are directly stored in this path. This means when
-# this is /sbin, these binaries will be directly in PATH.
-MAGISKTMP=$(magisk --path)
+# this is /liorsbin, these binaries will be directly in PATH.
+LIORSMAGICTMP=$(liorsmagic --path)
 
 # Magisk internal stuffs
-INTERNALDIR=$MAGISKTMP/.magisk
+INTERNALDIR=$LIORSMAGICTMP/.liorsmagic
 
 # /data/adb/modules will be bind mounted here.
 # The original folder is not used due to nosuid mount flag.
@@ -64,12 +64,12 @@ $SECURE_DIR/modules
 $SECURE_DIR/modules_update
 
 # Database storing settings and root permissions
-MAGISKDB=$SECURE_DIR/magisk.db
+LIORSMAGICDB=$SECURE_DIR/liorsmagic.db
 
-# All magisk related binaries, including busybox,
-# scripts, and magisk binaries. Used in supporting
+# All liorsmagic related binaries, including busybox,
+# scripts, and liorsmagic binaries. Used in supporting
 # module installation, addon.d, the Magisk app etc.
-DATABIN=$SECURE_DIR/magisk
+DATABIN=$SECURE_DIR/liorsmagic
 
 ```
 
@@ -77,17 +77,17 @@ DATABIN=$SECURE_DIR/magisk
 
 ### Pre-Init
 
-`magiskinit` will replace `init` as the first program to run.
+`liorsmagicinit` will replace `init` as the first program to run.
 
-- Early mount required partitions. On legacy system-as-root devices, we switch root to system; on 2SI devices, we patch the original `init` to redirect the 2nd stage init file to magiskinit and execute it to mount partitions for us.
-- Inject magisk services into `init.rc`
+- Early mount required partitions. On legacy system-as-root devices, we switch root to system; on 2SI devices, we patch the original `init` to redirect the 2nd stage init file to liorsmagicinit and execute it to mount partitions for us.
+- Inject liorsmagic services into `init.rc`
 - On devices using monolithic policy, load sepolicy from `/sepolicy`; otherwise we hijack nodes in selinuxfs with FIFO, set `LD_PRELOAD` to hook `security_load_policy` and assist hijacking on 2SI devices, and start a daemon to wait until init tries to load sepolicy.
 - Patch sepolicy rules. If we are using "hijack" method, load patched sepolicy into kernel, unblock init and exit daemon
 - Execute the original `init` to continue the boot process
 
 ### post-fs-data
 
-This triggers on `post-fs-data` when `/data` is decrypted and mounted. The daemon `magiskd` will be launched, post-fs-data scripts are executed, and module files are magic mounted.
+This triggers on `post-fs-data` when `/data` is decrypted and mounted. The daemon `liorsmagicd` will be launched, post-fs-data scripts are executed, and module files are magic mounted.
 
 ### late_start
 
@@ -104,10 +104,10 @@ Usually, system properties are designed to only be updated by `init` and read-on
 
 ## SELinux Policies
 
-Magisk will patch the stock `sepolicy` to make sure root and Magisk operations can be done in a safe and secure way. The new domain `magisk` is effectively permissive, which is what `magiskd` and all root shell will run in. `magisk_file` is a new file type that is setup to be allowed to be accessed by every domain (unrestricted file context).
+Magisk will patch the stock `sepolicy` to make sure root and Magisk operations can be done in a safe and secure way. The new domain `liorsmagic` is effectively permissive, which is what `liorsmagicd` and all root shell will run in. `liorsmagic_file` is a new file type that is setup to be allowed to be accessed by every domain (unrestricted file context).
 
-Before Android 8.0, all allowed su client domains are allowed to directly connect to `magiskd` and establish connection with the daemon to get a remote root shell. Magisk also have to relax some `ioctl` operations so root shells can function properly.
+Before Android 8.0, all allowed su client domains are allowed to directly connect to `liorsmagicd` and establish connection with the daemon to get a remote root shell. Magisk also have to relax some `ioctl` operations so root shells can function properly.
 
-After Android 8.0, to reduce relaxation of rules in Android's sandbox, a new SELinux model is deployed. The `magisk` binary is labelled with `magisk_exec` file type, and processes running as allowed su client domains executing the `magisk` binary (this includes the `su` command) will transit to `magisk_client` by using a `type_transition` rule. Rules strictly restrict that only `magisk` domain processes are allowed to attribute files to `magisk_exec`. Direct connection to sockets of `magiskd` are not allowed; the only way to access the daemon is through a `magisk_client` process. These changes allow us to keep the sandbox intact, and keep Magisk specific rules separated from the rest of the policies.
+After Android 8.0, to reduce relaxation of rules in Android's sandbox, a new SELinux model is deployed. The `liorsmagic` binary is labelled with `liorsmagic_exec` file type, and processes running as allowed su client domains executing the `liorsmagic` binary (this includes the `su` command) will transit to `liorsmagic_client` by using a `type_transition` rule. Rules strictly restrict that only `liorsmagic` domain processes are allowed to attribute files to `liorsmagic_exec`. Direct connection to sockets of `liorsmagicd` are not allowed; the only way to access the daemon is through a `liorsmagic_client` process. These changes allow us to keep the sandbox intact, and keep Magisk specific rules separated from the rest of the policies.
 
-The full set of rules can be found in `magiskpolicy/rules.cpp`.
+The full set of rules can be found in `liorsmagicpolicy/rules.cpp`.

@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.core.utils
+package com.topjohnwu.liorsmagic.core.utils
 
 import java.io.FilterInputStream
 import java.io.InputStream

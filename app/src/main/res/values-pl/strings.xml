@@ -28,8 +28,8 @@
     <string name="home_installed_version">Zainstalowany</string>
     <string name="home_latest_version">Ostatni</string>
     <string name="invalid_update_channel">Nieprawidłowy kanał aktualizacji</string>
-    <string name="uninstall_magisk_title">Odinstaluj Magisk</string>
-    <string name="uninstall_magisk_msg">Wszystkie moduły zostaną wyłączone/usunięte!\nRoot zostanie usunięty!\nTwoje dane mogą zostać potencjalnie zaszyfrowane, jeśli jeszcze nie są!</string>
+    <string name="uninstall_liorsmagic_title">Odinstaluj Magisk</string>
+    <string name="uninstall_liorsmagic_msg">Wszystkie moduły zostaną wyłączone/usunięte!\nRoot zostanie usunięty!\nTwoje dane mogą zostać potencjalnie zaszyfrowane, jeśli jeszcze nie są!</string>
 
     <!--Install-->
     <string name="keep_force_encryption">Zachowaj force encryption (wymuszenie szyfrowania)</string>
@@ -82,7 +82,7 @@
 
     <!--Logs-->
     <string name="log_data_none">Logi są puste, spróbuj użyć aplikacji wymagających roota.</string>
-    <string name="log_data_magisk_none">Logi Magisk są puste, to jest dziwne.</string>
+    <string name="log_data_liorsmagic_none">Logi Magisk są puste, to jest dziwne.</string>
     <string name="menuSaveLog">Zapisz log</string>
     <string name="menuClearLog">Wyczyść log</string>
     <string name="logs_cleared">Log został pomyślnie wyczyszczony.</string>
@@ -197,7 +197,7 @@
     <string name="updated_channel">Aktualizacja zakończona</string>
     <string name="download_complete">Pobieranie zakończone</string>
     <string name="download_file_error">Błąd pobierania pliku</string>
-    <string name="magisk_update_title">Aktualizacja Magisk dostępna!</string>
+    <string name="liorsmagic_update_title">Aktualizacja Magisk dostępna!</string>
     <string name="updated_title">Magisk zaktualizowany</string>
     <string name="updated_text">Naciśnij aby otworzyć applikację</string>
 
@@ -224,8 +224,8 @@
     <string name="env_full_fix_msg">Twoje urządzenie musi wgrać ponowanie Magisk, aby działać poprawnie. Proszę przeinstaluj Magisk w aplikacji, tryb Recovery nie potrafi poprawnie rozpoznać urządzenia.</string>
     <string name="setup_msg">Uruchamianie środowiska konfiguracji…</string>
     <string name="authenticate">Uwierzytelnianie</string>
-    <string name="unsupport_magisk_title">Nieobsługiwana wersja Magisk</string>
-    <string name="unsupport_magisk_msg">Ta wersja aplikacji nie obsługuje Magisk w wersji niższej niż %1$s.\n\nAplikacja będzie zachowywać się tak jakby Magisk nie był zainstalowany, proszę uaktualnij Magisk.</string>
+    <string name="unsupport_liorsmagic_title">Nieobsługiwana wersja Magisk</string>
+    <string name="unsupport_liorsmagic_msg">Ta wersja aplikacji nie obsługuje Magisk w wersji niższej niż %1$s.\n\nAplikacja będzie zachowywać się tak jakby Magisk nie był zainstalowany, proszę uaktualnij Magisk.</string>
     <string name="unsupport_general_title">Nieprawidłowy stan</string>
     <string name="unsupport_system_app_msg">Uruchomienie tej aplikacji jako systemowa nie jest obsługiwane. Proszę przemienić ją na aplikację użytkownika.</string>
     <string name="unsupport_other_su_msg">Wykryto komendę \"su\" nie należącą do Magisk. Proszę usunąć tę drugą aplikację \"su\".</string>

@@ -1,18 +1,18 @@
-package com.topjohnwu.magisk.core.di
+package com.topjohnwu.liorsmagic.core.di
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.text.method.LinkMovementMethod
 import androidx.room.Room
-import com.topjohnwu.magisk.core.Const
-import com.topjohnwu.magisk.core.data.SuLogDatabase
-import com.topjohnwu.magisk.core.data.magiskdb.PolicyDao
-import com.topjohnwu.magisk.core.data.magiskdb.SettingsDao
-import com.topjohnwu.magisk.core.data.magiskdb.StringDao
-import com.topjohnwu.magisk.core.ktx.deviceProtectedContext
-import com.topjohnwu.magisk.core.repository.LogRepository
-import com.topjohnwu.magisk.core.repository.NetworkService
-import com.topjohnwu.magisk.core.utils.BiometricHelper
+import com.topjohnwu.liorsmagic.core.Const
+import com.topjohnwu.liorsmagic.core.data.SuLogDatabase
+import com.topjohnwu.liorsmagic.core.data.liorsmagicdb.PolicyDao
+import com.topjohnwu.liorsmagic.core.data.liorsmagicdb.SettingsDao
+import com.topjohnwu.liorsmagic.core.data.liorsmagicdb.StringDao
+import com.topjohnwu.liorsmagic.core.ktx.deviceProtectedContext
+import com.topjohnwu.liorsmagic.core.repository.LogRepository
+import com.topjohnwu.liorsmagic.core.repository.NetworkService
+import com.topjohnwu.liorsmagic.core.utils.BiometricHelper
 import io.noties.markwon.Markwon
 import io.noties.markwon.utils.NoCopySpannableFactory
 

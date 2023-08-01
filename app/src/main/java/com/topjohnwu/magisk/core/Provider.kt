@@ -1,11 +1,11 @@
-package com.topjohnwu.magisk.core
+package com.topjohnwu.liorsmagic.core
 
 import android.net.Uri
 import android.os.Bundle
 import android.os.ParcelFileDescriptor
 import android.os.ParcelFileDescriptor.MODE_READ_ONLY
-import com.topjohnwu.magisk.core.base.BaseProvider
-import com.topjohnwu.magisk.core.su.SuCallbackHandler
+import com.topjohnwu.liorsmagic.core.base.BaseProvider
+import com.topjohnwu.liorsmagic.core.su.SuCallbackHandler
 
 class Provider : BaseProvider() {
 

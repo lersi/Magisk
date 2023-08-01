@@ -6,7 +6,7 @@
 #include <base.hpp>
 #include <flags.h>
 #include <selinux.hpp>
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 
 #include "init.hpp"
 
@@ -24,7 +24,7 @@ struct devinfo {
 static vector<devinfo> dev_list;
 
 // When this boolean is set, this means we are currently
-// running magiskinit on legacy SAR AVD emulator
+// running liorsmagicinit on legacy SAR AVD emulator
 bool avd_hack = false;
 
 static void parse_device(devinfo *dev, const char *uevent) {
@@ -149,7 +149,7 @@ static void mount_preinit_dir(string preinit_dev) {
 
     // Since we are mounting the block device directly, make sure to ONLY mount the partitions
     // as read-only, or else the kernel might crash due to crappy drivers.
-    // After the device boots up, magiskd will properly bind mount the correct partition
+    // After the device boots up, liorsmagicd will properly bind mount the correct partition
     // on to PREINITMIRR as writable. For more details, check bootstages.cpp
     if (mounted || mount(PREINITDEV, PREINITMNT, "ext4", MS_RDONLY, nullptr) == 0 ||
         mount(PREINITDEV, PREINITMNT, "f2fs", MS_RDONLY, nullptr) == 0) {
@@ -223,9 +223,9 @@ mount_root:
     bool is_two_stage = access("/apex", F_OK) == 0;
     LOGD("is_two_stage: [%d]\n", is_two_stage);
 
-#if MAGISK_DEBUG
+#if LIORSMAGIC_DEBUG
     // For API 28 AVD, it uses legacy SAR setup that requires
-    // special hacks in magiskinit to work properly. We do not
+    // special hacks in liorsmagicinit to work properly. We do not
     // necessarily want this enabled in production builds.
     if (!is_two_stage && config->emulator) {
         avd_hack = true;
@@ -254,9 +254,9 @@ void BaseInit::exec_init() {
 void BaseInit::prepare_data() {
     LOGD("Setup data tmp\n");
     xmkdir("/data", 0755);
-    xmount("magisk", "/data", "tmpfs", 0, "mode=755");
+    xmount("liorsmagic", "/data", "tmpfs", 0, "mode=755");
 
-    cp_afc("/init", "/data/magiskinit");
+    cp_afc("/init", "/data/liorsmagicinit");
     cp_afc("/.backup", "/data/.backup");
     cp_afc("/overlay.d", "/data/overlay.d");
 }
@@ -272,13 +272,13 @@ void MagiskInit::setup_tmp(const char *path) {
 
     mount_preinit_dir(preinit_dev);
 
-    cp_afc(".backup/.magisk", MAIN_CONFIG);
+    cp_afc(".backup/.liorsmagic", MAIN_CONFIG);
     rm_rf(".backup");
 
     // Create applet symlinks
     for (int i = 0; applet_names[i]; ++i)
-        xsymlink("./magisk", applet_names[i]);
-    xsymlink("./magiskpolicy", "supolicy");
+        xsymlink("./liorsmagic", applet_names[i]);
+    xsymlink("./liorsmagicpolicy", "supolicy");
 
     xmount(".", path, nullptr, MS_BIND, nullptr);
 

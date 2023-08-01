@@ -144,7 +144,7 @@ struct List {
 
 fn print_cpio_usage() {
     eprintln!(
-        r#"Usage: magiskboot cpio <incpio> [commands...]
+        r#"Usage: liorsmagicboot cpio <incpio> [commands...]
 
 Do cpio commands to <incpio> (modifications are done in-place).
 Each command is a single argument; add quotes for each command.
@@ -534,7 +534,7 @@ pub fn cpio_commands(argc: i32, argv: *const *const c_char) -> bool {
         let cmds = map_args(argc, argv)?;
 
         let mut cli =
-            CpioCli::from_args(&["magiskboot", "cpio"], &cmds).on_early_exit(print_cpio_usage);
+            CpioCli::from_args(&["liorsmagicboot", "cpio"], &cmds).on_early_exit(print_cpio_usage);
 
         let file = Utf8CStr::from_string(&mut cli.file);
         let mut cpio = if Path::new(file).exists() {
@@ -548,7 +548,7 @@ pub fn cpio_commands(argc: i32, argv: *const *const c_char) -> bool {
                 continue;
             }
             let mut cli = CpioCommand::from_args(
-                &["magiskboot", "cpio", file],
+                &["liorsmagicboot", "cpio", file],
                 cmd.split(' ')
                     .filter(|x| !x.is_empty())
                     .collect::<Vec<_>>()

@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.ui.home
+package com.topjohnwu.liorsmagic.ui.home
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -6,28 +6,28 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.databinding.Bindable
-import com.topjohnwu.magisk.BR
-import com.topjohnwu.magisk.BuildConfig
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.arch.ActivityExecutor
-import com.topjohnwu.magisk.arch.AsyncLoadViewModel
-import com.topjohnwu.magisk.arch.ContextExecutor
-import com.topjohnwu.magisk.arch.UIActivity
-import com.topjohnwu.magisk.arch.ViewEvent
-import com.topjohnwu.magisk.core.Config
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.download.Subject
-import com.topjohnwu.magisk.core.download.Subject.App
-import com.topjohnwu.magisk.core.ktx.await
-import com.topjohnwu.magisk.core.ktx.toast
-import com.topjohnwu.magisk.core.repository.NetworkService
-import com.topjohnwu.magisk.databinding.bindExtra
-import com.topjohnwu.magisk.databinding.set
-import com.topjohnwu.magisk.dialog.EnvFixDialog
-import com.topjohnwu.magisk.dialog.ManagerInstallDialog
-import com.topjohnwu.magisk.dialog.UninstallDialog
-import com.topjohnwu.magisk.events.SnackbarEvent
-import com.topjohnwu.magisk.utils.asText
+import com.topjohnwu.liorsmagic.BR
+import com.topjohnwu.liorsmagic.BuildConfig
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.arch.ActivityExecutor
+import com.topjohnwu.liorsmagic.arch.AsyncLoadViewModel
+import com.topjohnwu.liorsmagic.arch.ContextExecutor
+import com.topjohnwu.liorsmagic.arch.UIActivity
+import com.topjohnwu.liorsmagic.arch.ViewEvent
+import com.topjohnwu.liorsmagic.core.Config
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.download.Subject
+import com.topjohnwu.liorsmagic.core.download.Subject.App
+import com.topjohnwu.liorsmagic.core.ktx.await
+import com.topjohnwu.liorsmagic.core.ktx.toast
+import com.topjohnwu.liorsmagic.core.repository.NetworkService
+import com.topjohnwu.liorsmagic.databinding.bindExtra
+import com.topjohnwu.liorsmagic.databinding.set
+import com.topjohnwu.liorsmagic.dialog.EnvFixDialog
+import com.topjohnwu.liorsmagic.dialog.ManagerInstallDialog
+import com.topjohnwu.liorsmagic.dialog.UninstallDialog
+import com.topjohnwu.liorsmagic.events.SnackbarEvent
+import com.topjohnwu.liorsmagic.utils.asText
 import com.topjohnwu.superuser.Shell
 import kotlin.math.roundToInt
 
@@ -39,8 +39,8 @@ class HomeViewModel(
         LOADING, INVALID, OUTDATED, UP_TO_DATE
     }
 
-    val magiskTitleBarrierIds =
-        intArrayOf(R.id.home_magisk_icon, R.id.home_magisk_title, R.id.home_magisk_button)
+    val liorsmagicTitleBarrierIds =
+        intArrayOf(R.id.home_liorsmagic_icon, R.id.home_liorsmagic_title, R.id.home_liorsmagic_button)
     val appTitleBarrierIds =
         intArrayOf(R.id.home_manager_icon, R.id.home_manager_title, R.id.home_manager_button)
 
@@ -48,7 +48,7 @@ class HomeViewModel(
     var isNoticeVisible = Config.safetyNotice
         set(value) = set(value, field, { field = it }, BR.noticeVisible)
 
-    val magiskState
+    val liorsmagicState
         get() = when {
             Info.isRooted && Info.env.isUnsupported -> State.OUTDATED
             !Info.env.isActive -> State.INVALID
@@ -60,7 +60,7 @@ class HomeViewModel(
     var appState = State.LOADING
         set(value) = set(value, field, { field = it }, BR.appState)
 
-    val magiskInstalledVersion
+    val liorsmagicInstalledVersion
         get() = Info.env.run {
             if (isActive)
                 ("$versionString ($versionCode)" + if (isDebug) " (D)" else "").asText()
@@ -92,13 +92,13 @@ class HomeViewModel(
         appState = State.LOADING
         Info.getRemote(svc)?.apply {
             appState = when {
-                BuildConfig.VERSION_CODE < magisk.versionCode -> State.OUTDATED
+                BuildConfig.VERSION_CODE < liorsmagic.versionCode -> State.OUTDATED
                 else -> State.UP_TO_DATE
             }
 
             val isDebug = Config.updateChannel == Config.Value.DEBUG_CHANNEL
             managerRemoteVersion =
-                ("${magisk.version} (${magisk.versionCode})" +
+                ("${liorsmagic.version} (${liorsmagic.versionCode})" +
                     if (isDebug) " (D)" else "").asText()
         } ?: run {
             appState = State.INVALID
@@ -148,7 +148,7 @@ class HomeViewModel(
     }
 
     private suspend fun ensureEnv() {
-        if (magiskState == State.INVALID || checkedEnv) return
+        if (liorsmagicState == State.INVALID || checkedEnv) return
         val cmd = "env_check ${Info.env.versionString} ${Info.env.versionCode}"
         val code = Shell.cmd(cmd).await().code
         if (code != 0) {

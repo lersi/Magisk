@@ -4,21 +4,21 @@ LOCAL_PATH := $(call my-dir)
 # Binaries
 ########################
 
-ifdef B_MAGISK
+ifdef B_LIORSMAGIC
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := magisk
+LOCAL_MODULE := liorsmagic
 LOCAL_STATIC_LIBRARIES := \
     libbase \
     libnanopb \
     libsystemproperties \
     libphmap \
     liblsplt \
-    libmagisk-rs
+    libliorsmagic-rs
 
 LOCAL_SRC_FILES := \
     core/applets.cpp \
-    core/magisk.cpp \
+    core/liorsmagic.cpp \
     core/daemon.cpp \
     core/bootstages.cpp \
     core/socket.cpp \
@@ -70,7 +70,7 @@ endif
 ifdef B_INIT
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := magiskinit
+LOCAL_MODULE := liorsmagicinit
 LOCAL_STATIC_LIBRARIES := \
     libbase \
     libcompat \
@@ -94,7 +94,7 @@ endif
 ifdef B_BOOT
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := magiskboot
+LOCAL_MODULE := liorsmagicboot
 LOCAL_STATIC_LIBRARIES := \
     libbase \
     libcompat \
@@ -121,7 +121,7 @@ endif
 ifdef B_POLICY
 
 include $(CLEAR_VARS)
-LOCAL_MODULE := magiskpolicy
+LOCAL_MODULE := liorsmagicpolicy
 LOCAL_STATIC_LIBRARIES := \
     libbase \
     libpolicy \
@@ -141,7 +141,7 @@ LOCAL_STATIC_LIBRARIES := \
     libbase \
     libnanopb \
     libsystemproperties \
-    libmagisk-rs
+    libliorsmagic-rs
 
 LOCAL_SRC_FILES := \
     core/applet_stub.cpp \

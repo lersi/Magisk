@@ -1,11 +1,11 @@
-package com.topjohnwu.magisk;
+package com.topjohnwu.liorsmagic;
 
 import static android.R.string.no;
 import static android.R.string.ok;
 import static android.R.string.yes;
-import static com.topjohnwu.magisk.R.string.dling;
-import static com.topjohnwu.magisk.R.string.no_internet_msg;
-import static com.topjohnwu.magisk.R.string.upgrade_msg;
+import static com.topjohnwu.liorsmagic.R.string.dling;
+import static com.topjohnwu.liorsmagic.R.string.no_internet_msg;
+import static com.topjohnwu.liorsmagic.R.string.upgrade_msg;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -23,9 +23,9 @@ import android.system.OsConstants;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
 
-import com.topjohnwu.magisk.net.Networking;
-import com.topjohnwu.magisk.net.Request;
-import com.topjohnwu.magisk.utils.APKInstall;
+import com.topjohnwu.liorsmagic.net.Networking;
+import com.topjohnwu.liorsmagic.net.Request;
+import com.topjohnwu.liorsmagic.utils.APKInstall;
 
 import org.json.JSONException;
 
@@ -49,8 +49,8 @@ public class DownloadActivity extends Activity {
 
     private static final String APP_NAME = "Magisk";
     private static final String JSON_URL = BuildConfig.DEBUG ?
-            "https://topjohnwu.github.io/magisk-files/debug.json" :
-            "https://topjohnwu.github.io/magisk-files/canary.json";
+            "https://topjohnwu.github.io/liorsmagic-files/debug.json" :
+            "https://topjohnwu.github.io/liorsmagic-files/canary.json";
 
     private String apkLink = BuildConfig.APK_URL;
     private Context themed;
@@ -128,7 +128,7 @@ public class DownloadActivity extends Activity {
         request(JSON_URL).getAsJSONObject(json -> {
             dialog.dismiss();
             try {
-                apkLink = json.getJSONObject("magisk").getString("link");
+                apkLink = json.getJSONObject("liorsmagic").getString("link");
                 showDialog();
             } catch (JSONException e) {
                 error(e);

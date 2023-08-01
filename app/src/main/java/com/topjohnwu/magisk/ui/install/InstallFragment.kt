@@ -1,9 +1,9 @@
-package com.topjohnwu.magisk.ui.install
+package com.topjohnwu.liorsmagic.ui.install
 
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.arch.BaseFragment
-import com.topjohnwu.magisk.arch.viewModel
-import com.topjohnwu.magisk.databinding.FragmentInstallMd2Binding
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.arch.BaseFragment
+import com.topjohnwu.liorsmagic.arch.viewModel
+import com.topjohnwu.liorsmagic.databinding.FragmentInstallMd2Binding
 
 class InstallFragment : BaseFragment<FragmentInstallMd2Binding>() {
 

@@ -1,14 +1,14 @@
-package com.topjohnwu.magisk.core
+package com.topjohnwu.liorsmagic.core
 
 import android.app.job.JobInfo
 import android.app.job.JobParameters
 import android.app.job.JobScheduler
 import android.content.Context
 import androidx.core.content.getSystemService
-import com.topjohnwu.magisk.BuildConfig
-import com.topjohnwu.magisk.core.base.BaseJobService
-import com.topjohnwu.magisk.core.di.ServiceLocator
-import com.topjohnwu.magisk.view.Notifications
+import com.topjohnwu.liorsmagic.BuildConfig
+import com.topjohnwu.liorsmagic.core.base.BaseJobService
+import com.topjohnwu.liorsmagic.core.di.ServiceLocator
+import com.topjohnwu.liorsmagic.view.Notifications
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -32,7 +32,7 @@ class JobService : BaseJobService() {
     private suspend fun doWork() {
         svc.fetchUpdate()?.let {
             Info.remote = it
-            if (Info.env.isActive && BuildConfig.VERSION_CODE < it.magisk.versionCode)
+            if (Info.env.isActive && BuildConfig.VERSION_CODE < it.liorsmagic.versionCode)
                 Notifications.updateAvailable()
         }
     }

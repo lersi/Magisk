@@ -6,7 +6,7 @@
 
 #include "boot-rs.hpp"
 #include "bootimg.hpp"
-#include "magiskboot.hpp"
+#include "liorsmagicboot.hpp"
 #include "compress.hpp"
 
 using namespace std;

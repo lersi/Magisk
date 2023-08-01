@@ -1,15 +1,15 @@
 @file:Suppress("DEPRECATION")
 
-package com.topjohnwu.magisk.core.utils
+package com.topjohnwu.liorsmagic.core.utils
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.content.res.Resources
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.ActivityTracker
-import com.topjohnwu.magisk.core.Config
-import com.topjohnwu.magisk.core.createNewResources
-import com.topjohnwu.magisk.core.di.AppContext
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.ActivityTracker
+import com.topjohnwu.liorsmagic.core.Config
+import com.topjohnwu.liorsmagic.core.createNewResources
+import com.topjohnwu.liorsmagic.core.di.AppContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*

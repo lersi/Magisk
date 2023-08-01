@@ -3,6 +3,6 @@
 #[macro_export]
 macro_rules! LOGFILE {
     () => {
-        "/cache/magisk.log"
+        "/cache/liorsmagic.log"
     };
 }

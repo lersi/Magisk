@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package com.topjohnwu.magisk.core
+package com.topjohnwu.liorsmagic.core
 
 import android.content.ComponentName
 import android.content.Context
@@ -10,11 +10,11 @@ import android.content.res.AssetManager
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.util.DisplayMetrics
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.StubApk
-import com.topjohnwu.magisk.core.di.AppContext
-import com.topjohnwu.magisk.core.ktx.unwrap
-import com.topjohnwu.magisk.core.utils.syncLocale
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.StubApk
+import com.topjohnwu.liorsmagic.core.di.AppContext
+import com.topjohnwu.liorsmagic.core.ktx.unwrap
+import com.topjohnwu.liorsmagic.core.utils.syncLocale
 
 lateinit var AppApkPath: String
 
@@ -66,7 +66,7 @@ val shouldKeepResources = listOf(
     R.string.update_available,
     R.drawable.ic_device,
     R.drawable.ic_more,
-    R.drawable.ic_magisk_delete,
+    R.drawable.ic_liorsmagic_delete,
     R.drawable.ic_refresh_data_md2,
     R.drawable.ic_order_date,
     R.drawable.ic_order_name,

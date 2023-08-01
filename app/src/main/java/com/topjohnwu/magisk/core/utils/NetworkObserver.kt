@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.core.utils
+package com.topjohnwu.liorsmagic.core.utils
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -14,7 +14,7 @@ import androidx.core.content.getSystemService
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.topjohnwu.magisk.core.ktx.registerRuntimeReceiver
+import com.topjohnwu.liorsmagic.core.ktx.registerRuntimeReceiver
 
 typealias ConnectionCallback = (Boolean) -> Unit
 

@@ -1,7 +1,7 @@
 #include <sys/wait.h>
 #include <sys/mount.h>
 
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 #include <base.hpp>
 
 #include "deny.hpp"
@@ -12,7 +12,7 @@ using namespace std;
     fprintf(stderr,
 R"EOF(DenyList Config CLI
 
-Usage: magisk --denylist [action [arguments...] ]
+Usage: liorsmagic --denylist [action [arguments...] ]
 Actions:
    status          Return the enforcement status
    enable          Enable denylist enforcement

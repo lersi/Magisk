@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.arch
+package com.topjohnwu.liorsmagic.arch
 
 import android.content.res.Resources
 import android.graphics.Color
@@ -15,10 +15,10 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.google.android.material.snackbar.Snackbar
-import com.topjohnwu.magisk.BR
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.Config
-import com.topjohnwu.magisk.core.base.BaseActivity
+import com.topjohnwu.liorsmagic.BR
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.Config
+import com.topjohnwu.liorsmagic.core.base.BaseActivity
 import rikka.insets.WindowInsetsHelper
 import rikka.layoutinflater.view.LayoutInflaterFactory
 

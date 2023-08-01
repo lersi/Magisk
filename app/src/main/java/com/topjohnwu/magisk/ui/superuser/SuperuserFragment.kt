@@ -1,11 +1,11 @@
-package com.topjohnwu.magisk.ui.superuser
+package com.topjohnwu.liorsmagic.ui.superuser
 
 import android.os.Bundle
 import android.view.View
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.arch.BaseFragment
-import com.topjohnwu.magisk.arch.viewModel
-import com.topjohnwu.magisk.databinding.FragmentSuperuserMd2Binding
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.arch.BaseFragment
+import com.topjohnwu.liorsmagic.arch.viewModel
+import com.topjohnwu.liorsmagic.databinding.FragmentSuperuserMd2Binding
 import rikka.recyclerview.addEdgeSpacing
 import rikka.recyclerview.addItemSpacing
 import rikka.recyclerview.fixEdgeEffect

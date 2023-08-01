@@ -1,8 +1,8 @@
-package com.topjohnwu.magisk.dialog
+package com.topjohnwu.liorsmagic.dialog
 
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.events.DialogBuilder
-import com.topjohnwu.magisk.view.MagiskDialog
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.events.DialogBuilder
+import com.topjohnwu.liorsmagic.view.MagiskDialog
 
 class SecondSlotWarningDialog : DialogBuilder {
 

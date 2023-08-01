@@ -46,14 +46,14 @@ Because the Magisk NDK package, [ONDK](https://github.com/topjohnwu/ondk) (the o
 - Link the ONDK Rust toolchain and set it as default:
 
 ```bash
-# Link the ONDK toolchain with the name "magisk"
-rustup toolchain link magisk "$ANDROID_SDK_ROOT/ndk/magisk/toolchains/rust"
+# Link the ONDK toolchain with the name "liorsmagic"
+rustup toolchain link liorsmagic "$ANDROID_SDK_ROOT/ndk/liorsmagic/toolchains/rust"
 # Set as default
-rustup default magisk
+rustup default liorsmagic
 ```
 
 - Install the [Intellij Rust plugin](https://www.jetbrains.com/rust/) in Android Studio
-- In Preferences > Languages & Frameworks > Rust, set `$ANDROID_SDK_ROOT/ndk/magisk/toolchains/rust/bin` as the toolchain location
+- In Preferences > Languages & Frameworks > Rust, set `$ANDROID_SDK_ROOT/ndk/liorsmagic/toolchains/rust/bin` as the toolchain location
 - Open `native/src/Cargo.toml`, and select "Attach" in the "No Cargo projects found" banner
 
 ## Signing and Distribution

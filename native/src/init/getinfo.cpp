@@ -187,7 +187,7 @@ void load_kernel_info(BootConfig *config) {
     config->set(parse_cmdline(full_read("/proc/cmdline")));
     config->set(parse_bootconfig(full_read("/proc/bootconfig")));
 
-    parse_prop_file("/.backup/.magisk", [=](auto key, auto value) -> bool {
+    parse_prop_file("/.backup/.liorsmagic", [=](auto key, auto value) -> bool {
         if (key == "RECOVERYMODE" && value == "true") {
             config->skip_initramfs = config->emulator || !check_key_combo();
             return false;

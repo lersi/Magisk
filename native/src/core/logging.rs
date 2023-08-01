@@ -17,7 +17,7 @@ use base::libc::{
 };
 use base::*;
 
-use crate::daemon::{MagiskD, MAGISKD};
+use crate::daemon::{MagiskD, LIORSMAGICD};
 use crate::logging::LogFile::{Actual, Buffer};
 use crate::LOGFILE;
 
@@ -73,16 +73,16 @@ pub fn android_logging() {
     }
 }
 
-pub fn magisk_logging() {
-    fn magisk_write(level: LogLevel, msg: &[u8]) {
+pub fn liorsmagic_logging() {
+    fn liorsmagic_write(level: LogLevel, msg: &[u8]) {
         unsafe {
             __android_log_write(level_to_prio(level), raw_cstr!("Magisk"), msg.as_ptr());
         }
-        magisk_log_write(level_to_prio(level), msg);
+        liorsmagic_log_write(level_to_prio(level), msg);
     }
 
     let logger = Logger {
-        write: magisk_write,
+        write: liorsmagic_write,
         flags: 0,
     };
     exit_on_error(false);
@@ -120,7 +120,7 @@ struct LogMeta {
 
 const MAX_MSG_LEN: usize = PIPE_BUF - std::mem::size_of::<LogMeta>();
 
-fn do_magisk_log_write(logd: &mut File, prio: i32, msg: &[u8]) -> io::Result<usize> {
+fn do_liorsmagic_log_write(logd: &mut File, prio: i32, msg: &[u8]) -> io::Result<usize> {
     // Truncate message if needed
     let len = min(MAX_MSG_LEN, msg.len());
     let msg = &msg[..len];
@@ -137,20 +137,20 @@ fn do_magisk_log_write(logd: &mut File, prio: i32, msg: &[u8]) -> io::Result<usi
     logd.write_vectored(&[io1, io2])
 }
 
-fn magisk_log_write(prio: i32, msg: &[u8]) {
-    let magiskd = match MAGISKD.get() {
+fn liorsmagic_log_write(prio: i32, msg: &[u8]) {
+    let liorsmagicd = match LIORSMAGICD.get() {
         None => return,
         Some(s) => s,
     };
 
-    let logd_cell = magiskd.logd.lock().unwrap();
+    let logd_cell = liorsmagicd.logd.lock().unwrap();
     let mut logd_ref = logd_cell.borrow_mut();
     let logd = match logd_ref.as_mut() {
         None => return,
         Some(s) => s,
     };
 
-    let result = do_magisk_log_write(logd, prio, msg);
+    let result = do_liorsmagic_log_write(logd, prio, msg);
 
     // If any error occurs, shut down the logd pipe
     if result.is_err() {
@@ -159,12 +159,12 @@ fn magisk_log_write(prio: i32, msg: &[u8]) {
 }
 
 fn zygisk_log_write(prio: i32, msg: &[u8]) {
-    let magiskd = match MAGISKD.get() {
+    let liorsmagicd = match LIORSMAGICD.get() {
         None => return,
         Some(s) => s,
     };
 
-    let logd_cell = magiskd.logd.lock().unwrap();
+    let logd_cell = liorsmagicd.logd.lock().unwrap();
     let mut logd_ref = logd_cell.borrow_mut();
     if logd_ref.is_none() {
         android_logging();
@@ -190,7 +190,7 @@ fn zygisk_log_write(prio: i32, msg: &[u8]) {
         pthread_sigmask(SIG_BLOCK, &mask, &mut orig_mask);
     }
 
-    let result = do_magisk_log_write(logd, prio, msg);
+    let result = do_liorsmagic_log_write(logd, prio, msg);
 
     // Consume SIGPIPE if exists, then restore mask
     unsafe {
@@ -323,8 +323,8 @@ extern "C" fn logfile_writer(arg: *mut c_void) -> *mut c_void {
 
     writer_loop(arg as RawFd).ok();
     // If any error occurs, shut down the logd pipe
-    if let Some(magiskd) = MAGISKD.get() {
-        magiskd.close_log_pipe();
+    if let Some(liorsmagicd) = LIORSMAGICD.get() {
+        liorsmagicd.close_log_pipe();
     }
     null_mut()
 }

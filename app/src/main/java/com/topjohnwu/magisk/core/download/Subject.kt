@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.core.download
+package com.topjohnwu.liorsmagic.core.download
 
 import android.annotation.SuppressLint
 import android.app.PendingIntent
@@ -7,14 +7,14 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Parcelable
 import androidx.core.net.toUri
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.di.AppContext
-import com.topjohnwu.magisk.core.ktx.cachedFile
-import com.topjohnwu.magisk.core.model.MagiskJson
-import com.topjohnwu.magisk.core.model.module.OnlineModule
-import com.topjohnwu.magisk.core.utils.MediaStoreUtils
-import com.topjohnwu.magisk.ui.flash.FlashFragment
-import com.topjohnwu.magisk.view.Notifications
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.di.AppContext
+import com.topjohnwu.liorsmagic.core.ktx.cachedFile
+import com.topjohnwu.liorsmagic.core.model.MagiskJson
+import com.topjohnwu.liorsmagic.core.model.module.OnlineModule
+import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils
+import com.topjohnwu.liorsmagic.ui.flash.FlashFragment
+import com.topjohnwu.liorsmagic.view.Notifications
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
@@ -57,7 +57,7 @@ sealed class Subject : Parcelable {
 
     @Parcelize
     class App(
-        private val json: MagiskJson = Info.remote.magisk,
+        private val json: MagiskJson = Info.remote.liorsmagic,
         override val notifyId: Int = Notifications.nextId()
     ) : Subject() {
         override val title: String get() = "Magisk-${json.version}(${json.versionCode})"

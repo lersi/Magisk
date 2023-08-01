@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.databinding
+package com.topjohnwu.liorsmagic.databinding
 
 import androidx.databinding.PropertyChangeRegistry
 import androidx.databinding.ViewDataBinding

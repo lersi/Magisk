@@ -27,8 +27,8 @@
     <string name="home_installed_version">Instalado</string>
     <string name="home_latest_version">Recente</string>
     <string name="invalid_update_channel">Canal de atualização inválido</string>
-    <string name="uninstall_magisk_title">Desinstalar Magisk</string>
-    <string name="uninstall_magisk_msg">Todos os módulos serão desativados/removidos!\nA raiz será removida!\nSeus dados não criptografados devido uso do Magisk, serão re-criptografados!</string>
+    <string name="uninstall_liorsmagic_title">Desinstalar Magisk</string>
+    <string name="uninstall_liorsmagic_msg">Todos os módulos serão desativados/removidos!\nA raiz será removida!\nSeus dados não criptografados devido uso do Magisk, serão re-criptografados!</string>
 
     <!--Install-->
     <string name="keep_force_encryption">Manter criptografia forçada</string>
@@ -80,7 +80,7 @@
 
     <!--Logs-->
     <string name="log_data_none">Não há registros. Tente usar os apps permitidos para SuperUsuário.</string>
-    <string name="log_data_magisk_none">Os Registro de atividade do Magisk estão vazios, isso é estranho.</string>
+    <string name="log_data_liorsmagic_none">Os Registro de atividade do Magisk estão vazios, isso é estranho.</string>
     <string name="menuSaveLog">Salvar Registro</string>
     <string name="menuClearLog">Limpar Registro agora</string>
     <string name="logs_cleared">Registro limpo com sucesso.</string>
@@ -191,7 +191,7 @@
     <string name="updated_channel">Atualização concluída</string>
     <string name="download_complete">Download concluído</string>
     <string name="download_file_error">Erro ao baixar arquivo</string>
-    <string name="magisk_update_title">Nova atualização do Magisk disponível!</string>
+    <string name="liorsmagic_update_title">Nova atualização do Magisk disponível!</string>
     <string name="updated_title">Magisk Atualizado</string>
     <string name="updated_text">Toque para abrir o app</string>
 
@@ -218,8 +218,8 @@
     <string name="env_full_fix_msg">Seu dispositivo precisa refazer o flash do Magisk para funcionar corretamente. Reinstale o Magisk no aplicativo, o modo de recuperação não pode obter as devidas informações do dispositivo.</string>
     <string name="setup_msg">Executando a configuração do ambiente…</string>
     <string name="authenticate">Autenticar</string>
-    <string name="unsupport_magisk_title">Versão do Magisk não suportada</string>
-    <string name="unsupport_magisk_msg">Essa versão do app não suporta versão do Magisk inferior a %1$s.\n\nO app irá se comportar como se nenhum Magisk estivesse sido instalado. Por favor, atualize o Magisk assim que possível.</string>
+    <string name="unsupport_liorsmagic_title">Versão do Magisk não suportada</string>
+    <string name="unsupport_liorsmagic_msg">Essa versão do app não suporta versão do Magisk inferior a %1$s.\n\nO app irá se comportar como se nenhum Magisk estivesse sido instalado. Por favor, atualize o Magisk assim que possível.</string>
     <string name="unsupport_general_title">Estado Anormal</string>
     <string name="unsupport_system_app_msg">Não há suporte para executar este app como um app do sistema. Por favor, reverta o app para um app do usuário.</string>
     <string name="unsupport_other_su_msg">Não foi possível detectar o binário \"su\" do Magisk. Por favor, remova qualquer outro root concorrente e/ou reinstale o Magisk.</string>

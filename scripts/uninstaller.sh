@@ -1,4 +1,4 @@
-#MAGISK
+#LIORSMAGIC
 ############################################
 # Magisk Uninstaller (updater-script)
 ############################################
@@ -28,10 +28,10 @@ setup_flashable
 # Detection
 ############
 
-if echo $MAGISK_VER | grep -q '\.'; then
-  PRETTY_VER=$MAGISK_VER
+if echo $LIORSMAGIC_VER | grep -q '\.'; then
+  PRETTY_VER=$LIORSMAGIC_VER
 else
-  PRETTY_VER="$MAGISK_VER($MAGISK_VER_CODE)"
+  PRETTY_VER="$LIORSMAGIC_VER($LIORSMAGIC_VER_CODE)"
 fi
 print_title "Magisk $PRETTY_VER Uninstaller"
 
@@ -72,7 +72,7 @@ if [ -c $BOOTIMAGE ]; then
   BOOTNAND=$BOOTIMAGE
   BOOTIMAGE=boot.img
 fi
-./magiskboot unpack "$BOOTIMAGE"
+./liorsmagicboot unpack "$BOOTIMAGE"
 
 case $? in
   1 )
@@ -90,7 +90,7 @@ esac
 # Detect boot image state
 ui_print "- Checking ramdisk status"
 if [ -e ramdisk.cpio ]; then
-  ./magiskboot cpio ramdisk.cpio test
+  ./liorsmagicboot cpio ramdisk.cpio test
   STATUS=$?
 else
   # Stock A only system-as-root
@@ -103,13 +103,13 @@ case $((STATUS & 3)) in
   1 )  # Magisk patched
     ui_print "- Magisk patched image detected"
     # Find SHA1 of stock boot image
-    ./magiskboot cpio ramdisk.cpio "extract .backup/.magisk config.orig"
+    ./liorsmagicboot cpio ramdisk.cpio "extract .backup/.liorsmagic config.orig"
     if [ -f config.orig ]; then
       chmod 0644 config.orig
       SHA1=$(grep_prop SHA1 config.orig)
       rm config.orig
     fi
-    BACKUPDIR=/data/magisk_backup_$SHA1
+    BACKUPDIR=/data/liorsmagic_backup_$SHA1
     if [ -d $BACKUPDIR ]; then
       ui_print "- Restoring stock boot image"
       flash_image $BACKUPDIR/boot.img.gz $BOOTIMAGE
@@ -123,12 +123,12 @@ case $((STATUS & 3)) in
     else
       ui_print "! Boot image backup unavailable"
       ui_print "- Restoring ramdisk with internal backup"
-      ./magiskboot cpio ramdisk.cpio restore
-      if ! ./magiskboot cpio ramdisk.cpio "exists init"; then
+      ./liorsmagicboot cpio ramdisk.cpio restore
+      if ! ./liorsmagicboot cpio ramdisk.cpio "exists init"; then
         # A only system-as-root
         rm -f ramdisk.cpio
       fi
-      ./magiskboot repack $BOOTIMAGE
+      ./liorsmagicboot repack $BOOTIMAGE
       # Sign chromeos boot
       $CHROMEOS && sign_chromeos
       ui_print "- Flashing restored boot image"
@@ -143,17 +143,17 @@ esac
 
 if $BOOTMODE; then
   ui_print "- Removing modules"
-  magisk --remove-modules -n
+  liorsmagic --remove-modules -n
 fi
 
 ui_print "- Removing Magisk files"
 rm -rf \
-/cache/*magisk* /cache/unblock /data/*magisk* /data/cache/*magisk* /data/property/*magisk* \
-/data/Magisk.apk /data/busybox /data/custom_ramdisk_patch.sh /data/adb/*magisk* \
+/cache/*liorsmagic* /cache/unblock /data/*liorsmagic* /data/cache/*liorsmagic* /data/property/*liorsmagic* \
+/data/Magisk.apk /data/busybox /data/custom_ramdisk_patch.sh /data/adb/*liorsmagic* \
 /data/adb/post-fs-data.d /data/adb/service.d /data/adb/modules* \
-/data/unencrypted/magisk /metadata/magisk /persist/magisk /mnt/vendor/persist/magisk
+/data/unencrypted/liorsmagic /metadata/liorsmagic /persist/liorsmagic /mnt/vendor/persist/liorsmagic
 
-ADDOND=/system/addon.d/99-magisk.sh
+ADDOND=/system/addon.d/99-liorsmagic.sh
 if [ -f $ADDOND ]; then
   blockdev --setrw /dev/block/mapper/system$SLOT 2>/dev/null
   mount -o rw,remount /system || mount -o rw,remount /

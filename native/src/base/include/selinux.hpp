@@ -17,11 +17,11 @@
 #define SPLIT_PLAT_CIL      PLAT_POLICY_DIR "plat_sepolicy.cil"
 
 // Unconstrained domain the daemon and root processes run in
-#define SEPOL_PROC_DOMAIN   "magisk"
-#define MAGISK_PROC_CON     "u:r:" SEPOL_PROC_DOMAIN ":s0"
+#define SEPOL_PROC_DOMAIN   "liorsmagic"
+#define LIORSMAGIC_PROC_CON     "u:r:" SEPOL_PROC_DOMAIN ":s0"
 // Unconstrained file type that anyone can access
-#define SEPOL_FILE_TYPE     "magisk_file"
-#define MAGISK_FILE_CON     "u:object_r:" SEPOL_FILE_TYPE ":s0"
+#define SEPOL_FILE_TYPE     "liorsmagic_file"
+#define LIORSMAGIC_FILE_CON     "u:object_r:" SEPOL_FILE_TYPE ":s0"
 
 extern void (*freecon)(char *con);
 extern int (*setcon)(const char *con);

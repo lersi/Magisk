@@ -1,5 +1,5 @@
 [package]
-name = "magiskinit"
+name = "liorsmagicinit"
 version = "0.0.0"
 edition = "2021"
 
@@ -12,5 +12,5 @@ cxx-gen = { workspace = true }
 
 [dependencies]
 base = { path = "../base" }
-magiskpolicy = { path = "../sepolicy" }
+liorsmagicpolicy = { path = "../sepolicy" }
 cxx = { workspace = true }

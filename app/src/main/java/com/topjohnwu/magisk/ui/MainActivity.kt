@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.ui
+package com.topjohnwu.liorsmagic.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -14,21 +14,21 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
-import com.topjohnwu.magisk.MainDirections
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.arch.BaseViewModel
-import com.topjohnwu.magisk.arch.startAnimations
-import com.topjohnwu.magisk.arch.viewModel
-import com.topjohnwu.magisk.core.Config
-import com.topjohnwu.magisk.core.Const
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.isRunningAsStub
-import com.topjohnwu.magisk.core.model.module.LocalModule
-import com.topjohnwu.magisk.core.tasks.HideAPK
-import com.topjohnwu.magisk.databinding.ActivityMainMd2Binding
-import com.topjohnwu.magisk.ui.home.HomeFragmentDirections
-import com.topjohnwu.magisk.view.MagiskDialog
-import com.topjohnwu.magisk.view.Shortcuts
+import com.topjohnwu.liorsmagic.MainDirections
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.arch.BaseViewModel
+import com.topjohnwu.liorsmagic.arch.startAnimations
+import com.topjohnwu.liorsmagic.arch.viewModel
+import com.topjohnwu.liorsmagic.core.Config
+import com.topjohnwu.liorsmagic.core.Const
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.isRunningAsStub
+import com.topjohnwu.liorsmagic.core.model.module.LocalModule
+import com.topjohnwu.liorsmagic.core.tasks.HideAPK
+import com.topjohnwu.liorsmagic.databinding.ActivityMainMd2Binding
+import com.topjohnwu.liorsmagic.ui.home.HomeFragmentDirections
+import com.topjohnwu.liorsmagic.view.MagiskDialog
+import com.topjohnwu.liorsmagic.view.Shortcuts
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.File
@@ -172,8 +172,8 @@ class MainActivity : SplashActivity<ActivityMainMd2Binding>() {
     private fun showUnsupportedMessage() {
         if (Info.env.isUnsupported) {
             MagiskDialog(this).apply {
-                setTitle(R.string.unsupport_magisk_title)
-                setMessage(R.string.unsupport_magisk_msg, Const.Version.MIN_VERSION)
+                setTitle(R.string.unsupport_liorsmagic_title)
+                setMessage(R.string.unsupport_liorsmagic_msg, Const.Version.MIN_VERSION)
                 setButton(MagiskDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
                 setCancelable(false)
             }.show()
@@ -181,7 +181,7 @@ class MainActivity : SplashActivity<ActivityMainMd2Binding>() {
 
         if (!Info.isEmulator && Info.env.isActive && System.getenv("PATH")
                 ?.split(':')
-                ?.filterNot { File("$it/magisk").exists() }
+                ?.filterNot { File("$it/liorsmagic").exists() }
                 ?.any { File("$it/su").exists() } == true) {
             MagiskDialog(this).apply {
                 setTitle(R.string.unsupport_general_title)

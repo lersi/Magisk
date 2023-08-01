@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void sepolicy::magisk_rules() {
+void sepolicy::liorsmagic_rules() {
     // Temp suppress warnings
     set_log_level_state(LogLevel::Warn, false);
 
@@ -50,7 +50,7 @@ void sepolicy::magisk_rules() {
     // Let everyone access tmpfs files (for SAR sbin overlay)
     allow(ALL, "tmpfs", "file", ALL);
 
-    // Allow magiskinit daemon to handle mock selinuxfs
+    // Allow liorsmagicinit daemon to handle mock selinuxfs
     allow("kernel", "tmpfs", "fifo_file", "write");
 
     // For relabelling files

@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.ui.settings
+package com.topjohnwu.liorsmagic.ui.settings
 
 import android.content.Context
 import android.content.res.Resources
@@ -6,25 +6,25 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.Bindable
-import com.topjohnwu.magisk.BR
-import com.topjohnwu.magisk.BuildConfig
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.Config
-import com.topjohnwu.magisk.core.Const
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.di.ServiceLocator
-import com.topjohnwu.magisk.core.ktx.activity
-import com.topjohnwu.magisk.core.tasks.HideAPK
-import com.topjohnwu.magisk.core.utils.BiometricHelper
-import com.topjohnwu.magisk.core.utils.MediaStoreUtils
-import com.topjohnwu.magisk.core.utils.availableLocales
-import com.topjohnwu.magisk.core.utils.currentLocale
-import com.topjohnwu.magisk.databinding.DialogSettingsAppNameBinding
-import com.topjohnwu.magisk.databinding.DialogSettingsDownloadPathBinding
-import com.topjohnwu.magisk.databinding.DialogSettingsUpdateChannelBinding
-import com.topjohnwu.magisk.databinding.set
-import com.topjohnwu.magisk.utils.asText
-import com.topjohnwu.magisk.view.MagiskDialog
+import com.topjohnwu.liorsmagic.BR
+import com.topjohnwu.liorsmagic.BuildConfig
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.Config
+import com.topjohnwu.liorsmagic.core.Const
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.di.ServiceLocator
+import com.topjohnwu.liorsmagic.core.ktx.activity
+import com.topjohnwu.liorsmagic.core.tasks.HideAPK
+import com.topjohnwu.liorsmagic.core.utils.BiometricHelper
+import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils
+import com.topjohnwu.liorsmagic.core.utils.availableLocales
+import com.topjohnwu.liorsmagic.core.utils.currentLocale
+import com.topjohnwu.liorsmagic.databinding.DialogSettingsAppNameBinding
+import com.topjohnwu.liorsmagic.databinding.DialogSettingsDownloadPathBinding
+import com.topjohnwu.liorsmagic.databinding.DialogSettingsUpdateChannelBinding
+import com.topjohnwu.liorsmagic.databinding.set
+import com.topjohnwu.liorsmagic.utils.asText
+import com.topjohnwu.liorsmagic.view.MagiskDialog
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -217,7 +217,7 @@ object SystemlessHosts : BaseSettingsItem.Blank() {
 // --- Magisk
 
 object Magisk : BaseSettingsItem.Section() {
-    override val title = R.string.magisk.asText()
+    override val title = R.string.liorsmagic.asText()
 }
 
 object Zygisk : BaseSettingsItem.Toggle() {
@@ -253,7 +253,7 @@ object DenyList : BaseSettingsItem.Toggle() {
         set(value) {
             field = value
             val cmd = if (value) "enable" else "disable"
-            Shell.cmd("magisk --denylist $cmd").submit { result ->
+            Shell.cmd("liorsmagic --denylist $cmd").submit { result ->
                 if (result.isSuccess) {
                     Config.denyList = value
                 } else {

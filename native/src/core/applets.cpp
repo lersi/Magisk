@@ -2,7 +2,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 #include <selinux.hpp>
 #include <base.hpp>
 
@@ -54,14 +54,14 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    if (argv0 == "magisk" || argv0 == "magisk32" || argv0 == "magisk64") {
+    if (argv0 == "liorsmagic" || argv0 == "liorsmagic32" || argv0 == "liorsmagic64") {
         if (argc > 1 && argv[1][0] != '-') {
-            // Calling applet with "magisk [applet] args..."
+            // Calling applet with "liorsmagic [applet] args..."
             --argc;
             ++argv;
             argv0 = argv[0];
         } else {
-            return magisk_main(argc, argv);
+            return liorsmagic_main(argc, argv);
         }
     }
 

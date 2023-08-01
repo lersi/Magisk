@@ -1,14 +1,14 @@
-package com.topjohnwu.magisk.core
+package com.topjohnwu.liorsmagic.core
 
 import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.topjohnwu.magisk.StubApk
-import com.topjohnwu.magisk.core.di.AppContext
-import com.topjohnwu.magisk.core.ktx.getProperty
-import com.topjohnwu.magisk.core.model.UpdateInfo
-import com.topjohnwu.magisk.core.repository.NetworkService
-import com.topjohnwu.magisk.core.utils.NetworkObserver
+import com.topjohnwu.liorsmagic.StubApk
+import com.topjohnwu.liorsmagic.core.di.AppContext
+import com.topjohnwu.liorsmagic.core.ktx.getProperty
+import com.topjohnwu.liorsmagic.core.model.UpdateInfo
+import com.topjohnwu.liorsmagic.core.repository.NetworkService
+import com.topjohnwu.liorsmagic.core.utils.NetworkObserver
 import com.topjohnwu.superuser.ShellUtils.fastCmd
 
 val isRunningAsStub get() = Info.stub != null
@@ -58,10 +58,10 @@ object Info {
     }
 
     private fun loadState(): Env {
-        val v = fastCmd("magisk -v").split(":".toRegex())
+        val v = fastCmd("liorsmagic -v").split(":".toRegex())
         return Env(
             v[0], v.size >= 3 && v[2] == "D",
-            runCatching { fastCmd("magisk -V").toInt() }.getOrDefault(-1)
+            runCatching { fastCmd("liorsmagic -V").toInt() }.getOrDefault(-1)
         )
     }
 

@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.utils;
+package com.topjohnwu.liorsmagic.utils;
 
 import java.util.Enumeration;
 import java.util.NoSuchElementException;

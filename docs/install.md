@@ -16,7 +16,7 @@ Download and install the latest [Magisk app](https://github.com/topjohnwu/Magisk
 
 <p align="center"><img src="images/device_info.png" width="500"/></p>
 
-The result of **Ramdisk** determines whether your device has ramdisk in the boot partition. If your device does not have boot ramdisk, read the [Magisk in Recovery](#magisk-in-recovery) section before continuing.
+The result of **Ramdisk** determines whether your device has ramdisk in the boot partition. If your device does not have boot ramdisk, read the [Magisk in Recovery](#liorsmagic-in-recovery) section before continuing.
 
 > _(Unfortunately, there are exceptions as some devices' bootloader accepts ramdisk even if it shouldn't. In this case, you will have to follow the instructions as if your device's boot partition **does** include ramdisk. There is no way to detect this, so the only way to know for sure is to actually try. Fortunately, as far as we know, only some Xiaomi devices are known to have this property, so most people can simply ignore this piece of information.)_
 
@@ -50,12 +50,12 @@ Let's continue to [Patching Images](#patching-images).
 - If your device does **NOT** have a separate `vbmeta` partition, check the **"Patch vbmeta in boot image"** option
 - Choose **"Select and Patch a File"** in method, and select the boot/init_boot/recovery image
 - Start the installation, and copy the patched image to your PC using ADB:<br>
-  `adb pull /sdcard/Download/magisk_patched_[random_strings].img`
+  `adb pull /sdcard/Download/liorsmagic_patched_[random_strings].img`
 - Flash the patched boot/init_boot/recovery image to your device;<br>
   for most devices, reboot into fastboot mode and flash with command:<br>
-  `fastboot flash boot[_x] /path/to/magisk_patched_[random_strings].img` or <br>
-  `fastboot flash init_boot[_x] /path/to/magisk_patched.img_[random_strings]` or <br>
-  `fastboot flash recovery /path/to/magisk_patched.img_[random_strings]`, <br>
+  `fastboot flash boot[_x] /path/to/liorsmagic_patched_[random_strings].img` or <br>
+  `fastboot flash init_boot[_x] /path/to/liorsmagic_patched.img_[random_strings]` or <br>
+  `fastboot flash recovery /path/to/liorsmagic_patched.img_[random_strings]`, <br>
   where `[_x]` should be `_a` or `_b` or empty depending on your device
 - (Optional) If your device has a separate `vbmeta` partition, you can patch the `vbmeta` partition with command:<br>
   `fastboot flash vbmeta --disable-verity --disable-verification vbmeta.img` (note that it may **wipe your data**)
@@ -109,11 +109,11 @@ Unlocking the bootloader on modern Samsung devices have some caveats. The newly 
 - If your device does **NOT** have boot ramdisk, check the **"Recovery Mode"** option
 - Choose **"Select and Patch a File"** in method, and select the `AP` tar file
 - Start the installation, and copy the patched tar file to your PC using ADB:<br>
-  `adb pull /sdcard/Download/magisk_patched_[random_strings].tar`<br>
+  `adb pull /sdcard/Download/liorsmagic_patched_[random_strings].tar`<br>
   **DO NOT USE MTP** as it is known to corrupt large files.
-- Reboot to download mode. Open Odin on your PC, and flash `magisk_patched.tar` as `AP`, together with `BL`, `CP`, and `CSC` (**NOT** `HOME_CSC` because we want to **wipe data**) from the original firmware.
+- Reboot to download mode. Open Odin on your PC, and flash `liorsmagic_patched.tar` as `AP`, together with `BL`, `CP`, and `CSC` (**NOT** `HOME_CSC` because we want to **wipe data**) from the original firmware.
 - Your device should reboot automatically once Odin finished flashing. Agree to do a factory reset if asked.
-- If your device does **NOT** have boot ramdisk, reboot to recovery now to enable Magisk (reason stated in [Magisk in Recovery](#magisk-in-recovery)).
+- If your device does **NOT** have boot ramdisk, reboot to recovery now to enable Magisk (reason stated in [Magisk in Recovery](#liorsmagic-in-recovery)).
 - Install the Magisk app you've already downloaded and launch the app. It should show a dialog asking for additional setup.
 - Let the app do its job and automatically reboot the device. Voila!
 

@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.view
+package com.topjohnwu.liorsmagic.view
 
 import android.app.Activity
 import android.content.DialogInterface
@@ -19,18 +19,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.shape.MaterialShapeDrawable
-import com.topjohnwu.magisk.BR
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.base.BaseActivity
-import com.topjohnwu.magisk.databinding.DialogMagiskBaseBinding
-import com.topjohnwu.magisk.databinding.DiffItem
-import com.topjohnwu.magisk.databinding.ItemWrapper
-import com.topjohnwu.magisk.databinding.ObservableHost
-import com.topjohnwu.magisk.databinding.RvItem
-import com.topjohnwu.magisk.databinding.bindExtra
-import com.topjohnwu.magisk.databinding.set
-import com.topjohnwu.magisk.databinding.setAdapter
-import com.topjohnwu.magisk.view.MagiskDialog.DialogClickListener
+import com.topjohnwu.liorsmagic.BR
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.base.BaseActivity
+import com.topjohnwu.liorsmagic.databinding.DialogMagiskBaseBinding
+import com.topjohnwu.liorsmagic.databinding.DiffItem
+import com.topjohnwu.liorsmagic.databinding.ItemWrapper
+import com.topjohnwu.liorsmagic.databinding.ObservableHost
+import com.topjohnwu.liorsmagic.databinding.RvItem
+import com.topjohnwu.liorsmagic.databinding.bindExtra
+import com.topjohnwu.liorsmagic.databinding.set
+import com.topjohnwu.liorsmagic.databinding.setAdapter
+import com.topjohnwu.liorsmagic.view.MagiskDialog.DialogClickListener
 
 typealias DialogButtonClickListener = (DialogInterface) -> Unit
 

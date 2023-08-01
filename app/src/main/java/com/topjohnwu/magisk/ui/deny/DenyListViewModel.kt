@@ -1,16 +1,16 @@
-package com.topjohnwu.magisk.ui.deny
+package com.topjohnwu.liorsmagic.ui.deny
 
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager.MATCH_UNINSTALLED_PACKAGES
 import androidx.databinding.Bindable
 import androidx.lifecycle.viewModelScope
-import com.topjohnwu.magisk.BR
-import com.topjohnwu.magisk.arch.AsyncLoadViewModel
-import com.topjohnwu.magisk.core.di.AppContext
-import com.topjohnwu.magisk.core.ktx.concurrentMap
-import com.topjohnwu.magisk.databinding.bindExtra
-import com.topjohnwu.magisk.databinding.filterList
-import com.topjohnwu.magisk.databinding.set
+import com.topjohnwu.liorsmagic.BR
+import com.topjohnwu.liorsmagic.arch.AsyncLoadViewModel
+import com.topjohnwu.liorsmagic.core.di.AppContext
+import com.topjohnwu.liorsmagic.core.ktx.concurrentMap
+import com.topjohnwu.liorsmagic.databinding.bindExtra
+import com.topjohnwu.liorsmagic.databinding.filterList
+import com.topjohnwu.liorsmagic.databinding.set
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.asFlow
@@ -52,7 +52,7 @@ class DenyListViewModel : AsyncLoadViewModel() {
         loading = true
         val apps = withContext(Dispatchers.Default) {
             val pm = AppContext.packageManager
-            val denyList = Shell.cmd("magisk --denylist ls").exec().out
+            val denyList = Shell.cmd("liorsmagic --denylist ls").exec().out
                 .map { CmdlineListItem(it) }
             val apps = pm.getInstalledApplications(MATCH_UNINSTALLED_PACKAGES).run {
                 asFlow()

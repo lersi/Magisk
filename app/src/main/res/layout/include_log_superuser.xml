@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.topjohnwu.magisk.ui.log.LogViewModel" />
+            type="com.topjohnwu.liorsmagic.ui.log.LogViewModel" />
 
     </data>
 

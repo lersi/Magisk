@@ -1,6 +1,6 @@
 #include <sys/mount.h>
 
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 #include <base.hpp>
 #include <sys/vfs.h>
 
@@ -12,7 +12,7 @@ void FirstStageInit::prepare() {
     prepare_data();
     restore_ramdisk_init();
     auto init = mmap_data("/init", true);
-    // Redirect original init to magiskinit
+    // Redirect original init to liorsmagicinit
     for (size_t off : init.patch(INIT_PATH, REDIR_PATH)) {
         LOGD("Patch @ %08zX [" INIT_PATH "] -> [" REDIR_PATH "]\n", off);
     }

@@ -1,12 +1,12 @@
-package com.topjohnwu.magisk.dialog
+package com.topjohnwu.liorsmagic.dialog
 
 import android.net.Uri
-import com.topjohnwu.magisk.MainDirections
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.Const
-import com.topjohnwu.magisk.events.DialogBuilder
-import com.topjohnwu.magisk.ui.module.ModuleViewModel
-import com.topjohnwu.magisk.view.MagiskDialog
+import com.topjohnwu.liorsmagic.MainDirections
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.Const
+import com.topjohnwu.liorsmagic.events.DialogBuilder
+import com.topjohnwu.liorsmagic.ui.module.ModuleViewModel
+import com.topjohnwu.liorsmagic.view.MagiskDialog
 
 class LocalModuleInstallDialog(
     private val viewModel: ModuleViewModel,

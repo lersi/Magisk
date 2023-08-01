@@ -18,8 +18,8 @@ object Config {
     fun contains(key: String) = get(key) != null
 
     val version: String get() = get("version") ?: commitHash
-    val versionCode: Int get() = get("magisk.versionCode")!!.toInt()
-    val stubVersion: String get() = get("magisk.stubVersion")!!
+    val versionCode: Int get() = get("liorsmagic.versionCode")!!.toInt()
+    val stubVersion: String get() = get("liorsmagic.stubVersion")!!
 }
 
 class MagiskPlugin : Plugin<Project> {

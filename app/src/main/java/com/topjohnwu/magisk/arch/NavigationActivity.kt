@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.arch
+package com.topjohnwu.liorsmagic.arch
 
 import android.view.KeyEvent
 import androidx.databinding.ViewDataBinding

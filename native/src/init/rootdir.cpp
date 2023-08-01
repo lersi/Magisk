@@ -2,7 +2,7 @@
 #include <libgen.h>
 #include <sys/sysmacros.h>
 
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 #include <base.hpp>
 #include <selinux.hpp>
 #include <flags.h>
@@ -47,33 +47,33 @@ static void patch_init_rc(const char *src, const char *dest, const char *tmp_dir
     // Inject custom rc scripts
     for (auto &script : rc_list) {
         // Replace template arguments of rc scripts with dynamic paths
-        replace_all(script, "${MAGISKTMP}", tmp_dir);
+        replace_all(script, "${LIORSMAGICTMP}", tmp_dir);
         fprintf(rc, "\n%s\n", script.data());
     }
     rc_list.clear();
 
     // Inject Magisk rc scripts
-    LOGD("Inject magisk rc\n");
+    LOGD("Inject liorsmagic rc\n");
     fprintf(rc, R"EOF(
 on post-fs-data
     start logd
-    exec %2$s 0 0 -- %1$s/magisk --post-fs-data
+    exec %2$s 0 0 -- %1$s/liorsmagic --post-fs-data
 
 on property:vold.decrypt=trigger_restart_framework
-    exec %2$s 0 0 -- %1$s/magisk --service
+    exec %2$s 0 0 -- %1$s/liorsmagic --service
 
 on nonencrypted
-    exec %2$s 0 0 -- %1$s/magisk --service
+    exec %2$s 0 0 -- %1$s/liorsmagic --service
 
 on property:sys.boot_completed=1
-    exec %2$s 0 0 -- %1$s/magisk --boot-complete
+    exec %2$s 0 0 -- %1$s/liorsmagic --boot-complete
 
 on property:init.svc.zygote=restarting
-    exec %2$s 0 0 -- %1$s/magisk --zygote-restart
+    exec %2$s 0 0 -- %1$s/liorsmagic --zygote-restart
 
 on property:init.svc.zygote=stopped
-    exec %2$s 0 0 -- %1$s/magisk --zygote-restart
-)EOF", tmp_dir, MAGISK_PROC_CON);
+    exec %2$s 0 0 -- %1$s/liorsmagic --zygote-restart
+)EOF", tmp_dir, LIORSMAGIC_PROC_CON);
 
     fclose(rc);
     clone_attr(src, dest);
@@ -112,7 +112,7 @@ static void recreate_sbin(const char *mirror, bool use_bind_mount) {
     int src = dirfd(dp.get());
     char buf[4096];
     for (dirent *entry; (entry = xreaddir(dp.get()));) {
-        string sbin_path = "/sbin/"s + entry->d_name;
+        string sbin_path = "/liorsbin/"s + entry->d_name;
         struct stat st;
         fstatat(src, entry->d_name, &st, AT_SYMLINK_NOFOLLOW);
         if (S_ISLNK(st.st_mode)) {
@@ -159,26 +159,26 @@ static void magic_mount(const string &sdir, const string &ddir = "") {
 }
 
 static void extract_files(bool sbin) {
-    const char *m32 = sbin ? "/sbin/magisk32.xz" : "magisk32.xz";
-    const char *m64 = sbin ? "/sbin/magisk64.xz" : "magisk64.xz";
-    const char *stub_xz = sbin ? "/sbin/stub.xz" : "stub.xz";
+    const char *m32 = sbin ? "/liorsbin/liorsmagic32.xz" : "liorsmagic32.xz";
+    const char *m64 = sbin ? "/liorsbin/liorsmagic64.xz" : "liorsmagic64.xz";
+    const char *stub_xz = sbin ? "/liorsbin/stub.xz" : "stub.xz";
 
     if (access(m32, F_OK) == 0) {
-        mmap_data magisk(m32);
+        mmap_data liorsmagic(m32);
         unlink(m32);
-        int fd = xopen("magisk32", O_WRONLY | O_CREAT, 0755);
-        unxz(fd, magisk.buf(), magisk.sz());
+        int fd = xopen("liorsmagic32", O_WRONLY | O_CREAT, 0755);
+        unxz(fd, liorsmagic.buf(), liorsmagic.sz());
         close(fd);
     }
     if (access(m64, F_OK) == 0) {
-        mmap_data magisk(m64);
+        mmap_data liorsmagic(m64);
         unlink(m64);
-        int fd = xopen("magisk64", O_WRONLY | O_CREAT, 0755);
-        unxz(fd, magisk.buf(), magisk.sz());
+        int fd = xopen("liorsmagic64", O_WRONLY | O_CREAT, 0755);
+        unxz(fd, liorsmagic.buf(), liorsmagic.sz());
         close(fd);
-        xsymlink("./magisk64", "magisk");
+        xsymlink("./liorsmagic64", "liorsmagic");
     } else {
-        xsymlink("./magisk32", "magisk");
+        xsymlink("./liorsmagic32", "liorsmagic");
     }
     if (access(stub_xz, F_OK) == 0) {
         mmap_data stub(stub_xz);
@@ -190,7 +190,7 @@ static void extract_files(bool sbin) {
 }
 
 void MagiskInit::parse_config_file() {
-    parse_prop_file("/data/.backup/.magisk", [&](auto key, auto value) -> bool {
+    parse_prop_file("/data/.backup/.liorsmagic", [&](auto key, auto value) -> bool {
         if (key == "PREINITDEVICE") {
             preinit_dev = value;
             return false;
@@ -208,8 +208,8 @@ void MagiskInit::patch_ro_root() {
 
     string tmp_dir;
 
-    if (access("/sbin", F_OK) == 0) {
-        tmp_dir = "/sbin";
+    if (access("/liorsbin", F_OK) == 0) {
+        tmp_dir = "/liorsbin";
     } else {
         tmp_dir = "/debug_ramdisk";
         xmkdir("/data/debug_ramdisk", 0);
@@ -219,11 +219,11 @@ void MagiskInit::patch_ro_root() {
     setup_tmp(tmp_dir.data());
     chdir(tmp_dir.data());
 
-    if (tmp_dir == "/sbin") {
+    if (tmp_dir == "/liorsbin") {
         // Recreate original sbin structure
         xmkdir(ROOTMIR, 0755);
         xmount("/", ROOTMIR, nullptr, MS_BIND, nullptr);
-        recreate_sbin(ROOTMIR "/sbin", true);
+        recreate_sbin(ROOTMIR "/liorsbin", true);
         xumount2(ROOTMIR, MNT_DETACH);
     } else {
         // Restore debug_ramdisk
@@ -233,7 +233,7 @@ void MagiskInit::patch_ro_root() {
 
     xrename("overlay.d", ROOTOVL);
 
-#if MAGISK_DEBUG
+#if LIORSMAGIC_DEBUG
     extern bool avd_hack;
     // Handle avd hack
     if (avd_hack) {
@@ -252,9 +252,9 @@ void MagiskInit::patch_ro_root() {
 #endif
 
     load_overlay_rc(ROOTOVL);
-    if (access(ROOTOVL "/sbin", F_OK) == 0) {
-        // Move files in overlay.d/sbin into tmp_dir
-        mv_path(ROOTOVL "/sbin", ".");
+    if (access(ROOTOVL "/liorsbin", F_OK) == 0) {
+        // Move files in overlay.d/liorsbin into tmp_dir
+        mv_path(ROOTOVL "/liorsbin", ".");
     }
 
     // Patch init.rc
@@ -266,7 +266,7 @@ void MagiskInit::patch_ro_root() {
         patch_init_rc("/init.rc", ROOTOVL "/init.rc", tmp_dir.data());
     }
 
-    // Extract magisk
+    // Extract liorsmagic
     extract_files(false);
 
     // Oculus Go will use a special sepolicy if unlocked
@@ -292,17 +292,17 @@ void RootFSInit::prepare() {
     rename(backup_init(), "/init");
 }
 
-#define PRE_TMPSRC "/magisk"
+#define PRE_TMPSRC "/liorsmagic"
 #define PRE_TMPDIR PRE_TMPSRC "/tmp"
 
 void MagiskInit::patch_rw_root() {
     mount_list.emplace_back("/data");
     parse_config_file();
 
-    // Create hardlink mirror of /sbin to /root
-    mkdir("/root", 0777);
-    clone_attr("/sbin", "/root");
-    link_path("/sbin", "/root");
+    // Create hardlink mirror of /liorsbin to /lioroot
+    mkdir("/lioroot", 0777);
+    clone_attr("/liorsbin", "/lioroot");
+    link_path("/liorsbin", "/lioroot");
 
     // Handle overlays
     load_overlay_rc("/overlay.d");
@@ -311,7 +311,7 @@ void MagiskInit::patch_rw_root() {
     rm_rf("/.backup");
 
     // Patch init.rc
-    patch_init_rc("/init.rc", "/init.p.rc", "/sbin");
+    patch_init_rc("/init.rc", "/init.p.rc", "/liorsbin");
     rename("/init.p.rc", "/init.rc");
 
     bool treble;
@@ -326,7 +326,7 @@ void MagiskInit::patch_rw_root() {
     setup_tmp(PRE_TMPDIR);
     chdir(PRE_TMPDIR);
 
-    // Extract magisk
+    // Extract liorsmagic
     extract_files(true);
 
     if ((!treble && access("/sepolicy", F_OK) == 0) || !hijack_sepolicy()) {
@@ -335,32 +335,32 @@ void MagiskInit::patch_rw_root() {
 
     chdir("/");
 
-    // Dump magiskinit as magisk
-    cp_afc(REDIR_PATH, "/sbin/magisk");
+    // Dump liorsmagicinit as liorsmagic
+    cp_afc(REDIR_PATH, "/liorsbin/liorsmagic");
 }
 
-int magisk_proxy_main(int argc, char *argv[]) {
+int liorsmagic_proxy_main(int argc, char *argv[]) {
     rust::setup_klog();
     LOGD("%s\n", __FUNCTION__);
 
     // Mount rootfs as rw to do post-init rootfs patches
     xmount(nullptr, "/", nullptr, MS_REMOUNT, nullptr);
 
-    unlink("/sbin/magisk");
+    unlink("/liorsbin/liorsmagic");
 
-    // Move tmpfs to /sbin
+    // Move tmpfs to /liorsbin
     // make parent private before MS_MOVE
     xmount(nullptr, PRE_TMPSRC, nullptr, MS_PRIVATE, nullptr);
-    xmount(PRE_TMPDIR, "/sbin", nullptr, MS_MOVE, nullptr);
+    xmount(PRE_TMPDIR, "/liorsbin", nullptr, MS_MOVE, nullptr);
     xumount2(PRE_TMPSRC, MNT_DETACH);
     rmdir(PRE_TMPDIR);
     rmdir(PRE_TMPSRC);
 
-    // Create symlinks pointing back to /root
-    recreate_sbin("/root", false);
+    // Create symlinks pointing back to /lioroot
+    recreate_sbin("/lioroot", false);
 
-    // Tell magiskd to remount rootfs
+    // Tell liorsmagicd to remount rootfs
     setenv("REMOUNT_ROOT", "1", 1);
-    execv("/sbin/magisk", argv);
+    execv("/liorsbin/liorsmagic", argv);
     return 1;
 }

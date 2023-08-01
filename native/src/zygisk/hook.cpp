@@ -21,7 +21,7 @@ using jni_hook::hash_map;
 using jni_hook::tree_map;
 using xstring = jni_hook::string;
 using rust::MagiskD;
-using rust::get_magiskd;
+using rust::get_liorsmagicd;
 
 // Extreme verbose logging
 //#define ZLOGV(...) ZLOGD(__VA_ARGS__)
@@ -69,7 +69,7 @@ struct HookContext {
         AppSpecializeArgs_v3 *app;
         ServerSpecializeArgs_v1 *server;
     } args;
-    const MagiskD &magiskd;
+    const MagiskD &liorsmagicd;
 
     const char *process;
     list<ZygiskModule> modules;
@@ -97,7 +97,7 @@ struct HookContext {
     vector<IgnoreInfo> ignore_info;
 
     HookContext(JNIEnv *env, void *args) :
-    env(env), args{args}, magiskd(get_magiskd()), process(nullptr), pid(-1), info_flags(0),
+    env(env), args{args}, liorsmagicd(get_liorsmagicd()), process(nullptr), pid(-1), info_flags(0),
     hook_info_lock(PTHREAD_MUTEX_INITIALIZER) {
         static bool restored_env = false;
         if (!restored_env) {
@@ -174,12 +174,12 @@ DCL_HOOK_FUNC(int, unshare, int flags) {
 DCL_HOOK_FUNC(void, android_log_close) {
     if (g_ctx == nullptr) {
         // Happens during un-managed fork like nativeForkApp, nativeForkUsap
-        get_magiskd().close_log_pipe();
+        get_liorsmagicd().close_log_pipe();
     } else if (!g_ctx->flags[SKIP_FD_SANITIZATION]) {
-        g_ctx->magiskd.close_log_pipe();
+        g_ctx->liorsmagicd.close_log_pipe();
         if (g_ctx->is_child()) {
             // Switch to plain old android logging because we cannot talk
-            // to magiskd to fetch our log pipe afterwards anyways.
+            // to liorsmagicd to fetch our log pipe afterwards anyways.
             android_logging();
         }
     }
@@ -487,7 +487,7 @@ void HookContext::sanitize_fds() {
     int dfd = dirfd(dir.get());
     for (dirent *entry; (entry = xreaddir(dir.get()));) {
         int fd = parse_int(entry->d_name);
-        int logd_fd = magiskd.get_log_pipe();
+        int logd_fd = liorsmagicd.get_log_pipe();
         if ((fd < 0 || fd >= MAX_FD_SIZE || !allowed_fds[fd]) && fd != dfd && fd != logd_fd) {
             close(fd);
         }
@@ -568,13 +568,13 @@ void HookContext::app_specialize_pre() {
 
 void HookContext::app_specialize_post() {
     run_modules_post();
-    if (info_flags & PROCESS_IS_MAGISK_APP) {
+    if (info_flags & PROCESS_IS_LIORSMAGIC_APP) {
         setenv("ZYGISK_ENABLED", "1", 1);
     }
 
     // Cleanups
     env->ReleaseStringUTFChars(args.app->nice_name, process);
-    magiskd.close_log_pipe();
+    liorsmagicd.close_log_pipe();
     android_logging();
 }
 
@@ -587,7 +587,7 @@ void HookContext::server_specialize_pre() {
         } else {
             run_modules_pre(module_fds);
 
-            // Send the bitset of module status back to magiskd from system_server
+            // Send the bitset of module status back to liorsmagicd from system_server
             dynamic_bitset bits;
             for (const auto &m : modules)
                 bits[m.getId()] = true;
@@ -695,7 +695,7 @@ void HookContext::nativeForkAndSpecialize_pre() {
         // we can skip fd sanitization
         flags[SKIP_FD_SANITIZATION] = !dlsym(RTLD_DEFAULT, "_ZN19FileDescriptorTable6CreateEv");
     } else {
-        int logd_fd = magiskd.get_log_pipe();
+        int logd_fd = liorsmagicd.get_log_pipe();
         if (logd_fd >= 0) {
             exempted_fds.push_back(logd_fd);
         }

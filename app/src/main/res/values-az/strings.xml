@@ -28,8 +28,8 @@
     <string name="home_installed_version">Qurulan</string>
     <string name="home_latest_version">Yeni</string>
     <string name="invalid_update_channel">Keçərsiz yeniləmə kanalı</string>
-    <string name="uninstall_magisk_title">Magisk\'i sil</string>
-    <string name="uninstall_magisk_msg">Bütün əlavələr ləğv olunacaq/silinəcək. Root silinəcək, və əgər hal-hazırda deyilsə, bütün məlumatlarınız potensiyal olaraq şifrələnəcək.</string>
+    <string name="uninstall_liorsmagic_title">Magisk\'i sil</string>
+    <string name="uninstall_liorsmagic_msg">Bütün əlavələr ləğv olunacaq/silinəcək. Root silinəcək, və əgər hal-hazırda deyilsə, bütün məlumatlarınız potensiyal olaraq şifrələnəcək.</string>
 
     <!--Install-->
     <string name="keep_force_encryption">Zorla şifrələməni qoru</string>
@@ -82,7 +82,7 @@
 
     <!--Logs-->
     <string name="log_data_none">Qeyd yoxdur, root icazəli tətbiqlərdən daha çox istifadə edə bilərsən</string>
-    <string name="log_data_magisk_none">Qəribədir, Magisk qeydləri boşdur</string>
+    <string name="log_data_liorsmagic_none">Qəribədir, Magisk qeydləri boşdur</string>
     <string name="menuSaveLog">Qeydləri saxla</string>
     <string name="menuClearLog">Qeydləri sil</string>
     <string name="logs_cleared">Qeydlər silindi</string>
@@ -195,7 +195,7 @@
     <string name="updated_channel">Yeniləmə Bitdi</string>
     <string name="download_complete">Endirmə Bitdi</string>
     <string name="download_file_error">Faylı endirmək olmadı</string>
-    <string name="magisk_update_title">Magisk Yeniləməsi Var!</string>
+    <string name="liorsmagic_update_title">Magisk Yeniləməsi Var!</string>
     <string name="updated_title">Magisk Yeniləndi</string>
     <string name="updated_text">Tətbiqi açmaq üçün toxun</string>
 
@@ -221,8 +221,8 @@
     <string name="env_fix_msg">Cihazınız Magiskin düzgün işləməsi üçün əlavə qurmaya ehtiyac duyur. Yenidən başlatmaq istəyirsiniz?</string>
     <string name="setup_msg">Qurulur…</string>
     <string name="authenticate">Səlahiyətləndirilir</string>
-    <string name="unsupport_magisk_title">Bu Magisk versiyası dəstəklənmir</string>
-    <string name="unsupport_magisk_msg">Tətbiqin bu versiyası Magiskin %1$s versiyasından aşağıları dəstəkləmir.\n\nTətbiq sanki Magisk heç yoxmuş kimi davranacaq, lütfən Magiski yüksəldin.</string>
+    <string name="unsupport_liorsmagic_title">Bu Magisk versiyası dəstəklənmir</string>
+    <string name="unsupport_liorsmagic_msg">Tətbiqin bu versiyası Magiskin %1$s versiyasından aşağıları dəstəkləmir.\n\nTətbiq sanki Magisk heç yoxmuş kimi davranacaq, lütfən Magiski yüksəldin.</string>
     <string name="unsupport_general_title">Anormal Hal</string>
     <string name="unsupport_system_app_msg">Bu tətbiqi sistem tətbiqi kimi açmaq olmur. Onu yenidən istifadəçi tətbiqi etməlisiniz.</string>
     <string name="unsupport_other_su_msg">Magiskdən olmayan \"su\" tapıldı. Lütfən digər kök icazələrini silin yaxud Magiski yenidən quraşdırın.</string>

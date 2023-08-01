@@ -1,7 +1,7 @@
-package com.topjohnwu.magisk.core.data
+package com.topjohnwu.liorsmagic.core.data
 
 import androidx.room.*
-import com.topjohnwu.magisk.core.model.su.SuLog
+import com.topjohnwu.liorsmagic.core.model.su.SuLog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*

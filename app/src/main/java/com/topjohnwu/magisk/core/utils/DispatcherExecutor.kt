@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.core.utils
+package com.topjohnwu.liorsmagic.core.utils
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope

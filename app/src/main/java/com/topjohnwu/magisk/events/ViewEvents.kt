@@ -1,20 +1,20 @@
-package com.topjohnwu.magisk.events
+package com.topjohnwu.liorsmagic.events
 
 import android.content.Context
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.navigation.NavDirections
 import com.google.android.material.snackbar.Snackbar
-import com.topjohnwu.magisk.arch.ActivityExecutor
-import com.topjohnwu.magisk.arch.ContextExecutor
-import com.topjohnwu.magisk.arch.NavigationActivity
-import com.topjohnwu.magisk.arch.UIActivity
-import com.topjohnwu.magisk.arch.ViewEvent
-import com.topjohnwu.magisk.core.base.ContentResultCallback
-import com.topjohnwu.magisk.utils.TextHolder
-import com.topjohnwu.magisk.utils.asText
-import com.topjohnwu.magisk.view.MagiskDialog
-import com.topjohnwu.magisk.view.Shortcuts
+import com.topjohnwu.liorsmagic.arch.ActivityExecutor
+import com.topjohnwu.liorsmagic.arch.ContextExecutor
+import com.topjohnwu.liorsmagic.arch.NavigationActivity
+import com.topjohnwu.liorsmagic.arch.UIActivity
+import com.topjohnwu.liorsmagic.arch.ViewEvent
+import com.topjohnwu.liorsmagic.core.base.ContentResultCallback
+import com.topjohnwu.liorsmagic.utils.TextHolder
+import com.topjohnwu.liorsmagic.utils.asText
+import com.topjohnwu.liorsmagic.view.MagiskDialog
+import com.topjohnwu.liorsmagic.view.Shortcuts
 
 class PermissionEvent(
     private val permission: String,

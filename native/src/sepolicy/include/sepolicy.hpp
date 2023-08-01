@@ -51,7 +51,7 @@ struct sepolicy {
     bool genfscon(c_str fs_name, c_str path, c_str ctx);
 
     // Magisk
-    void magisk_rules();
+    void liorsmagic_rules();
 
     // Deprecate
     bool create(c_str name) { return type(name, "domain"); }

@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.core.utils
+package com.topjohnwu.liorsmagic.core.utils
 
 import android.app.ActivityManager
 import android.content.ComponentName
@@ -7,7 +7,7 @@ import android.content.ServiceConnection
 import android.os.IBinder
 import android.system.Os
 import androidx.core.content.getSystemService
-import com.topjohnwu.magisk.core.Info
+import com.topjohnwu.liorsmagic.core.Info
 import com.topjohnwu.superuser.Shell
 import com.topjohnwu.superuser.ShellUtils
 import com.topjohnwu.superuser.ipc.RootService

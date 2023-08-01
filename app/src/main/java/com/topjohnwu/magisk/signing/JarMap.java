@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.signing;
+package com.topjohnwu.liorsmagic.signing;
 
 import java.io.Closeable;
 import java.io.File;

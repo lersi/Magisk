@@ -3,7 +3,7 @@
 
 #include <base.hpp>
 #include <selinux.hpp>
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 
 #include "su.hpp"
 
@@ -192,10 +192,10 @@ void app_notify(const su_context &ctx) {
 int app_request(const su_context &ctx) {
     // Create FIFO
     char fifo[64];
-    ssprintf(fifo, sizeof(fifo), "%s/" INTLROOT "/su_request_%d", MAGISKTMP.data(), ctx.pid);
+    ssprintf(fifo, sizeof(fifo), "%s/" INTLROOT "/su_request_%d", LIORSMAGICTMP.data(), ctx.pid);
     mkfifo(fifo, 0600);
     chown(fifo, ctx.info->mgr_uid, ctx.info->mgr_uid);
-    setfilecon(fifo, MAGISK_FILE_CON);
+    setfilecon(fifo, LIORSMAGIC_FILE_CON);
 
     // Send request
     vector<Extra> extras;

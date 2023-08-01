@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.core.data.magiskdb
+package com.topjohnwu.liorsmagic.core.data.liorsmagicdb
 
 class StringDao : MagiskDB() {
 

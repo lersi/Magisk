@@ -1,4 +1,4 @@
-#!/sbin/sh
+#!/liorsbin/sh
 
 TMPDIR=/dev/tmp
 rm -rf $TMPDIR

@@ -1,17 +1,17 @@
-package com.topjohnwu.magisk.ui.module
+package com.topjohnwu.liorsmagic.ui.module
 
 import androidx.databinding.Bindable
-import com.topjohnwu.magisk.BR
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.model.module.LocalModule
-import com.topjohnwu.magisk.databinding.DiffItem
-import com.topjohnwu.magisk.databinding.ItemWrapper
-import com.topjohnwu.magisk.databinding.ObservableRvItem
-import com.topjohnwu.magisk.databinding.RvItem
-import com.topjohnwu.magisk.databinding.set
-import com.topjohnwu.magisk.utils.TextHolder
-import com.topjohnwu.magisk.utils.asText
+import com.topjohnwu.liorsmagic.BR
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.model.module.LocalModule
+import com.topjohnwu.liorsmagic.databinding.DiffItem
+import com.topjohnwu.liorsmagic.databinding.ItemWrapper
+import com.topjohnwu.liorsmagic.databinding.ObservableRvItem
+import com.topjohnwu.liorsmagic.databinding.RvItem
+import com.topjohnwu.liorsmagic.databinding.set
+import com.topjohnwu.liorsmagic.utils.TextHolder
+import com.topjohnwu.liorsmagic.utils.asText
 
 object InstallModule : RvItem(), DiffItem<InstallModule> {
     override val layoutRes = R.layout.item_module_download

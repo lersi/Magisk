@@ -1,14 +1,14 @@
-package com.topjohnwu.magisk.ui.superuser
+package com.topjohnwu.liorsmagic.ui.superuser
 
 import android.graphics.drawable.Drawable
 import androidx.databinding.Bindable
-import com.topjohnwu.magisk.BR
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.model.su.SuPolicy
-import com.topjohnwu.magisk.databinding.DiffItem
-import com.topjohnwu.magisk.databinding.ItemWrapper
-import com.topjohnwu.magisk.databinding.ObservableRvItem
-import com.topjohnwu.magisk.databinding.set
+import com.topjohnwu.liorsmagic.BR
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.model.su.SuPolicy
+import com.topjohnwu.liorsmagic.databinding.DiffItem
+import com.topjohnwu.liorsmagic.databinding.ItemWrapper
+import com.topjohnwu.liorsmagic.databinding.ObservableRvItem
+import com.topjohnwu.liorsmagic.databinding.set
 
 class PolicyRvItem(
     private val viewModel: SuperuserViewModel,

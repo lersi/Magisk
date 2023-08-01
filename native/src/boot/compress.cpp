@@ -12,7 +12,7 @@
 
 #include <base.hpp>
 
-#include "magiskboot.hpp"
+#include "liorsmagicboot.hpp"
 #include "compress.hpp"
 
 using namespace std;

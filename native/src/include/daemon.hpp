@@ -71,7 +71,7 @@ extern int app_process_32;
 extern int app_process_64;
 extern std::vector<module_info> *module_list;
 
-std::string find_magisk_tmp();
+std::string find_liorsmagic_tmp();
 int connect_daemon(int req, bool create = false);
 
 // Poll control

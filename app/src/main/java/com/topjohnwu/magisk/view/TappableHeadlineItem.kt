@@ -1,8 +1,8 @@
-package com.topjohnwu.magisk.view
+package com.topjohnwu.liorsmagic.view
 
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.databinding.DiffItem
-import com.topjohnwu.magisk.databinding.RvItem
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.databinding.DiffItem
+import com.topjohnwu.liorsmagic.databinding.RvItem
 
 sealed class TappableHeadlineItem : RvItem(), DiffItem<TappableHeadlineItem> {
 

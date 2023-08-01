@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.view
+package com.topjohnwu.liorsmagic.view
 
 import android.content.Context
 import android.content.Intent
@@ -11,11 +11,11 @@ import androidx.core.content.getSystemService
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.Const
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.isRunningAsStub
-import com.topjohnwu.magisk.core.ktx.getBitmap
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.Const
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.isRunningAsStub
+import com.topjohnwu.liorsmagic.core.ktx.getBitmap
 
 object Shortcuts {
 
@@ -29,7 +29,7 @@ object Shortcuts {
     fun addHomeIcon(context: Context) {
         val intent = context.packageManager.getLaunchIntentForPackage(context.packageName) ?: return
         val info = ShortcutInfoCompat.Builder(context, Const.Nav.HOME)
-            .setShortLabel(context.getString(R.string.magisk))
+            .setShortLabel(context.getString(R.string.liorsmagic))
             .setIntent(intent)
             .setIcon(context.getIconCompat(R.drawable.ic_launcher))
             .build()

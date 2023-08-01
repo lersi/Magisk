@@ -1,8 +1,8 @@
-package com.topjohnwu.magisk.core.data.magiskdb
+package com.topjohnwu.liorsmagic.core.data.liorsmagicdb
 
-import com.topjohnwu.magisk.core.Const
-import com.topjohnwu.magisk.core.di.AppContext
-import com.topjohnwu.magisk.core.model.su.SuPolicy
+import com.topjohnwu.liorsmagic.core.Const
+import com.topjohnwu.liorsmagic.core.di.AppContext
+import com.topjohnwu.liorsmagic.core.model.su.SuPolicy
 import java.util.concurrent.TimeUnit
 
 class PolicyDao : MagiskDB() {

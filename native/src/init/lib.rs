@@ -1,6 +1,6 @@
 use logging::setup_klog;
 // Has to be pub so all symbols in that crate is included
-pub use magiskpolicy;
+pub use liorsmagicpolicy;
 
 mod logging;
 

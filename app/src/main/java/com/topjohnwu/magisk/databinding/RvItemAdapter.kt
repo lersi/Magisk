@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.databinding
+package com.topjohnwu.liorsmagic.databinding
 
 import android.annotation.SuppressLint
 import android.util.SparseArray
@@ -12,7 +12,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
-import com.topjohnwu.magisk.BR
+import com.topjohnwu.liorsmagic.BR
 
 class RvItemAdapter<T: RvItem>(
     val items: List<T>,

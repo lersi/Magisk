@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.ui.deny
+package com.topjohnwu.liorsmagic.ui.deny
 
 import android.annotation.SuppressLint
 import android.content.pm.ApplicationInfo
@@ -10,8 +10,8 @@ import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import androidx.core.os.ProcessCompat
-import com.topjohnwu.magisk.core.ktx.getLabel
-import com.topjohnwu.magisk.core.utils.currentLocale
+import com.topjohnwu.liorsmagic.core.ktx.getLabel
+import com.topjohnwu.liorsmagic.core.utils.currentLocale
 import java.util.*
 
 class CmdlineListItem(line: String) {

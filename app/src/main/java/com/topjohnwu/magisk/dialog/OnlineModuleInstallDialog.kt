@@ -1,12 +1,12 @@
-package com.topjohnwu.magisk.dialog
+package com.topjohnwu.liorsmagic.dialog
 
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.di.ServiceLocator
-import com.topjohnwu.magisk.core.download.Action
-import com.topjohnwu.magisk.core.download.DownloadService
-import com.topjohnwu.magisk.core.download.Subject
-import com.topjohnwu.magisk.core.model.module.OnlineModule
-import com.topjohnwu.magisk.view.MagiskDialog
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.di.ServiceLocator
+import com.topjohnwu.liorsmagic.core.download.Action
+import com.topjohnwu.liorsmagic.core.download.DownloadService
+import com.topjohnwu.liorsmagic.core.download.Subject
+import com.topjohnwu.liorsmagic.core.model.module.OnlineModule
+import com.topjohnwu.liorsmagic.view.MagiskDialog
 
 class OnlineModuleInstallDialog(private val item: OnlineModule) : MarkDownDialog() {
 

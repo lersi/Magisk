@@ -1,16 +1,16 @@
-package com.topjohnwu.magisk.arch
+package com.topjohnwu.liorsmagic.arch
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.di.ServiceLocator
-import com.topjohnwu.magisk.ui.home.HomeViewModel
-import com.topjohnwu.magisk.ui.install.InstallViewModel
-import com.topjohnwu.magisk.ui.log.LogViewModel
-import com.topjohnwu.magisk.ui.superuser.SuperuserViewModel
-import com.topjohnwu.magisk.ui.surequest.SuRequestViewModel
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.di.ServiceLocator
+import com.topjohnwu.liorsmagic.ui.home.HomeViewModel
+import com.topjohnwu.liorsmagic.ui.install.InstallViewModel
+import com.topjohnwu.liorsmagic.ui.log.LogViewModel
+import com.topjohnwu.liorsmagic.ui.superuser.SuperuserViewModel
+import com.topjohnwu.liorsmagic.ui.surequest.SuRequestViewModel
 
 interface ViewModelHolder : LifecycleOwner, ViewModelStoreOwner {
 

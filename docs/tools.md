@@ -3,25 +3,25 @@
 Magisk comes with a huge collections of tools for installation, daemons, and utilities for developers. This documentation covers the 4 binaries and all included applets. The binaries and applets are shown below:
 
 ```
-magiskboot                 /* binary */
-magiskinit                 /* binary */
-magiskpolicy               /* binary */
-supolicy -> magiskpolicy
-magisk                     /* binary */
-resetprop -> magisk
-su -> magisk
+liorsmagicboot                 /* binary */
+liorsmagicinit                 /* binary */
+liorsmagicpolicy               /* binary */
+supolicy -> liorsmagicpolicy
+liorsmagic                     /* binary */
+resetprop -> liorsmagic
+su -> liorsmagic
 ```
 
-### magiskboot
+### liorsmagicboot
 
 A tool to unpack / repack boot images, parse / patch / extract cpio, patch dtb, hex patch binaries, and compress / decompress files with multiple algorithms.
 
-`magiskboot` natively supports (which means it does not rely on external tools) common compression formats including `gzip`, `lz4`, `lz4_legacy` ([only used on LG](https://events.static.linuxfound.org/sites/events/files/lcjpcojp13_klee.pdf)), `lzma`, `xz`, and `bzip2`.
+`liorsmagicboot` natively supports (which means it does not rely on external tools) common compression formats including `gzip`, `lz4`, `lz4_legacy` ([only used on LG](https://events.static.linuxfound.org/sites/events/files/lcjpcojp13_klee.pdf)), `lzma`, `xz`, and `bzip2`.
 
-The concept of `magiskboot` is to make boot image modification simpler. For unpacking, it parses the header and extracts all sections in the image, decompressing on-the-fly if compression is detected in any sections. For repacking, the original boot image is required so the original headers can be used, changing only the necessary entries such as section sizes and checksum. All sections will be compressed back to the original format if required. The tool also supports many CPIO and DTB operations.
+The concept of `liorsmagicboot` is to make boot image modification simpler. For unpacking, it parses the header and extracts all sections in the image, decompressing on-the-fly if compression is detected in any sections. For repacking, the original boot image is required so the original headers can be used, changing only the necessary entries such as section sizes and checksum. All sections will be compressed back to the original format if required. The tool also supports many CPIO and DTB operations.
 
 ```
-Usage: ./magiskboot <action> [args...]
+Usage: ./liorsmagicboot <action> [args...]
 
 Supported actions:
   unpack [-n] [-h] <bootimg>
@@ -126,20 +126,20 @@ Supported actions:
     Supported formats: gzip zopfli xz lzma bzip2 lz4 lz4_legacy lz4_lg 
 ```
 
-### magiskinit
+### liorsmagicinit
 
-This binary will replace `init` in the ramdisk of a Magisk patched boot image. It is originally created for supporting devices using system-as-root, but the tool is extended to support all devices and became a crucial part of Magisk. More details can be found in the **Pre-Init** section in [Magisk Booting Process](details.md#magisk-booting-process).
+This binary will replace `init` in the ramdisk of a Magisk patched boot image. It is originally created for supporting devices using system-as-root, but the tool is extended to support all devices and became a crucial part of Magisk. More details can be found in the **Pre-Init** section in [Magisk Booting Process](details.md#liorsmagic-booting-process).
 
-### magiskpolicy
+### liorsmagicpolicy
 
 (This tool is aliased to `supolicy` for compatibility with SuperSU's sepolicy tool)
 
 This tool could be used for advanced developers to modify SELinux policies. In common scenarios like Linux server admins, they would directly modify the SELinux policy sources (`*.te`) and recompile the `sepolicy` binary, but here on Android we directly patch the binary file (or runtime policies).
 
-All processes spawned from the Magisk daemon, including root shells and all its forks, are running in the context `u:r:magisk:s0`. The rule used on all Magisk installed systems can be viewed as stock `sepolicy` with these patches: `magiskpolicy --magisk 'allow magisk * * *'`.
+All processes spawned from the Magisk daemon, including root shells and all its forks, are running in the context `u:r:liorsmagic:s0`. The rule used on all Magisk installed systems can be viewed as stock `sepolicy` with these patches: `liorsmagicpolicy --liorsmagic 'allow liorsmagic * * *'`.
 
 ```
-Usage: ./magiskpolicy [--options...] [policy statements...]
+Usage: ./liorsmagicpolicy [--options...] [policy statements...]
 
 Options:
    --help            show help message for policy statements
@@ -149,7 +149,7 @@ Options:
    --compile-split   compile split cil policies
    --save FILE       dump monolithic sepolicy to FILE
    --live            immediately load sepolicy into the kernel
-   --magisk          apply built-in Magisk sepolicy rules
+   --liorsmagic          apply built-in Magisk sepolicy rules
    --apply FILE      apply rules from FILE, read and parsed
                      line by line as policy statements
                      (multiple --apply are allowed)
@@ -209,13 +209,13 @@ Supported policy statements:
 "genfscon fs_name partial_path fs_context"
 ```
 
-### magisk
+### liorsmagic
 
-When the magisk binary is called with the name `magisk`, it works as a utility tool with many helper functions and the entry points for several Magisk services.
+When the liorsmagic binary is called with the name `liorsmagic`, it works as a utility tool with many helper functions and the entry points for several Magisk services.
 
 ```
-Usage: magisk [applet [arguments]...]
-   or: magisk [options]...
+Usage: liorsmagic [applet [arguments]...]
+   or: liorsmagic [options]...
 
 Options:
    -c                        print current binary version
@@ -226,8 +226,8 @@ Options:
    --install-module ZIP      install a module zip file
 
 Advanced Options (Internal APIs):
-   --daemon                  manually start magisk daemon
-   --stop                    remove all magisk changes and stop daemon
+   --daemon                  manually start liorsmagic daemon
+   --stop                    remove all liorsmagic changes and stop daemon
    --[init trigger]          callback on init triggers. Valid triggers:
                              post-fs-data, service, boot-complete, zygote-restart
    --unlock-blocks           set BLKROSET flag to OFF for all block devices
@@ -241,7 +241,7 @@ Advanced Options (Internal APIs):
 Available applets:
     su, resetprop
 
-Usage: magisk --denylist [action [arguments...] ]
+Usage: liorsmagic --denylist [action [arguments...] ]
 Actions:
    status          Return the enforcement status
    enable          Enable denylist enforcement
@@ -255,7 +255,7 @@ Actions:
 
 ### su
 
-An applet of `magisk`, the MagiskSU entry point. Good old `su` command.
+An applet of `liorsmagic`, the MagiskSU entry point. Good old `su` command.
 
 ```
 Usage: su [options] [-] [user [argument...]]
@@ -277,7 +277,7 @@ Note: even though the `-Z, --context` option is not listed above, the option sti
 
 ### resetprop
 
-An applet of `magisk`. An advanced system property manipulation utility. Check the [Resetprop Details](details.md#resetprop) for more background information.
+An applet of `liorsmagic`. An advanced system property manipulation utility. Check the [Resetprop Details](details.md#resetprop) for more background information.
 
 ```
 Usage: resetprop [flags] [options...]

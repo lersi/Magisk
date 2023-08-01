@@ -1,4 +1,4 @@
-#MAGISK
+#LIORSMAGIC
 ############################################
 # Magisk Flash Script (updater-script)
 ############################################
@@ -28,10 +28,10 @@ setup_flashable
 # Detection
 ############
 
-if echo $MAGISK_VER | grep -q '\.'; then
-  PRETTY_VER=$MAGISK_VER
+if echo $LIORSMAGIC_VER | grep -q '\.'; then
+  PRETTY_VER=$LIORSMAGIC_VER
 else
-  PRETTY_VER="$MAGISK_VER($MAGISK_VER_CODE)"
+  PRETTY_VER="$LIORSMAGIC_VER($LIORSMAGIC_VER_CODE)"
 fi
 print_title "Magisk $PRETTY_VER Installer"
 
@@ -55,7 +55,7 @@ BINDIR=$INSTALLER/lib/$ABI
 cd $BINDIR
 for file in lib*.so; do mv "$file" "${file:3:${#file}-6}"; done
 cd /
-cp -af $INSTALLER/lib/$ABI32/libmagisk32.so $BINDIR/magisk32 2>/dev/null
+cp -af $INSTALLER/lib/$ABI32/libliorsmagic32.so $BINDIR/liorsmagic32 2>/dev/null
 
 # Check if system root is installed and remove
 $BOOTMODE || remove_system_su
@@ -67,22 +67,22 @@ $BOOTMODE || remove_system_su
 ui_print "- Constructing environment"
 
 # Copy required files
-rm -rf $MAGISKBIN/* 2>/dev/null
-mkdir -p $MAGISKBIN 2>/dev/null
-cp -af $BINDIR/. $COMMONDIR/. $BBBIN $MAGISKBIN
+rm -rf $LIORSMAGICBIN/* 2>/dev/null
+mkdir -p $LIORSMAGICBIN 2>/dev/null
+cp -af $BINDIR/. $COMMONDIR/. $BBBIN $LIORSMAGICBIN
 
 # Remove files only used by the Magisk app
-rm -f $MAGISKBIN/bootctl $MAGISKBIN/main.jar \
-  $MAGISKBIN/module_installer.sh $MAGISKBIN/uninstaller.sh
+rm -f $LIORSMAGICBIN/bootctl $LIORSMAGICBIN/main.jar \
+  $LIORSMAGICBIN/module_installer.sh $LIORSMAGICBIN/uninstaller.sh
 
-chmod -R 755 $MAGISKBIN
+chmod -R 755 $LIORSMAGICBIN
 
 # addon.d
 if [ -d /system/addon.d ]; then
   ui_print "- Adding addon.d survival script"
   blockdev --setrw /dev/block/mapper/system$SLOT 2>/dev/null
   mount -o rw,remount /system || mount -o rw,remount /
-  ADDOND=/system/addon.d/99-magisk.sh
+  ADDOND=/system/addon.d/99-liorsmagic.sh
   cp -af $COMMONDIR/addon.d.sh $ADDOND
   chmod 755 $ADDOND
 fi
@@ -91,7 +91,7 @@ fi
 # Image Patching
 ##################
 
-install_magisk
+install_liorsmagic
 
 # Cleanups
 $BOOTMODE || recovery_cleanup

@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.core.download
+package com.topjohnwu.liorsmagic.core.download
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -10,18 +10,18 @@ import android.net.Uri
 import android.os.Build
 import androidx.core.net.toFile
 import androidx.lifecycle.LifecycleOwner
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.StubApk
-import com.topjohnwu.magisk.core.ActivityTracker
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.base.BaseActivity
-import com.topjohnwu.magisk.core.intent
-import com.topjohnwu.magisk.core.isRunningAsStub
-import com.topjohnwu.magisk.core.ktx.*
-import com.topjohnwu.magisk.core.tasks.HideAPK
-import com.topjohnwu.magisk.core.utils.MediaStoreUtils
-import com.topjohnwu.magisk.core.utils.MediaStoreUtils.outputStream
-import com.topjohnwu.magisk.utils.APKInstall
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.StubApk
+import com.topjohnwu.liorsmagic.core.ActivityTracker
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.base.BaseActivity
+import com.topjohnwu.liorsmagic.core.intent
+import com.topjohnwu.liorsmagic.core.isRunningAsStub
+import com.topjohnwu.liorsmagic.core.ktx.*
+import com.topjohnwu.liorsmagic.core.tasks.HideAPK
+import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils
+import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils.outputStream
+import com.topjohnwu.liorsmagic.utils.APKInstall
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -146,7 +146,7 @@ class DownloadService : NotificationService() {
             assets.open("module_installer.sh").copyTo(zout)
 
             zout.putNextEntry(ZipEntry("META-INF/com/google/android/updater-script"))
-            zout.write("#MAGISK\n".toByteArray())
+            zout.write("#LIORSMAGIC\n".toByteArray())
 
             zin.forEach { entry ->
                 val path = entry.name

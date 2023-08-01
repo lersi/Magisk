@@ -1,17 +1,17 @@
-package com.topjohnwu.magisk.core.su
+package com.topjohnwu.liorsmagic.core.su
 
 import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
-import com.topjohnwu.magisk.BuildConfig
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.Config
-import com.topjohnwu.magisk.core.di.ServiceLocator
-import com.topjohnwu.magisk.core.ktx.getLabel
-import com.topjohnwu.magisk.core.ktx.getPackageInfo
-import com.topjohnwu.magisk.core.ktx.toast
-import com.topjohnwu.magisk.core.model.su.SuPolicy
-import com.topjohnwu.magisk.core.model.su.createSuLog
+import com.topjohnwu.liorsmagic.BuildConfig
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.Config
+import com.topjohnwu.liorsmagic.core.di.ServiceLocator
+import com.topjohnwu.liorsmagic.core.ktx.getLabel
+import com.topjohnwu.liorsmagic.core.ktx.getPackageInfo
+import com.topjohnwu.liorsmagic.core.ktx.toast
+import com.topjohnwu.liorsmagic.core.model.su.SuPolicy
+import com.topjohnwu.liorsmagic.core.model.su.createSuLog
 import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 

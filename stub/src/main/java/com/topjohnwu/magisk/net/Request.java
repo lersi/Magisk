@@ -1,8 +1,8 @@
-package com.topjohnwu.magisk.net;
+package com.topjohnwu.liorsmagic.net;
 
 import android.os.AsyncTask;
 
-import com.topjohnwu.magisk.utils.APKInstall;
+import com.topjohnwu.liorsmagic.utils.APKInstall;
 
 import org.json.JSONArray;
 import org.json.JSONException;

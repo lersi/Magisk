@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.core.base
+package com.topjohnwu.liorsmagic.core.base
 
 import android.content.ContentProvider
 import android.content.ContentValues
@@ -6,7 +6,7 @@ import android.content.Context
 import android.content.pm.ProviderInfo
 import android.database.Cursor
 import android.net.Uri
-import com.topjohnwu.magisk.core.patch
+import com.topjohnwu.liorsmagic.core.patch
 
 open class BaseProvider : ContentProvider() {
     override fun attachInfo(context: Context, info: ProviderInfo) {

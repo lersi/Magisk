@@ -1,16 +1,16 @@
-package com.topjohnwu.magisk.core.utils
+package com.topjohnwu.liorsmagic.core.utils
 
 import android.content.Context
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.StubApk
-import com.topjohnwu.magisk.core.Config
-import com.topjohnwu.magisk.core.Const
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.isRunningAsStub
-import com.topjohnwu.magisk.core.ktx.cachedFile
-import com.topjohnwu.magisk.core.ktx.deviceProtectedContext
-import com.topjohnwu.magisk.core.ktx.rawResource
-import com.topjohnwu.magisk.core.ktx.writeTo
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.StubApk
+import com.topjohnwu.liorsmagic.core.Config
+import com.topjohnwu.liorsmagic.core.Const
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.isRunningAsStub
+import com.topjohnwu.liorsmagic.core.ktx.cachedFile
+import com.topjohnwu.liorsmagic.core.ktx.deviceProtectedContext
+import com.topjohnwu.liorsmagic.core.ktx.rawResource
+import com.topjohnwu.liorsmagic.core.ktx.writeTo
 import com.topjohnwu.superuser.Shell
 import com.topjohnwu.superuser.ShellUtils
 import java.io.File
@@ -41,7 +41,7 @@ class ShellInit : Shell.Initializer() {
             }
 
             if (shell.isRoot) {
-                add("export MAGISKTMP=\$(magisk --path)")
+                add("export LIORSMAGICTMP=\$(liorsmagic --path)")
                 // Test if we can properly execute stuff in /data
                 Info.noDataExec = !shell.newJob().add("$localBB sh -c \"$localBB true\"").exec().isSuccess
             }
@@ -49,9 +49,9 @@ class ShellInit : Shell.Initializer() {
             if (Info.noDataExec) {
                 // Copy it out of /data to workaround Samsung bullshit
                 add(
-                    "if [ -x \$MAGISKTMP/.magisk/busybox/busybox ]; then",
-                    "  cp -af $localBB \$MAGISKTMP/.magisk/busybox/busybox",
-                    "  exec \$MAGISKTMP/.magisk/busybox/busybox sh",
+                    "if [ -x \$LIORSMAGICTMP/.liorsmagic/busybox/busybox ]; then",
+                    "  cp -af $localBB \$LIORSMAGICTMP/.liorsmagic/busybox/busybox",
+                    "  exec \$LIORSMAGICTMP/.liorsmagic/busybox/busybox sh",
                     "else",
                     "  cp -af $localBB /dev/busybox",
                     "  exec /dev/busybox sh",

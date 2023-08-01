@@ -6,7 +6,7 @@
 #include <set>
 #include <string>
 
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 #include <db.hpp>
 #include <base.hpp>
 #include <daemon.hpp>
@@ -48,7 +48,7 @@ static void mount_mirrors() {
 
     // Bind remount module root to clear nosuid
     if (access(SECURE_DIR, F_OK) == 0 || SDK_INT < 24) {
-        auto dest = MAGISKTMP + "/" MODULEMNT;
+        auto dest = LIORSMAGICTMP + "/" MODULEMNT;
         xmkdir(SECURE_DIR, 0700);
         xmkdir(MODULEROOT, 0755);
         xmkdir(dest.data(), 0755);
@@ -59,7 +59,7 @@ static void mount_mirrors() {
     }
 
     // Check and mount preinit mirror
-    if (struct stat st{}; stat((MAGISKTMP + "/" PREINITDEV).data(), &st) == 0 && (st.st_mode & S_IFBLK)) {
+    if (struct stat st{}; stat((LIORSMAGICTMP + "/" PREINITDEV).data(), &st) == 0 && (st.st_mode & S_IFBLK)) {
         // DO NOT mount the block device directly, as we do not know the flags and configs
         // to properly mount the partition; mounting block devices directly as rw could cause
         // crashes if the filesystem driver is crap (e.g. some broken F2FS drivers).
@@ -76,7 +76,7 @@ static void mount_mirrors() {
                 if (!rw) continue;
                 string preinit_dir = resolve_preinit_dir(info.target.data());
                 xmkdir(preinit_dir.data(), 0700);
-                auto mirror_dir = MAGISKTMP + "/" PREINITMIRR;
+                auto mirror_dir = LIORSMAGICTMP + "/" PREINITMIRR;
                 if ((mounted = mount_mirror(preinit_dir, mirror_dir))) {
                     xmount(nullptr, mirror_dir.data(), nullptr, MS_UNBINDABLE, nullptr);
                     break;
@@ -85,20 +85,20 @@ static void mount_mirrors() {
         }
         if (!mounted) {
             LOGW("preinit mirror not mounted %u:%u\n", major(preinit_dev), minor(preinit_dev));
-            unlink((MAGISKTMP + "/" PREINITDEV).data());
+            unlink((LIORSMAGICTMP + "/" PREINITDEV).data());
         }
     }
 
     // Prepare worker
-    auto worker_dir = MAGISKTMP + "/" WORKERDIR;
+    auto worker_dir = LIORSMAGICTMP + "/" WORKERDIR;
     xmount("worker", worker_dir.data(), "tmpfs", 0, "mode=755");
     xmount(nullptr, worker_dir.data(), nullptr, MS_PRIVATE, nullptr);
 
     // Recursively bind mount / to mirror dir
-    if (auto mirror_dir = MAGISKTMP + "/" MIRRDIR; !mount_mirror("/", mirror_dir)) {
+    if (auto mirror_dir = LIORSMAGICTMP + "/" MIRRDIR; !mount_mirror("/", mirror_dir)) {
         LOGI("fallback to mount subtree\n");
         // rootfs may fail, fallback to bind mount each mount point
-        set<string, greater<>> mounted_dirs {{ MAGISKTMP }};
+        set<string, greater<>> mounted_dirs {{ LIORSMAGICTMP }};
         for (const auto &info: self_mount_info) {
             if (info.type == "rootfs"sv) continue;
             // the greatest mount point that less than info.target, which is possibly a parent
@@ -127,7 +127,7 @@ string find_preinit_device() {
     part_t f2fs_type = UNKNOWN;
 
     bool encrypted = get_prop("ro.crypto.state") == "encrypted";
-    bool mount = getuid() == 0 && getenv("MAGISKTMP");
+    bool mount = getuid() == 0 && getenv("LIORSMAGICTMP");
     bool make_dev = mount && getenv("MAKEDEV");
 
     string preinit_source;
@@ -201,19 +201,19 @@ string find_preinit_device() {
         return "";
 
     if (!preinit_dir.empty()) {
-        auto mirror_dir = string(getenv("MAGISKTMP")) + "/" PREINITMIRR;
+        auto mirror_dir = string(getenv("LIORSMAGICTMP")) + "/" PREINITMIRR;
         mkdirs(preinit_dir.data(), 0700);
         mkdirs(mirror_dir.data(), 0700);
         xmount(preinit_dir.data(), mirror_dir.data(), nullptr, MS_BIND, nullptr);
         if (make_dev) {
-            auto dev_path = string(getenv("MAGISKTMP")) + "/" PREINITDEV;
+            auto dev_path = string(getenv("LIORSMAGICTMP")) + "/" PREINITDEV;
             xmknod(dev_path.data(), S_IFBLK | 0600, preinit_dev);
         }
     }
     return basename(preinit_source.data());
 }
 
-static bool magisk_env() {
+static bool liorsmagic_env() {
     char buf[4096];
 
     LOGI("* Initializing Magisk environment\n");
@@ -226,7 +226,7 @@ static bool magisk_env() {
             pkg.empty() ? "xxx" /* Ensure non-exist path */ : pkg.data());
 
     // Alternative binaries paths
-    const char *alt_bin[] = { "/cache/data_adb/magisk", "/data/magisk", buf };
+    const char *alt_bin[] = { "/cache/data_adb/liorsmagic", "/data/liorsmagic", buf };
     for (auto alt : alt_bin) {
         struct stat st{};
         if (lstat(alt, &st) == 0) {
@@ -251,14 +251,14 @@ static bool magisk_env() {
     if (access(DATABIN "/busybox", X_OK))
         return false;
 
-    sprintf(buf, "%s/" BBPATH "/busybox", MAGISKTMP.data());
+    sprintf(buf, "%s/" BBPATH "/busybox", LIORSMAGICTMP.data());
     mkdir(dirname(buf), 0755);
     cp_afc(DATABIN "/busybox", buf);
     exec_command_async(buf, "--install", "-s", dirname(buf));
 
-    if (access(DATABIN "/magiskpolicy", X_OK) == 0) {
-        sprintf(buf, "%s/magiskpolicy", MAGISKTMP.data());
-        cp_afc(DATABIN "/magiskpolicy", buf);
+    if (access(DATABIN "/liorsmagicpolicy", X_OK) == 0) {
+        sprintf(buf, "%s/liorsmagicpolicy", LIORSMAGICTMP.data());
+        cp_afc(DATABIN "/liorsmagicpolicy", buf);
     }
 
     return true;
@@ -372,7 +372,7 @@ static void post_fs_data() {
     if (!check_data())
         return;
 
-    rust::get_magiskd().setup_logfile();
+    rust::get_liorsmagicd().setup_logfile();
 
     LOGI("** post-fs-data mode running\n");
 
@@ -385,7 +385,7 @@ static void post_fs_data() {
         goto early_abort;
     }
 
-    if (!magisk_env()) {
+    if (!liorsmagic_env()) {
         LOGE("* Magisk environment incomplete, abort\n");
         goto early_abort;
     }
@@ -412,7 +412,7 @@ early_abort:
 }
 
 static void late_start() {
-    rust::get_magiskd().setup_logfile();
+    rust::get_liorsmagicd().setup_logfile();
 
     LOGI("** late_start service mode running\n");
 
@@ -424,7 +424,7 @@ static void late_start() {
 
 static void boot_complete() {
     boot_state |= FLAG_BOOT_COMPLETE;
-    rust::get_magiskd().setup_logfile();
+    rust::get_liorsmagicd().setup_logfile();
 
     LOGI("** boot-complete triggered\n");
 

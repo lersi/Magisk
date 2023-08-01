@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.core.ktx
+package com.topjohnwu.liorsmagic.core.ktx
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -20,9 +20,9 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.getSystemService
-import com.topjohnwu.magisk.core.utils.RootUtils
-import com.topjohnwu.magisk.core.utils.currentLocale
-import com.topjohnwu.magisk.utils.APKInstall
+import com.topjohnwu.liorsmagic.core.utils.RootUtils
+import com.topjohnwu.liorsmagic.core.utils.currentLocale
+import com.topjohnwu.liorsmagic.utils.APKInstall
 import com.topjohnwu.superuser.internal.UiThreadHandler
 import java.io.File
 import kotlin.String

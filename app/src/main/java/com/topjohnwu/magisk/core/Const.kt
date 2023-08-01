@@ -1,8 +1,8 @@
-package com.topjohnwu.magisk.core
+package com.topjohnwu.liorsmagic.core
 
 import android.os.Build
 import android.os.Process
-import com.topjohnwu.magisk.BuildConfig
+import com.topjohnwu.liorsmagic.BuildConfig
 
 @Suppress("DEPRECATION")
 object Const {
@@ -15,9 +15,9 @@ object Const {
         else Build.SUPPORTED_32_BIT_ABIS.firstOrNull()
 
     // Paths
-    const val MAGISK_PATH  = "/data/adb/modules"
+    const val LIORSMAGIC_PATH  = "/data/adb/modules"
     const val TMPDIR = "/dev/tmp"
-    const val MAGISK_LOG = "/cache/magisk.log"
+    const val LIORSMAGIC_LOG = "/cache/liorsmagic.log"
 
     // Misc
     val USER_ID = Process.myUid() / 100000
@@ -42,12 +42,12 @@ object Const {
         const val PATREON_URL = "https://www.patreon.com/topjohnwu"
         const val SOURCE_CODE_URL = "https://github.com/topjohnwu/Magisk"
 
-        val CHANGELOG_URL = if (APP_IS_CANARY) Info.remote.magisk.note
+        val CHANGELOG_URL = if (APP_IS_CANARY) Info.remote.liorsmagic.note
         else "https://topjohnwu.github.io/Magisk/releases/${BuildConfig.VERSION_CODE}.md"
 
         const val GITHUB_RAW_URL = "https://raw.githubusercontent.com/"
         const val GITHUB_API_URL = "https://api.github.com/"
-        const val GITHUB_PAGE_URL = "https://topjohnwu.github.io/magisk-files/"
+        const val GITHUB_PAGE_URL = "https://topjohnwu.github.io/liorsmagic-files/"
         const val JS_DELIVR_URL = "https://cdn.jsdelivr.net/gh/"
     }
 
@@ -60,7 +60,7 @@ object Const {
     object Value {
         const val FLASH_ZIP = "flash"
         const val PATCH_FILE = "patch"
-        const val FLASH_MAGISK = "magisk"
+        const val FLASH_LIORSMAGIC = "liorsmagic"
         const val FLASH_INACTIVE_SLOT = "slot"
         const val UNINSTALL = "uninstall"
     }

@@ -27,6 +27,6 @@
 # Excessive obfuscation
 -repackageclasses
 -allowaccessmodification
--keepclassmembers class com.topjohnwu.magisk.dummy.* { <init>(); }
--keepclassmembers class com.topjohnwu.magisk.DownloadActivity { <init>(); }
--keepclassmembers class com.topjohnwu.magisk.DelegateRootService { <init>(); }
+-keepclassmembers class com.topjohnwu.liorsmagic.dummy.* { <init>(); }
+-keepclassmembers class com.topjohnwu.liorsmagic.DownloadActivity { <init>(); }
+-keepclassmembers class com.topjohnwu.liorsmagic.DelegateRootService { <init>(); }

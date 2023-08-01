@@ -74,13 +74,13 @@ triples = [
     "aarch64-linux-android",
     "x86_64-linux-android",
 ]
-default_targets = ["magisk", "magiskinit", "magiskboot", "magiskpolicy", "busybox"]
+default_targets = ["liorsmagic", "liorsmagicinit", "liorsmagicboot", "liorsmagicpolicy", "busybox"]
 support_targets = default_targets + ["resetprop"]
-rust_targets = ["magisk", "magiskinit", "magiskboot", "magiskpolicy"]
+rust_targets = ["liorsmagic", "liorsmagicinit", "liorsmagicboot", "liorsmagicpolicy"]
 
 sdk_path = os.environ["ANDROID_SDK_ROOT"]
 ndk_root = op.join(sdk_path, "ndk")
-ndk_path = op.join(ndk_root, "magisk")
+ndk_path = op.join(ndk_root, "liorsmagic")
 ndk_build = op.join(ndk_path, "ndk-build")
 rust_bin = op.join(ndk_path, "toolchains", "rust", "bin")
 llvm_bin = op.join(
@@ -195,8 +195,8 @@ def load_config(args):
         config.update(parse_props(args.config))
 
     for key, value in parse_props("gradle.properties").items():
-        if key.startswith("magisk."):
-            config[key[7:]] = value
+        if key.startswith("liorsmagic."):
+            config[key[11:]] = value
 
     try:
         config["versionCode"] = int(config["versionCode"])
@@ -230,7 +230,7 @@ def clean_elf():
     args.extend(
         op.join("native", "out", arch, bin)
         for arch in archs
-        for bin in ["magisk", "magiskpolicy"]
+        for bin in ["liorsmagic", "liorsmagicpolicy"]
     )
     execv(args)
 
@@ -266,7 +266,7 @@ def run_cargo_build(args):
 
     targets = set(args.target) & set(rust_targets)
     if "resetprop" in args.target:
-        targets.add("magisk")
+        targets.add("liorsmagic")
 
     # Start building the actual build commands
     cmds = ["build"]
@@ -351,13 +351,13 @@ def dump_flag_header():
         #pragma once
         #define quote(s)            #s
         #define str(s)              quote(s)
-        #define MAGISK_FULL_VER     MAGISK_VERSION "(" str(MAGISK_VER_CODE) ")"
-        #define NAME_WITH_VER(name) str(name) " " MAGISK_FULL_VER
+        #define LIORSMAGIC_FULL_VER     LIORSMAGIC_VERSION "(" str(LIORSMAGIC_VER_CODE) ")"
+        #define NAME_WITH_VER(name) str(name) " " LIORSMAGIC_FULL_VER
         """
     )
-    flag_txt += f'#define MAGISK_VERSION      "{config["version"]}"\n'
-    flag_txt += f'#define MAGISK_VER_CODE     {config["versionCode"]}\n'
-    flag_txt += f"#define MAGISK_DEBUG        {0 if args.release else 1}\n"
+    flag_txt += f'#define LIORSMAGIC_VERSION      "{config["version"]}"\n'
+    flag_txt += f'#define LIORSMAGIC_VER_CODE     {config["versionCode"]}\n'
+    flag_txt += f"#define LIORSMAGIC_DEBUG        {0 if args.release else 1}\n"
 
     mkdir_p(native_gen_path)
     write_if_diff(op.join(native_gen_path, "flags.h"), flag_txt)
@@ -389,35 +389,35 @@ def build_binary(args):
 
     flag = ""
 
-    if "magisk" in args.target or "magiskinit" in args.target:
+    if "liorsmagic" in args.target or "liorsmagicinit" in args.target:
         flag += " B_PRELOAD=1"
 
-    if "magiskpolicy" in args.target:
+    if "liorsmagicpolicy" in args.target:
         flag += " B_POLICY=1"
 
     if "test" in args.target:
         flag += " B_TEST=1"
 
-    if "magiskinit" in args.target:
+    if "liorsmagicinit" in args.target:
         flag += " B_PRELOAD=1"
 
     if "resetprop" in args.target:
         flag += " B_PROP=1"
 
-    if "magiskboot" in args.target:
+    if "liorsmagicboot" in args.target:
         flag += " B_BOOT=1"
 
     if flag:
         run_ndk_build(flag)
 
-    # magiskinit and magisk embeds preload.so
+    # liorsmagicinit and liorsmagic embeds preload.so
 
     flag = ""
 
-    if "magisk" in args.target:
-        flag += " B_MAGISK=1"
+    if "liorsmagic" in args.target:
+        flag += " B_LIORSMAGIC=1"
 
-    if "magiskinit" in args.target:
+    if "liorsmagicinit" in args.target:
         flag += " B_INIT=1"
 
     if flag:
@@ -591,7 +591,7 @@ def push_files(args, script):
     finally:
         rm_rf(busybox)
 
-    proc = execv([adb_path, "push", apk, "/data/local/tmp/magisk.apk"])
+    proc = execv([adb_path, "push", apk, "/data/local/tmp/liorsmagic.apk"])
     if proc.returncode != 0:
         error("adb push failed!")
 
@@ -602,11 +602,11 @@ def setup_avd(args):
 
     header("* Setting up emulator")
 
-    push_files(args, "scripts/avd_magisk.sh")
+    push_files(args, "scripts/avd_liorsmagic.sh")
 
-    proc = execv([adb_path, "shell", "sh", "/data/local/tmp/avd_magisk.sh"])
+    proc = execv([adb_path, "shell", "sh", "/data/local/tmp/avd_liorsmagic.sh"])
     if proc.returncode != 0:
-        error("avd_magisk.sh failed!")
+        error("avd_liorsmagic.sh failed!")
 
 
 def patch_avd_ramdisk(args):

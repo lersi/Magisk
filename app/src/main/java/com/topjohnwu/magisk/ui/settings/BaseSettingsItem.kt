@@ -1,16 +1,16 @@
-package com.topjohnwu.magisk.ui.settings
+package com.topjohnwu.liorsmagic.ui.settings
 
 import android.content.Context
 import android.content.res.Resources
 import android.view.View
 import androidx.databinding.Bindable
-import com.topjohnwu.magisk.BR
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.ktx.activity
-import com.topjohnwu.magisk.databinding.ObservableRvItem
-import com.topjohnwu.magisk.databinding.set
-import com.topjohnwu.magisk.utils.TextHolder
-import com.topjohnwu.magisk.view.MagiskDialog
+import com.topjohnwu.liorsmagic.BR
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.ktx.activity
+import com.topjohnwu.liorsmagic.databinding.ObservableRvItem
+import com.topjohnwu.liorsmagic.databinding.set
+import com.topjohnwu.liorsmagic.utils.TextHolder
+import com.topjohnwu.liorsmagic.view.MagiskDialog
 
 sealed class BaseSettingsItem : ObservableRvItem() {
 

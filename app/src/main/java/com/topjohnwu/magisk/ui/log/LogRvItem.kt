@@ -1,13 +1,13 @@
-package com.topjohnwu.magisk.ui.log
+package com.topjohnwu.liorsmagic.ui.log
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textview.MaterialTextView
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.databinding.DiffItem
-import com.topjohnwu.magisk.databinding.ItemWrapper
-import com.topjohnwu.magisk.databinding.ObservableRvItem
-import com.topjohnwu.magisk.databinding.ViewAwareItem
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.databinding.DiffItem
+import com.topjohnwu.liorsmagic.databinding.ItemWrapper
+import com.topjohnwu.liorsmagic.databinding.ObservableRvItem
+import com.topjohnwu.liorsmagic.databinding.ViewAwareItem
 
 class LogRvItem(
     override val item: String

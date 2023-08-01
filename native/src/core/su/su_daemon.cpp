@@ -5,7 +5,7 @@
 #include <sys/wait.h>
 #include <sys/mount.h>
 
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 #include <base.hpp>
 #include <selinux.hpp>
 
@@ -71,7 +71,7 @@ void su_info::check_db() {
             access.policy = (policy_t) parse_int(row["policy"]);
             access.log = parse_int(row["logging"]);
             access.notify = parse_int(row["notification"]);
-            LOGD("magiskdb: query policy=[%d] log=[%d] notify=[%d]\n",
+            LOGD("liorsmagicdb: query policy=[%d] log=[%d] notify=[%d]\n",
                  access.policy, access.log, access.notify);
             return true;
         });
@@ -344,13 +344,13 @@ void su_daemon_handler(int client, const sock_cred *cred) {
     if (read_int(client)) {
         string pts;
         string ptmx;
-        auto magiskpts = MAGISKTMP + "/" SHELLPTS;
-        if (access(magiskpts.data(), F_OK)) {
+        auto liorsmagicpts = LIORSMAGICTMP + "/" SHELLPTS;
+        if (access(liorsmagicpts.data(), F_OK)) {
             pts = "/dev/pts";
             ptmx = "/dev/ptmx";
         } else {
-            pts = magiskpts;
-            ptmx = magiskpts + "/ptmx";
+            pts = liorsmagicpts;
+            ptmx = liorsmagicpts + "/ptmx";
         }
         int ptmx_fd = xopen(ptmx.data(), O_RDWR);
         grantpt(ptmx_fd);

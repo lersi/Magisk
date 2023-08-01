@@ -2,7 +2,7 @@
 #include <libgen.h>
 
 #include <base.hpp>
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 #include <daemon.hpp>
 #include <selinux.hpp>
 #include <flags.h>
@@ -15,8 +15,8 @@ using namespace std;
     fprintf(stderr,
 R"EOF(Magisk - Multi-purpose Utility
 
-Usage: magisk [applet [arguments]...]
-   or: magisk [options]...
+Usage: liorsmagic [applet [arguments]...]
+   or: liorsmagic [options]...
 
 Options:
    -c                        print current binary version
@@ -27,8 +27,8 @@ Options:
    --install-module ZIP      install a module zip file
 
 Advanced Options (Internal APIs):
-   --daemon                  manually start magisk daemon
-   --stop                    remove all magisk changes and stop daemon
+   --daemon                  manually start liorsmagic daemon
+   --stop                    remove all liorsmagic changes and stop daemon
    --[init trigger]          callback on init triggers. Valid triggers:
                              post-fs-data, service, boot-complete, zygote-restart
    --unlock-blocks           set BLKROSET flag to OFF for all block devices
@@ -49,14 +49,14 @@ Available applets:
     exit(1);
 }
 
-int magisk_main(int argc, char *argv[]) {
+int liorsmagic_main(int argc, char *argv[]) {
     if (argc < 2)
         usage();
     if (argv[1] == "-c"sv) {
-#if MAGISK_DEBUG
-        printf(MAGISK_VERSION ":MAGISK:D (" str(MAGISK_VER_CODE) ")\n");
+#if LIORSMAGIC_DEBUG
+        printf(LIORSMAGIC_VERSION ":LIORSMAGIC:D (" str(LIORSMAGIC_VER_CODE) ")\n");
 #else
-        printf(MAGISK_VERSION ":MAGISK:R (" str(MAGISK_VER_CODE) ")\n");
+        printf(LIORSMAGIC_VERSION ":LIORSMAGIC:R (" str(LIORSMAGIC_VER_CODE) ")\n");
 #endif
         return 0;
     } else if (argv[1] == "-v"sv) {
@@ -129,7 +129,7 @@ int magisk_main(int argc, char *argv[]) {
         write_int(fd, do_reboot);
         return read_int(fd);
     } else if (argv[1] == "--path"sv) {
-        string path = find_magisk_tmp();
+        string path = find_liorsmagic_tmp();
         if (!path.empty())  {
             printf("%s\n", path.data());
             return 0;

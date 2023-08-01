@@ -1,12 +1,12 @@
-package com.topjohnwu.magisk.core
+package com.topjohnwu.liorsmagic.core
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import com.topjohnwu.magisk.core.base.BaseReceiver
-import com.topjohnwu.magisk.core.di.ServiceLocator
-import com.topjohnwu.magisk.view.Notifications
-import com.topjohnwu.magisk.view.Shortcuts
+import com.topjohnwu.liorsmagic.core.base.BaseReceiver
+import com.topjohnwu.liorsmagic.core.di.ServiceLocator
+import com.topjohnwu.liorsmagic.view.Notifications
+import com.topjohnwu.liorsmagic.view.Shortcuts
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -44,7 +44,7 @@ open class Receiver : BaseReceiver() {
                 getUid(intent)?.let { rmPolicy(it) }
             }
             Intent.ACTION_PACKAGE_FULLY_REMOVED -> {
-                getPkg(intent)?.let { Shell.cmd("magisk --denylist rm $it").submit() }
+                getPkg(intent)?.let { Shell.cmd("liorsmagic --denylist rm $it").submit() }
             }
             Intent.ACTION_LOCALE_CHANGED -> Shortcuts.setupDynamic(context)
             Intent.ACTION_MY_PACKAGE_REPLACED -> {

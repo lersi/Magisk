@@ -1,23 +1,23 @@
-package com.topjohnwu.magisk.ui.log
+package com.topjohnwu.liorsmagic.ui.log
 
 import android.system.Os
 import androidx.databinding.Bindable
 import androidx.lifecycle.viewModelScope
-import com.topjohnwu.magisk.BR
-import com.topjohnwu.magisk.BuildConfig
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.arch.AsyncLoadViewModel
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.ktx.timeFormatStandard
-import com.topjohnwu.magisk.core.ktx.toTime
-import com.topjohnwu.magisk.core.repository.LogRepository
-import com.topjohnwu.magisk.core.utils.MediaStoreUtils
-import com.topjohnwu.magisk.core.utils.MediaStoreUtils.outputStream
-import com.topjohnwu.magisk.databinding.bindExtra
-import com.topjohnwu.magisk.databinding.diffList
-import com.topjohnwu.magisk.databinding.set
-import com.topjohnwu.magisk.events.SnackbarEvent
-import com.topjohnwu.magisk.view.TextItem
+import com.topjohnwu.liorsmagic.BR
+import com.topjohnwu.liorsmagic.BuildConfig
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.arch.AsyncLoadViewModel
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.ktx.timeFormatStandard
+import com.topjohnwu.liorsmagic.core.ktx.toTime
+import com.topjohnwu.liorsmagic.core.repository.LogRepository
+import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils
+import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils.outputStream
+import com.topjohnwu.liorsmagic.databinding.bindExtra
+import com.topjohnwu.liorsmagic.databinding.diffList
+import com.topjohnwu.liorsmagic.databinding.set
+import com.topjohnwu.liorsmagic.events.SnackbarEvent
+import com.topjohnwu.liorsmagic.view.TextItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -33,7 +33,7 @@ class LogViewModel(
     // --- empty view
 
     val itemEmpty = TextItem(R.string.log_data_none)
-    val itemMagiskEmpty = TextItem(R.string.log_data_magisk_none)
+    val itemMagiskEmpty = TextItem(R.string.log_data_liorsmagic_none)
 
     // --- su log
 
@@ -42,16 +42,16 @@ class LogViewModel(
         it.put(BR.viewModel, this)
     }
 
-    // --- magisk log
+    // --- liorsmagic log
     val logs = diffList<LogRvItem>()
-    var magiskLogRaw = " "
+    var liorsmagicLogRaw = " "
 
     override suspend fun doLoadWork() {
         loading = true
 
         val (suLogs, suDiff) = withContext(Dispatchers.Default) {
-            magiskLogRaw = repo.fetchMagiskLogs()
-            val newLogs = magiskLogRaw.split('\n').map { LogRvItem(it) }
+            liorsmagicLogRaw = repo.fetchMagiskLogs()
+            val newLogs = liorsmagicLogRaw.split('\n').map { LogRvItem(it) }
             logs.update(newLogs)
             val suLogs = repo.fetchSuLogs().map { SuLogRvItem(it) }
             suLogs to items.calculateDiff(suLogs)
@@ -67,7 +67,7 @@ class LogViewModel(
 
     fun saveMagiskLog() = withExternalRW {
         viewModelScope.launch(Dispatchers.IO) {
-            val filename = "magisk_log_%s.log".format(
+            val filename = "liorsmagic_log_%s.log".format(
                 System.currentTimeMillis().toTime(timeFormatStandard))
             val logFile = MediaStoreUtils.getFile(filename, true)
             logFile.uri.outputStream().bufferedWriter().use { file ->
@@ -90,7 +90,7 @@ class LogViewModel(
 
                 file.write("\n---Magisk Logs---\n")
                 file.write("${Info.env.versionString} (${Info.env.versionCode})\n\n")
-                if (Info.env.isActive) file.write(magiskLogRaw)
+                if (Info.env.isActive) file.write(liorsmagicLogRaw)
 
                 file.write("\n---Manager Logs---\n")
                 file.write("${BuildConfig.VERSION_NAME} (${BuildConfig.VERSION_CODE})\n\n")

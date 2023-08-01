@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.core.utils
+package com.topjohnwu.liorsmagic.core.utils
 
 import android.content.ContentUris
 import android.content.ContentValues
@@ -10,8 +10,8 @@ import android.provider.OpenableColumns
 import androidx.annotation.RequiresApi
 import androidx.core.net.toFile
 import androidx.core.net.toUri
-import com.topjohnwu.magisk.core.Config
-import com.topjohnwu.magisk.core.di.AppContext
+import com.topjohnwu.liorsmagic.core.Config
+import com.topjohnwu.liorsmagic.core.di.AppContext
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException

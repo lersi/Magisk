@@ -1,4 +1,4 @@
-#!/sbin/sh
+#!/liorsbin/sh
 # ADDOND_VERSION=2
 ########################################################
 #
@@ -9,8 +9,8 @@
 
 trampoline() {
   mount /data 2>/dev/null
-  if [ -f $MAGISKBIN/addon.d.sh ]; then
-    exec sh $MAGISKBIN/addon.d.sh "$@"
+  if [ -f $LIORSMAGICBIN/addon.d.sh ]; then
+    exec sh $LIORSMAGICBIN/addon.d.sh "$@"
     exit $?
   elif [ "$1" = post-restore ]; then
     BOOTMODE=false
@@ -43,8 +43,8 @@ trampoline() {
 }
 
 # Always use the script in /data
-MAGISKBIN=/data/adb/magisk
-[ "$0" = $MAGISKBIN/addon.d.sh ] || trampoline "$@"
+LIORSMAGICBIN=/data/adb/liorsmagic
+[ "$0" = $LIORSMAGICBIN/addon.d.sh ] || trampoline "$@"
 
 V1_FUNCS=/tmp/backuptool.functions
 V2_FUNCS=/postinstall/tmp/backuptool.functions
@@ -60,7 +60,7 @@ fi
 
 initialize() {
   # Load utility functions
-  . $MAGISKBIN/util_functions.sh
+  . $LIORSMAGICBIN/util_functions.sh
 
   if $BOOTMODE; then
     # Override ui_print when booted
@@ -80,10 +80,10 @@ main() {
   mkdir -p $TMPDIR
   cd $TMPDIR
 
-  if echo $MAGISK_VER | grep -q '\.'; then
-    PRETTY_VER=$MAGISK_VER
+  if echo $LIORSMAGIC_VER | grep -q '\.'; then
+    PRETTY_VER=$LIORSMAGIC_VER
   else
-    PRETTY_VER="$MAGISK_VER($MAGISK_VER_CODE)"
+    PRETTY_VER="$LIORSMAGIC_VER($LIORSMAGIC_VER_CODE)"
   fi
   print_title "Magisk $PRETTY_VER addon.d"
 
@@ -109,7 +109,7 @@ main() {
   ui_print "- Device platform: $ABI"
 
   remove_system_su
-  install_magisk
+  install_liorsmagic
 
   # Cleanups
   cd /

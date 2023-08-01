@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.arch
+package com.topjohnwu.liorsmagic.arch
 
 import android.Manifest.permission.*
 import android.annotation.SuppressLint
@@ -8,14 +8,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDirections
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.databinding.ObservableHost
-import com.topjohnwu.magisk.events.BackPressEvent
-import com.topjohnwu.magisk.events.DialogBuilder
-import com.topjohnwu.magisk.events.DialogEvent
-import com.topjohnwu.magisk.events.NavigationEvent
-import com.topjohnwu.magisk.events.PermissionEvent
-import com.topjohnwu.magisk.events.SnackbarEvent
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.databinding.ObservableHost
+import com.topjohnwu.liorsmagic.events.BackPressEvent
+import com.topjohnwu.liorsmagic.events.DialogBuilder
+import com.topjohnwu.liorsmagic.events.DialogEvent
+import com.topjohnwu.liorsmagic.events.NavigationEvent
+import com.topjohnwu.liorsmagic.events.PermissionEvent
+import com.topjohnwu.liorsmagic.events.SnackbarEvent
 
 abstract class BaseViewModel : ViewModel(), ObservableHost {
 

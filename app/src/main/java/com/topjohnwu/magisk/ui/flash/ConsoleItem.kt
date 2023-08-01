@@ -1,15 +1,15 @@
-package com.topjohnwu.magisk.ui.flash
+package com.topjohnwu.liorsmagic.ui.flash
 
 import android.view.View
 import android.widget.TextView
 import androidx.core.view.updateLayoutParams
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.databinding.DiffItem
-import com.topjohnwu.magisk.databinding.ItemWrapper
-import com.topjohnwu.magisk.databinding.RvItem
-import com.topjohnwu.magisk.databinding.ViewAwareItem
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.databinding.DiffItem
+import com.topjohnwu.liorsmagic.databinding.ItemWrapper
+import com.topjohnwu.liorsmagic.databinding.RvItem
+import com.topjohnwu.liorsmagic.databinding.ViewAwareItem
 import kotlin.math.max
 
 class ConsoleItem(

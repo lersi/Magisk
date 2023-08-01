@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.ui.theme
+package com.topjohnwu.liorsmagic.ui.theme
 
 import android.os.Bundle
 import android.view.ContextThemeWrapper
@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import com.topjohnwu.magisk.BR
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.arch.BaseFragment
-import com.topjohnwu.magisk.arch.viewModel
-import com.topjohnwu.magisk.databinding.FragmentThemeMd2Binding
-import com.topjohnwu.magisk.databinding.ItemThemeBindingImpl
+import com.topjohnwu.liorsmagic.BR
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.arch.BaseFragment
+import com.topjohnwu.liorsmagic.arch.viewModel
+import com.topjohnwu.liorsmagic.databinding.FragmentThemeMd2Binding
+import com.topjohnwu.liorsmagic.databinding.ItemThemeBindingImpl
 
 class ThemeFragment : BaseFragment<FragmentThemeMd2Binding>() {
 

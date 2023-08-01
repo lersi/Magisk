@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.dummy;
+package com.topjohnwu.liorsmagic.dummy;
 
 import android.app.Service;
 import android.content.Intent;

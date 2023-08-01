@@ -1,22 +1,22 @@
-package com.topjohnwu.magisk.dialog
+package com.topjohnwu.liorsmagic.dialog
 
 import android.app.ProgressDialog
 import android.content.Context
 import android.widget.Toast
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.arch.NavigationActivity
-import com.topjohnwu.magisk.core.ktx.toast
-import com.topjohnwu.magisk.events.DialogBuilder
-import com.topjohnwu.magisk.ui.flash.FlashFragment
-import com.topjohnwu.magisk.view.MagiskDialog
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.arch.NavigationActivity
+import com.topjohnwu.liorsmagic.core.ktx.toast
+import com.topjohnwu.liorsmagic.events.DialogBuilder
+import com.topjohnwu.liorsmagic.ui.flash.FlashFragment
+import com.topjohnwu.liorsmagic.view.MagiskDialog
 import com.topjohnwu.superuser.Shell
 
 class UninstallDialog : DialogBuilder {
 
     override fun build(dialog: MagiskDialog) {
         dialog.apply {
-            setTitle(R.string.uninstall_magisk_title)
-            setMessage(R.string.uninstall_magisk_msg)
+            setTitle(R.string.uninstall_liorsmagic_title)
+            setMessage(R.string.uninstall_liorsmagic_msg)
             setButton(MagiskDialog.ButtonType.POSITIVE) {
                 text = R.string.restore_img
                 onClick { restore(dialog.context) }

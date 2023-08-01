@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk;
+package com.topjohnwu.liorsmagic;
 
 import android.content.Context;
 import android.content.ContextWrapper;

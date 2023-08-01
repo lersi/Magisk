@@ -6,7 +6,7 @@
 #include <vector>
 #include <daemon.hpp>
 
-#define MAGISKTMP_ENV  "MAGISKTMP"
+#define LIORSMAGICTMP_ENV  "LIORSMAGICTMP"
 
 #define HIJACK_BIN64   "/system/bin/appwidget"
 #define HIJACK_BIN32   "/system/bin/bu"

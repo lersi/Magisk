@@ -1,10 +1,10 @@
-package com.topjohnwu.magisk.ui.theme
+package com.topjohnwu.liorsmagic.ui.theme
 
-import com.topjohnwu.magisk.arch.BaseViewModel
-import com.topjohnwu.magisk.core.Config
-import com.topjohnwu.magisk.dialog.DarkThemeDialog
-import com.topjohnwu.magisk.events.RecreateEvent
-import com.topjohnwu.magisk.view.TappableHeadlineItem
+import com.topjohnwu.liorsmagic.arch.BaseViewModel
+import com.topjohnwu.liorsmagic.core.Config
+import com.topjohnwu.liorsmagic.dialog.DarkThemeDialog
+import com.topjohnwu.liorsmagic.events.RecreateEvent
+import com.topjohnwu.liorsmagic.view.TappableHeadlineItem
 
 class ThemeViewModel : BaseViewModel(), TappableHeadlineItem.Listener {
 

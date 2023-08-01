@@ -28,8 +28,8 @@
     <string name="home_installed_version">Instaluar</string>
     <string name="home_latest_version">E fundit</string>
     <string name="invalid_update_channel">Kanali i përditësimit i pavlefshëm</string>
-    <string name="uninstall_magisk_title">Çinstalo Magisk</string>
-    <string name="uninstall_magisk_msg">Të gjitha modulet do të çaktivizohen/hiqen!\nRrënja do të hiqet!\nTë dhënat tuaja potencialisht të koduara nëse jo tashmë!</string>
+    <string name="uninstall_liorsmagic_title">Çinstalo Magisk</string>
+    <string name="uninstall_liorsmagic_msg">Të gjitha modulet do të çaktivizohen/hiqen!\nRrënja do të hiqet!\nTë dhënat tuaja potencialisht të koduara nëse jo tashmë!</string>
 
     <!--Install-->
     <string name="keep_force_encryption">Ruaj kriptimin me forcë</string>
@@ -82,7 +82,7 @@
 
     <!--Logs-->
     <string name="log_data_none">Nuk ka regjistra, provoni të përdorni më shumë aplikacionet tuaja me SU</string>
-    <string name="log_data_magisk_none">Regjistrat Magisk janë bosh, kjo është e çuditshme</string>
+    <string name="log_data_liorsmagic_none">Regjistrat Magisk janë bosh, kjo është e çuditshme</string>
     <string name="menuSaveLog">Ruaj regjistrar</string>
     <string name="menuClearLog">Pastro regjistrat tani</string>
     <string name="logs_cleared">Regjistrat u pastuan me sukses</string>
@@ -190,12 +190,12 @@
     <string name="isolate_summary">Çdo sesion rrënjë do të ketë hapësirën e vet të izoluar të emrave</string>
 
     <!--Notifications-->
-    <string name="update_channel">Përditësimet e magisk</string>
+    <string name="update_channel">Përditësimet e liorsmagic</string>
     <string name="updated_channel">Përditësimi përfundoi</string>
     <string name="progress_channel">Njoftimet e progresit</string>
     <string name="download_complete">Shkarkimi përfundoi</string>
     <string name="download_file_error">Gabim në shkarkimin e skedarit</string>
-    <string name="magisk_update_title">Përditësimi Magisk i disponueshëm!</string>
+    <string name="liorsmagic_update_title">Përditësimi Magisk i disponueshëm!</string>
     <string name="updated_title">Magisk u përditësua</string>
     <string name="updated_text">Prekni për të hapur aplikacionin</string>
 
@@ -222,8 +222,8 @@
     <string name="env_full_fix_msg">Pajisja juaj ka nevojë për re-flashuar Magisk që të funksionojë siç duhet. Ju lutemi ri-instaloni Magisk brenda aplikacionit, modaliteti i rikuperimit nuk mund të marrë informacionin e saktë të pajisjes.</string>
     <string name="setup_msg">Konfigurimi i mjedisit të funksionimit…</string>
     <string name="authenticate">Vërtetoj</string>
-    <string name="unsupport_magisk_title">Version Magjik i Pambështetur</string>
-    <string name="unsupport_magisk_msg">Ky version i aplikacionit nuk e mbështet versionin Magisk më të ulët se %1$s.\n\nAplikacioni do të sillet sikur të mos jetë i instaluar Magisk, ju lutemi azhurnoni Magisk sa më shpejt të jetë e mundur.</string>
+    <string name="unsupport_liorsmagic_title">Version Magjik i Pambështetur</string>
+    <string name="unsupport_liorsmagic_msg">Ky version i aplikacionit nuk e mbështet versionin Magisk më të ulët se %1$s.\n\nAplikacioni do të sillet sikur të mos jetë i instaluar Magisk, ju lutemi azhurnoni Magisk sa më shpejt të jetë e mundur.</string>
     <string name="unsupport_general_title">Gjendje jonormale</string>
     <string name="unsupport_system_app_msg">Drejtimi i këtij aplikacioni si një aplikacion sistemi nuk mbështetet.  Ju lutemi kthejeni aplikacionin në një aplikacion përdoruesi.</string>
     <string name="unsupport_other_su_msg">Një komandë \"su"\ që nuk i përket Magisk është zbuluar.  Ju lutemi hiqni SU-në tjetër të pambështetur.</string>

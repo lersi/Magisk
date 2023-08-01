@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.ui.flash
+package com.topjohnwu.liorsmagic.ui.flash
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,14 +9,14 @@ import android.view.*
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.navigation.NavDeepLinkBuilder
-import com.topjohnwu.magisk.MainDirections
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.arch.BaseFragment
-import com.topjohnwu.magisk.arch.viewModel
-import com.topjohnwu.magisk.core.Const
-import com.topjohnwu.magisk.core.cmp
-import com.topjohnwu.magisk.databinding.FragmentFlashMd2Binding
-import com.topjohnwu.magisk.ui.MainActivity
+import com.topjohnwu.liorsmagic.MainDirections
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.arch.BaseFragment
+import com.topjohnwu.liorsmagic.arch.viewModel
+import com.topjohnwu.liorsmagic.core.Const
+import com.topjohnwu.liorsmagic.core.cmp
+import com.topjohnwu.liorsmagic.databinding.FragmentFlashMd2Binding
+import com.topjohnwu.liorsmagic.ui.MainActivity
 
 class FlashFragment : BaseFragment<FragmentFlashMd2Binding>(), MenuProvider {
 
@@ -107,22 +107,22 @@ class FlashFragment : BaseFragment<FragmentFlashMd2Binding>(), MenuProvider {
                 .createPendingIntent()
 
         private fun flashType(isSecondSlot: Boolean) =
-            if (isSecondSlot) Const.Value.FLASH_INACTIVE_SLOT else Const.Value.FLASH_MAGISK
+            if (isSecondSlot) Const.Value.FLASH_INACTIVE_SLOT else Const.Value.FLASH_LIORSMAGIC
 
-        /* Flashing is understood as installing / flashing magisk itself */
+        /* Flashing is understood as installing / flashing liorsmagic itself */
 
         fun flash(isSecondSlot: Boolean) = MainDirections.actionFlashFragment(
             action = flashType(isSecondSlot)
         )
 
-        /* Patching is understood as injecting img files with magisk */
+        /* Patching is understood as injecting img files with liorsmagic */
 
         fun patch(uri: Uri) = MainDirections.actionFlashFragment(
             action = Const.Value.PATCH_FILE,
             additionalData = uri
         )
 
-        /* Uninstalling is understood as removing magisk entirely */
+        /* Uninstalling is understood as removing liorsmagic entirely */
 
         fun uninstall() = MainDirections.actionFlashFragment(
             action = Const.Value.UNINSTALL

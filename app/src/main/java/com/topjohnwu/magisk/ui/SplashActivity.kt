@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.ui
+package com.topjohnwu.liorsmagic.ui
 
 import android.Manifest.permission.REQUEST_INSTALL_PACKAGES
 import android.annotation.SuppressLint
@@ -8,21 +8,21 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import com.topjohnwu.magisk.BuildConfig.APPLICATION_ID
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.StubApk
-import com.topjohnwu.magisk.arch.NavigationActivity
-import com.topjohnwu.magisk.core.Config
-import com.topjohnwu.magisk.core.Const
-import com.topjohnwu.magisk.core.JobService
-import com.topjohnwu.magisk.core.di.ServiceLocator
-import com.topjohnwu.magisk.core.isRunningAsStub
-import com.topjohnwu.magisk.core.ktx.toast
-import com.topjohnwu.magisk.core.tasks.HideAPK
-import com.topjohnwu.magisk.core.utils.RootUtils
-import com.topjohnwu.magisk.ui.theme.Theme
-import com.topjohnwu.magisk.view.MagiskDialog
-import com.topjohnwu.magisk.view.Shortcuts
+import com.topjohnwu.liorsmagic.BuildConfig.APPLICATION_ID
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.StubApk
+import com.topjohnwu.liorsmagic.arch.NavigationActivity
+import com.topjohnwu.liorsmagic.core.Config
+import com.topjohnwu.liorsmagic.core.Const
+import com.topjohnwu.liorsmagic.core.JobService
+import com.topjohnwu.liorsmagic.core.di.ServiceLocator
+import com.topjohnwu.liorsmagic.core.isRunningAsStub
+import com.topjohnwu.liorsmagic.core.ktx.toast
+import com.topjohnwu.liorsmagic.core.tasks.HideAPK
+import com.topjohnwu.liorsmagic.core.utils.RootUtils
+import com.topjohnwu.liorsmagic.ui.theme.Theme
+import com.topjohnwu.liorsmagic.view.MagiskDialog
+import com.topjohnwu.liorsmagic.view.Shortcuts
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.launch
 
@@ -148,7 +148,7 @@ abstract class SplashActivity<Binding : ViewDataBinding> : NavigationActivity<Bi
     private fun handleRepackage(pkg: String?) {
         if (packageName != APPLICATION_ID) {
             runCatching {
-                // Hidden, remove com.topjohnwu.magisk if exist as it could be malware
+                // Hidden, remove com.topjohnwu.liorsmagic if exist as it could be malware
                 packageManager.getApplicationInfo(APPLICATION_ID, 0)
                 Shell.cmd("(pm uninstall $APPLICATION_ID)& >/dev/null 2>&1").exec()
             }

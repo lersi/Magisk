@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.core.model
+package com.topjohnwu.liorsmagic.core.model
 
 import android.os.Parcelable
 import com.squareup.moshi.JsonClass
@@ -6,7 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @JsonClass(generateAdapter = true)
 data class UpdateInfo(
-    val magisk: MagiskJson = MagiskJson(),
+    val liorsmagic: MagiskJson = MagiskJson(),
 )
 
 @Parcelize

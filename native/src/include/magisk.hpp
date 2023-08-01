@@ -2,17 +2,17 @@
 
 #include <string>
 
-#define JAVA_PACKAGE_NAME "com.topjohnwu.magisk"
-#define LOGFILE         "/cache/magisk.log"
+#define JAVA_PACKAGE_NAME "com.topjohnwu.liorsmagic"
+#define LOGFILE         "/cache/liorsmagic.log"
 #define SECURE_DIR      "/data/adb"
 #define MODULEROOT      SECURE_DIR "/modules"
 #define MODULEUPGRADE   SECURE_DIR "/modules_update"
-#define DATABIN         SECURE_DIR "/magisk"
-#define MAGISKDB        SECURE_DIR "/magisk.db"
+#define DATABIN         SECURE_DIR "/liorsmagic"
+#define LIORSMAGICDB        SECURE_DIR "/liorsmagic.db"
 
 // tmpfs paths
-extern std::string    MAGISKTMP;
-#define INTLROOT      ".magisk"
+extern std::string    LIORSMAGICTMP;
+#define INTLROOT      ".liorsmagic"
 #define MIRRDIR       INTLROOT "/mirror"
 #define PREINITMIRR   INTLROOT "/preinit"
 #define BLOCKDIR      INTLROOT "/block"
@@ -20,7 +20,7 @@ extern std::string    MAGISKTMP;
 #define WORKERDIR     INTLROOT "/worker"
 #define MODULEMNT     INTLROOT "/modules"
 #define BBPATH        INTLROOT "/busybox"
-#define ROOTOVL       INTLROOT "/rootdir"
+#define ROOTOVL       INTLROOT "/liorootdir"
 #define SHELLPTS      INTLROOT "/pts"
 #define ROOTMNT       ROOTOVL  "/.mount_list"
 #define ZYGISKBIN     INTLROOT "/zygisk"
@@ -37,7 +37,7 @@ extern int SDK_INT;
 #define APP_DATA_DIR (SDK_INT >= 24 ? "/data/user_de" : "/data/user")
 
 // Multi-call entrypoints
-int magisk_main(int argc, char *argv[]);
+int liorsmagic_main(int argc, char *argv[]);
 int su_client_main(int argc, char *argv[]);
 int resetprop_main(int argc, char *argv[]);
 int app_process_main(int argc, char *argv[]);

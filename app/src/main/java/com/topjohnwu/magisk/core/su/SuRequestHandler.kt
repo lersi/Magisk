@@ -1,13 +1,13 @@
-package com.topjohnwu.magisk.core.su
+package com.topjohnwu.liorsmagic.core.su
 
 import android.content.Intent
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
-import com.topjohnwu.magisk.BuildConfig
-import com.topjohnwu.magisk.core.Config
-import com.topjohnwu.magisk.core.data.magiskdb.PolicyDao
-import com.topjohnwu.magisk.core.ktx.getPackageInfo
-import com.topjohnwu.magisk.core.model.su.SuPolicy
+import com.topjohnwu.liorsmagic.BuildConfig
+import com.topjohnwu.liorsmagic.core.Config
+import com.topjohnwu.liorsmagic.core.data.liorsmagicdb.PolicyDao
+import com.topjohnwu.liorsmagic.core.ktx.getPackageInfo
+import com.topjohnwu.liorsmagic.core.model.su.SuPolicy
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -33,7 +33,7 @@ class SuRequestHandler(
         if (!init(intent))
             return false
 
-        // Never allow com.topjohnwu.magisk (could be malware)
+        // Never allow com.topjohnwu.liorsmagic (could be malware)
         if (pkgInfo.packageName == BuildConfig.APPLICATION_ID) {
             Shell.cmd("(pm uninstall ${BuildConfig.APPLICATION_ID} >/dev/null 2>&1)&").exec()
             return false

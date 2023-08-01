@@ -1,12 +1,12 @@
-package com.topjohnwu.magisk.core.di
+package com.topjohnwu.liorsmagic.core.di
 
 import android.content.Context
 import com.squareup.moshi.Moshi
-import com.topjohnwu.magisk.BuildConfig
-import com.topjohnwu.magisk.ProviderInstaller
-import com.topjohnwu.magisk.core.Config
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.utils.currentLocale
+import com.topjohnwu.liorsmagic.BuildConfig
+import com.topjohnwu.liorsmagic.ProviderInstaller
+import com.topjohnwu.liorsmagic.core.Config
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.utils.currentLocale
 import okhttp3.Cache
 import okhttp3.ConnectionSpec
 import okhttp3.Dns

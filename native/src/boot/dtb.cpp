@@ -5,7 +5,7 @@
 
 #include <base.hpp>
 
-#include "magiskboot.hpp"
+#include "liorsmagicboot.hpp"
 #include "dtb.hpp"
 #include "format.hpp"
 #include "boot-rs.hpp"

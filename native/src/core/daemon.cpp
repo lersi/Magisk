@@ -3,7 +3,7 @@
 #include <sys/un.h>
 #include <sys/mount.h>
 
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 #include <base.hpp>
 #include <daemon.hpp>
 #include <selinux.hpp>
@@ -15,7 +15,7 @@
 using namespace std;
 
 int SDK_INT = -1;
-string MAGISKTMP;
+string LIORSMAGICTMP;
 
 bool RECOVERY_MODE = false;
 
@@ -170,17 +170,17 @@ static void handle_request_async(int client, int code, const sock_cred &cred) {
 static void handle_request_sync(int client, int code) {
     switch (code) {
     case MainRequest::CHECK_VERSION:
-#if MAGISK_DEBUG
-        write_string(client, MAGISK_VERSION ":MAGISK:D");
+#if LIORSMAGIC_DEBUG
+        write_string(client, LIORSMAGIC_VERSION ":LIORSMAGIC:D");
 #else
-        write_string(client, MAGISK_VERSION ":MAGISK:R");
+        write_string(client, LIORSMAGIC_VERSION ":LIORSMAGIC:R");
 #endif
         break;
     case MainRequest::CHECK_VERSION_CODE:
-        write_int(client, MAGISK_VER_CODE);
+        write_int(client, LIORSMAGIC_VER_CODE);
         break;
     case MainRequest::START_DAEMON:
-        rust::get_magiskd().setup_logfile();
+        rust::get_liorsmagicd().setup_logfile();
         break;
     case MainRequest::STOP_DAEMON:
         denylist_handler(-1, nullptr);
@@ -299,7 +299,7 @@ static void daemon_entry() {
     pthread_sigmask(SIG_SETMASK, &block_set, nullptr);
 
     // Change process name
-    set_nice_name("magiskd");
+    set_nice_name("liorsmagicd");
 
     int fd = xopen("/dev/null", O_WRONLY);
     xdup2(fd, STDOUT_FILENO);
@@ -312,7 +312,7 @@ static void daemon_entry() {
         close(fd);
 
     setsid();
-    setcon(MAGISK_PROC_CON);
+    setcon(LIORSMAGIC_PROC_CON);
 
     rust::daemon_entry();
 
@@ -330,7 +330,7 @@ static void daemon_entry() {
     // Get self stat
     char buf[64];
     xreadlink("/proc/self/exe", buf, sizeof(buf));
-    MAGISKTMP = dirname(buf);
+    LIORSMAGICTMP = dirname(buf);
     xstat("/proc/self/exe", &self_st);
 
     // Get API level
@@ -353,7 +353,7 @@ static void daemon_entry() {
     restore_tmpcon();
 
     // Cleanups
-    auto mount_list = MAGISKTMP + "/" ROOTMNT;
+    auto mount_list = LIORSMAGICTMP + "/" ROOTMNT;
     if (access(mount_list.data(), F_OK) == 0) {
         file_readline(true, mount_list.data(), [](string_view line) -> bool {
             umount2(line.data(), MNT_DETACH);
@@ -364,10 +364,10 @@ static void daemon_entry() {
         xmount(nullptr, "/", nullptr, MS_REMOUNT | MS_RDONLY, nullptr);
         unsetenv("REMOUNT_ROOT");
     }
-    rm_rf((MAGISKTMP + "/" ROOTOVL).data());
+    rm_rf((LIORSMAGICTMP + "/" ROOTOVL).data());
 
     // Load config status
-    auto config = MAGISKTMP + "/" MAIN_CONFIG;
+    auto config = LIORSMAGICTMP + "/" MAIN_CONFIG;
     parse_prop_file(config.data(), [](auto key, auto val) -> bool {
         if (key == "RECOVERYMODE" && val == "true")
             RECOVERY_MODE = true;
@@ -376,7 +376,7 @@ static void daemon_entry() {
 
     // Use isolated devpts if kernel support
     if (access("/dev/pts/ptmx", F_OK) == 0) {
-        auto pts = MAGISKTMP + "/" SHELLPTS;
+        auto pts = LIORSMAGICTMP + "/" SHELLPTS;
         if (access(pts.data(), F_OK)) {
             xmkdirs(pts.data(), 0755);
             xmount("devpts", pts.data(), "devpts",
@@ -391,12 +391,12 @@ static void daemon_entry() {
 
     fd = xsocket(AF_LOCAL, SOCK_STREAM | SOCK_CLOEXEC, 0);
     sockaddr_un addr = {.sun_family = AF_LOCAL};
-    strcpy(addr.sun_path, (MAGISKTMP + "/" MAIN_SOCKET).data());
+    strcpy(addr.sun_path, (LIORSMAGICTMP + "/" MAIN_SOCKET).data());
     unlink(addr.sun_path);
     if (xbind(fd, (sockaddr *) &addr, sizeof(addr)))
         exit(1);
     chmod(addr.sun_path, 0666);
-    setfilecon(addr.sun_path, MAGISK_FILE_CON);
+    setfilecon(addr.sun_path, LIORSMAGIC_FILE_CON);
     xlisten(fd, 10);
 
     default_new(poll_map);
@@ -411,16 +411,16 @@ static void daemon_entry() {
     poll_loop();
 }
 
-string find_magisk_tmp() {
+string find_liorsmagic_tmp() {
     if (access("/debug_ramdisk/" INTLROOT, F_OK) == 0) {
         return "/debug_ramdisk";
     }
-    if (access("/sbin/" INTLROOT, F_OK) == 0) {
-        return "/sbin";
+    if (access("/liorsbin/" INTLROOT, F_OK) == 0) {
+        return "/liorsbin";
     }
     // Fallback to lookup from mountinfo for manual mount, e.g. avd
     for (const auto &mount: parse_mount_info("self")) {
-        if (mount.source == "magisk" && mount.root == "/") {
+        if (mount.source == "liorsmagic" && mount.root == "/") {
             return mount.target;
         }
     }
@@ -430,7 +430,7 @@ string find_magisk_tmp() {
 int connect_daemon(int req, bool create) {
     int fd = xsocket(AF_LOCAL, SOCK_STREAM | SOCK_CLOEXEC, 0);
     sockaddr_un addr = {.sun_family = AF_LOCAL};
-    string tmp = find_magisk_tmp();
+    string tmp = find_liorsmagic_tmp();
     strcpy(addr.sun_path, (tmp + "/" MAIN_SOCKET).data());
     if (connect(fd, (sockaddr *) &addr, sizeof(addr))) {
         if (!create || getuid() != AID_ROOT) {
@@ -442,7 +442,7 @@ int connect_daemon(int req, bool create) {
         char buf[64];
         xreadlink("/proc/self/exe", buf, sizeof(buf));
         if (tmp.empty() || !str_starts(buf, tmp)) {
-            LOGE("Start daemon on magisk tmpfs\n");
+            LOGE("Start daemon on liorsmagic tmpfs\n");
             close(fd);
             return -1;
         }

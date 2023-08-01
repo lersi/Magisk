@@ -1,13 +1,13 @@
-package com.topjohnwu.magisk.core.tasks
+package com.topjohnwu.liorsmagic.core.tasks
 
 import android.net.Uri
 import androidx.core.net.toFile
-import com.topjohnwu.magisk.core.Const
-import com.topjohnwu.magisk.core.di.AppContext
-import com.topjohnwu.magisk.core.ktx.writeTo
-import com.topjohnwu.magisk.core.utils.MediaStoreUtils.displayName
-import com.topjohnwu.magisk.core.utils.MediaStoreUtils.inputStream
-import com.topjohnwu.magisk.core.utils.unzip
+import com.topjohnwu.liorsmagic.core.Const
+import com.topjohnwu.liorsmagic.core.di.AppContext
+import com.topjohnwu.liorsmagic.core.ktx.writeTo
+import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils.displayName
+import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils.inputStream
+import com.topjohnwu.liorsmagic.core.utils.unzip
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -50,7 +50,7 @@ open class FlashZip(
         val isValid = runCatching {
             zipFile.unzip(installDir, "META-INF/com/google/android", true)
             val script = File(installDir, "updater-script")
-            script.readText().contains("#MAGISK")
+            script.readText().contains("#LIORSMAGIC")
         }.getOrElse {
             console.add("! Unzip error")
             throw it

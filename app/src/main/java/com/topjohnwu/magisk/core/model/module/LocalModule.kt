@@ -1,9 +1,9 @@
-package com.topjohnwu.magisk.core.model.module
+package com.topjohnwu.liorsmagic.core.model.module
 
 import com.squareup.moshi.JsonDataException
-import com.topjohnwu.magisk.core.Const
-import com.topjohnwu.magisk.core.di.ServiceLocator
-import com.topjohnwu.magisk.core.utils.RootUtils
+import com.topjohnwu.liorsmagic.core.Const
+import com.topjohnwu.liorsmagic.core.di.ServiceLocator
+import com.topjohnwu.liorsmagic.core.utils.RootUtils
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -122,14 +122,14 @@ data class LocalModule(
 
     companion object {
 
-        fun loaded() = RootUtils.fs.getFile(Const.MAGISK_PATH).exists()
+        fun loaded() = RootUtils.fs.getFile(Const.LIORSMAGIC_PATH).exists()
 
         suspend fun installed() = withContext(Dispatchers.IO) {
-            RootUtils.fs.getFile(Const.MAGISK_PATH)
+            RootUtils.fs.getFile(Const.LIORSMAGIC_PATH)
                 .listFiles()
                 .orEmpty()
                 .filter { !it.isFile && !it.isHidden }
-                .map { LocalModule("${Const.MAGISK_PATH}/${it.name}") }
+                .map { LocalModule("${Const.LIORSMAGIC_PATH}/${it.name}") }
                 .sortedBy { it.name.lowercase(Locale.ROOT) }
         }
     }

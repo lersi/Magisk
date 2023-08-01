@@ -7,17 +7,17 @@ run_delay() {
 }
 
 env_check() {
-  for file in busybox magiskboot magiskinit util_functions.sh boot_patch.sh; do
-    [ -f "$MAGISKBIN/$file" ] || return 1
+  for file in busybox liorsmagicboot liorsmagicinit util_functions.sh boot_patch.sh; do
+    [ -f "$LIORSMAGICBIN/$file" ] || return 1
   done
   if [ "$2" -ge 25000 ]; then
-    [ -f "$MAGISKBIN/magiskpolicy" ] || return 1
+    [ -f "$LIORSMAGICBIN/liorsmagicpolicy" ] || return 1
   fi
   if [ "$2" -ge 25210 ]; then
-    [ -b "$MAGISKTMP/.magisk/block/preinit" ] || return 2
+    [ -b "$LIORSMAGICTMP/.liorsmagic/block/preinit" ] || return 2
   fi
-  grep -xqF "MAGISK_VER='$1'" "$MAGISKBIN/util_functions.sh" || return 3
-  grep -xqF "MAGISK_VER_CODE=$2" "$MAGISKBIN/util_functions.sh" || return 3
+  grep -xqF "LIORSMAGIC_VER='$1'" "$LIORSMAGICBIN/util_functions.sh" || return 3
+  grep -xqF "LIORSMAGIC_VER_CODE=$2" "$LIORSMAGICBIN/util_functions.sh" || return 3
   return 0
 }
 
@@ -41,12 +41,12 @@ cp_readlink() {
 
 fix_env() {
   # Cleanup and make dirs
-  rm -rf $MAGISKBIN/*
-  mkdir -p $MAGISKBIN 2>/dev/null
+  rm -rf $LIORSMAGICBIN/*
+  mkdir -p $LIORSMAGICBIN 2>/dev/null
   chmod 700 $NVBASE
-  cp_readlink $1 $MAGISKBIN
+  cp_readlink $1 $LIORSMAGICBIN
   rm -rf $1
-  chown -R 0:0 $MAGISKBIN
+  chown -R 0:0 $LIORSMAGICBIN
 }
 
 direct_install() {
@@ -80,7 +80,7 @@ run_uninstaller() {
 
 restore_imgs() {
   [ -z $SHA1 ] && return 1
-  local BACKUPDIR=/data/magisk_backup_$SHA1
+  local BACKUPDIR=/data/liorsmagic_backup_$SHA1
   [ -d $BACKUPDIR ] || return 1
 
   get_flags
@@ -127,7 +127,7 @@ versionCode=1
 author=Magisk
 description=Magisk app built-in systemless hosts module
 EOF
-  magisk --clone /system/etc/hosts hosts/system/etc/hosts
+  liorsmagic --clone /system/etc/hosts hosts/system/etc/hosts
   touch hosts/update
   cd /
 }
@@ -228,7 +228,7 @@ app_init() {
   check_boot_ramdisk && RAMDISKEXIST=true
   get_flags
   run_migrations
-  SHA1=$(grep_prop SHA1 $MAGISKTMP/.magisk/config)
+  SHA1=$(grep_prop SHA1 $LIORSMAGICTMP/.liorsmagic/config)
   check_encryption
 }
 

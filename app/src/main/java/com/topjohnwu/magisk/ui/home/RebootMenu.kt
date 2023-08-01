@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.ui.home
+package com.topjohnwu.liorsmagic.ui.home
 
 import android.os.Build
 import android.os.PowerManager
@@ -6,9 +6,9 @@ import android.view.ContextThemeWrapper
 import android.view.MenuItem
 import android.widget.PopupMenu
 import androidx.core.content.getSystemService
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.base.BaseActivity
-import com.topjohnwu.magisk.core.ktx.reboot as systemReboot
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.base.BaseActivity
+import com.topjohnwu.liorsmagic.core.ktx.reboot as systemReboot
 
 object RebootMenu {
 

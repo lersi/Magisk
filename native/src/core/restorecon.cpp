@@ -1,6 +1,6 @@
 #include <string_view>
 
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 #include <selinux.hpp>
 #include <base.hpp>
 
@@ -78,12 +78,12 @@ void restorecon() {
 void restore_tmpcon() {
     if (!selinux_enabled())
         return;
-    if (MAGISKTMP == "/sbin")
-        setfilecon(MAGISKTMP.data(), ROOT_CON);
+    if (LIORSMAGICTMP == "/liorsbin")
+        setfilecon(LIORSMAGICTMP.data(), ROOT_CON);
     else
-        chmod(MAGISKTMP.data(), 0711);
+        chmod(LIORSMAGICTMP.data(), 0711);
 
-    auto dir = xopen_dir(MAGISKTMP.data());
+    auto dir = xopen_dir(LIORSMAGICTMP.data());
     int dfd = dirfd(dir.get());
 
     for (dirent *entry; (entry = xreaddir(dir.get()));)

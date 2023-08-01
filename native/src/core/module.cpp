@@ -4,7 +4,7 @@
 #include <utility>
 
 #include <base.hpp>
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 #include <daemon.hpp>
 #include <selinux.hpp>
 
@@ -170,7 +170,7 @@ void tmpfs_node::mount() {
     else
         getattr(parent()->node_path().data(), &a);
     if (!isa<tmpfs_node>(parent())) {
-        auto worker_dir = MAGISKTMP + "/" WORKERDIR + dest;
+        auto worker_dir = LIORSMAGICTMP + "/" WORKERDIR + dest;
         mkdirs(worker_dir.data(), 0);
         create_and_mount(skip_mirror() ? "replace" : "tmpfs", worker_dir);
     } else {
@@ -185,33 +185,33 @@ void tmpfs_node::mount() {
  * Magisk Stuffs
  ****************/
 
-class magisk_node : public node_entry {
+class liorsmagic_node : public node_entry {
 public:
-    explicit magisk_node(const char *name) : node_entry(name, DT_REG, this) {}
+    explicit liorsmagic_node(const char *name) : node_entry(name, DT_REG, this) {}
 
     void mount() override {
-        const string src = MAGISKTMP + "/" + name();
+        const string src = LIORSMAGICTMP + "/" + name();
         if (access(src.data(), F_OK))
             return;
 
         const string &dir_name = parent()->node_path();
-        if (name() == "magisk") {
+        if (name() == "liorsmagic") {
             for (int i = 0; applet_names[i]; ++i) {
                 string dest = dir_name + "/" + applet_names[i];
-                VLOGD("create", "./magisk", dest.data());
-                xsymlink("./magisk", dest.data());
+                VLOGD("create", "./liorsmagic", dest.data());
+                xsymlink("./liorsmagic", dest.data());
             }
         } else {
             string dest = dir_name + "/supolicy";
-            VLOGD("create", "./magiskpolicy", dest.data());
-            xsymlink("./magiskpolicy", dest.data());
+            VLOGD("create", "./liorsmagicpolicy", dest.data());
+            xsymlink("./liorsmagicpolicy", dest.data());
         }
-        create_and_mount("magisk", src);
+        create_and_mount("liorsmagic", src);
         xmount(nullptr, node_path().data(), nullptr, MS_REMOUNT | MS_BIND | MS_RDONLY, nullptr);
     }
 };
 
-static void inject_magisk_bins(root_node *system) {
+static void inject_liorsmagic_bins(root_node *system) {
     auto bin = system->get_child<inter_node>("bin");
     if (!bin) {
         bin = new inter_node("bin");
@@ -219,8 +219,8 @@ static void inject_magisk_bins(root_node *system) {
     }
 
     // Insert binaries
-    bin->insert(new magisk_node("magisk"));
-    bin->insert(new magisk_node("magiskpolicy"));
+    bin->insert(new liorsmagic_node("liorsmagic"));
+    bin->insert(new liorsmagic_node("liorsmagicpolicy"));
 
     // Also delete all applets to make sure no modules can override it
     for (int i = 0; applet_names[i]; ++i)
@@ -236,7 +236,7 @@ int app_process_64 = -1;
 if (access("/system/bin/app_process" #bit, F_OK) == 0) {                                \
     app_process_##bit = xopen("/system/bin/app_process" #bit, O_RDONLY | O_CLOEXEC);    \
     string zbin = zygisk_bin + "/app_process" #bit;                                     \
-    string mbin = MAGISKTMP + "/magisk" #bit;                                           \
+    string mbin = LIORSMAGICTMP + "/liorsmagic" #bit;                                           \
     int src = xopen(mbin.data(), O_RDONLY | O_CLOEXEC);                                 \
     int out = xopen(zbin.data(), O_CREAT | O_WRONLY | O_CLOEXEC, 0);                    \
     xsendfile(out, src, nullptr, INT_MAX);                                              \
@@ -247,8 +247,8 @@ if (access("/system/bin/app_process" #bit, F_OK) == 0) {                        
 }
 
 void load_modules() {
-    node_entry::mirror_dir = MAGISKTMP + "/" MIRRDIR;
-    node_entry::module_mnt = MAGISKTMP + "/" MODULEMNT "/";
+    node_entry::mirror_dir = LIORSMAGICTMP + "/" MIRRDIR;
+    node_entry::module_mnt = LIORSMAGICTMP + "/" MODULEMNT "/";
 
     auto root = make_unique<root_node>("");
     auto system = new root_node("system");
@@ -258,7 +258,7 @@ void load_modules() {
     LOGI("* Loading modules\n");
     for (const auto &m : *module_list) {
         const char *module = m.name.data();
-        char *b = buf + sprintf(buf, "%s/" MODULEMNT "/%s/", MAGISKTMP.data(), module);
+        char *b = buf + sprintf(buf, "%s/" MODULEMNT "/%s/", LIORSMAGICTMP.data(), module);
 
         // Read props
         strcpy(b, "system.prop");
@@ -284,9 +284,9 @@ void load_modules() {
         system->collect_module_files(module, fd);
         close(fd);
     }
-    if (MAGISKTMP != "/sbin" || !str_contains(getenv("PATH") ?: "", "/sbin")) {
+    if (LIORSMAGICTMP != "/liorsbin" || !str_contains(getenv("PATH") ?: "", "/liorsbin")) {
         // Need to inject our binaries into /system/bin
-        inject_magisk_bins(system);
+        inject_liorsmagic_bins(system);
     }
 
     if (!system->is_empty()) {
@@ -306,13 +306,13 @@ void load_modules() {
 
     // Mount on top of modules to enable zygisk
     if (zygisk_enabled) {
-        string zygisk_bin = MAGISKTMP + "/" ZYGISKBIN;
+        string zygisk_bin = LIORSMAGICTMP + "/" ZYGISKBIN;
         mkdir(zygisk_bin.data(), 0);
         mount_zygisk(32)
         mount_zygisk(64)
     }
 
-    auto worker_dir = MAGISKTMP + "/" WORKERDIR;
+    auto worker_dir = LIORSMAGICTMP + "/" WORKERDIR;
     xmount(nullptr, worker_dir.data(), nullptr, MS_REMOUNT | MS_RDONLY, nullptr);
 }
 
@@ -448,7 +448,7 @@ void handle_modules() {
 }
 
 static int check_rules_dir(char *buf, size_t sz) {
-    int off = ssprintf(buf, sz, "%s/%s", MAGISKTMP.data(), PREINITMIRR);
+    int off = ssprintf(buf, sz, "%s/%s", LIORSMAGICTMP.data(), PREINITMIRR);
     struct stat st1{};
     struct stat st2{};
     if (xstat(buf, &st1) < 0 || xstat(MODULEROOT, &st2) < 0)

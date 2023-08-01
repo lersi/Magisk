@@ -1,14 +1,14 @@
-package com.topjohnwu.magisk;
+package com.topjohnwu.liorsmagic;
 
 import android.app.job.JobService;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.ServiceInfo;
 
-import com.topjohnwu.magisk.dummy.DummyProvider;
-import com.topjohnwu.magisk.dummy.DummyReceiver;
-import com.topjohnwu.magisk.dummy.DummyService;
-import com.topjohnwu.magisk.utils.DynamicClassLoader;
+import com.topjohnwu.liorsmagic.dummy.DummyProvider;
+import com.topjohnwu.liorsmagic.dummy.DummyReceiver;
+import com.topjohnwu.liorsmagic.dummy.DummyService;
+import com.topjohnwu.liorsmagic.utils.DynamicClassLoader;
 
 import java.io.File;
 import java.util.HashMap;

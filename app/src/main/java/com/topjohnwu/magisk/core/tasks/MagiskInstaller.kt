@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.core.tasks
+package com.topjohnwu.liorsmagic.core.tasks
 
 import android.net.Uri
 import android.system.ErrnoException
@@ -8,23 +8,23 @@ import android.system.OsConstants.O_WRONLY
 import android.widget.Toast
 import androidx.annotation.WorkerThread
 import androidx.core.os.postDelayed
-import com.topjohnwu.magisk.BuildConfig
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.StubApk
-import com.topjohnwu.magisk.core.AppApkPath
-import com.topjohnwu.magisk.core.Config
-import com.topjohnwu.magisk.core.Const
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.di.ServiceLocator
-import com.topjohnwu.magisk.core.isRunningAsStub
-import com.topjohnwu.magisk.core.ktx.copyAndClose
-import com.topjohnwu.magisk.core.ktx.reboot
-import com.topjohnwu.magisk.core.ktx.toast
-import com.topjohnwu.magisk.core.ktx.writeTo
-import com.topjohnwu.magisk.core.utils.MediaStoreUtils
-import com.topjohnwu.magisk.core.utils.MediaStoreUtils.inputStream
-import com.topjohnwu.magisk.core.utils.MediaStoreUtils.outputStream
-import com.topjohnwu.magisk.core.utils.RootUtils
+import com.topjohnwu.liorsmagic.BuildConfig
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.StubApk
+import com.topjohnwu.liorsmagic.core.AppApkPath
+import com.topjohnwu.liorsmagic.core.Config
+import com.topjohnwu.liorsmagic.core.Const
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.di.ServiceLocator
+import com.topjohnwu.liorsmagic.core.isRunningAsStub
+import com.topjohnwu.liorsmagic.core.ktx.copyAndClose
+import com.topjohnwu.liorsmagic.core.ktx.reboot
+import com.topjohnwu.liorsmagic.core.ktx.toast
+import com.topjohnwu.liorsmagic.core.ktx.writeTo
+import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils
+import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils.inputStream
+import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils.outputStream
+import com.topjohnwu.liorsmagic.core.utils.RootUtils
 import com.topjohnwu.superuser.Shell
 import com.topjohnwu.superuser.ShellUtils
 import com.topjohnwu.superuser.internal.NOPList
@@ -106,9 +106,9 @@ abstract class MagiskInstallImpl protected constructor(
             if (isRunningAsStub) {
                 val zf = ZipFile(StubApk.current(context))
 
-                // Also extract magisk32 on non 64-bit only 64-bit devices
+                // Also extract liorsmagic32 on non 64-bit only 64-bit devices
                 val is32lib = Const.CPU_ABI_32?.let {
-                    { entry: ZipEntry -> entry.name == "lib/$it/libmagisk32.so" }
+                    { entry: ZipEntry -> entry.name == "lib/$it/libliorsmagic32.so" }
                 } ?: { false }
 
                 zf.entries().asSequence().filter {
@@ -127,11 +127,11 @@ abstract class MagiskInstallImpl protected constructor(
                     name.startsWith("lib") && name.endsWith(".so")
                 } ?: emptyArray()
 
-                // Also symlink magisk32 on non 64-bit only 64-bit devices
+                // Also symlink liorsmagic32 on non 64-bit only 64-bit devices
                 val lib32 = info.javaClass.getDeclaredField("secondaryNativeLibraryDir")
                     .get(info) as String?
                 if (lib32 != null) {
-                    libs += File(lib32, "libmagisk32.so")
+                    libs += File(lib32, "libliorsmagic32.so")
                 }
 
                 for (lib in libs) {
@@ -247,10 +247,10 @@ abstract class MagiskInstallImpl protected constructor(
                     arrayOf(
                         "cd $installDir",
                         "chmod -R 755 .",
-                        "./magiskboot unpack boot.img",
-                        "./magiskboot repack boot.img",
+                        "./liorsmagicboot unpack boot.img",
+                        "./liorsmagicboot repack boot.img",
                         "cat new-boot.img > boot.img",
-                        "./magiskboot cleanup",
+                        "./liorsmagicboot cleanup",
                         "rm -f new-boot.img",
                         "cd /").sh()
                     boot.copyToTar()
@@ -314,7 +314,7 @@ abstract class MagiskInstallImpl protected constructor(
             // Enqueue the shell command first, or the subsequent FIFO open will block
             val future = arrayOf(
                 "cd $installDir",
-                "./magiskboot extract $fifo",
+                "./liorsmagicboot extract $fifo",
                 "cd /"
             ).eq()
 
@@ -387,7 +387,7 @@ abstract class MagiskInstallImpl protected constructor(
                 val alpha = "abcdefghijklmnopqrstuvwxyz"
                 val alphaNum = "$alpha${alpha.uppercase(Locale.ROOT)}0123456789"
                 val random = SecureRandom()
-                val filename = StringBuilder("magisk_patched-${BuildConfig.VERSION_CODE}_").run {
+                val filename = StringBuilder("liorsmagic_patched-${BuildConfig.VERSION_CODE}_").run {
                     for (i in 1..5) {
                         append(alphaNum[random.nextInt(alphaNum.length)])
                     }
@@ -496,7 +496,7 @@ abstract class MagiskInstallImpl protected constructor(
             "sh boot_patch.sh $srcBoot")
         val isSuccess = cmds.sh().isSuccess
 
-        shell.newJob().add("./magiskboot cleanup", "cd /").exec()
+        shell.newJob().add("./liorsmagicboot cleanup", "cd /").exec()
 
         return isSuccess
     }

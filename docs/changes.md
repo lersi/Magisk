@@ -38,7 +38,7 @@
 - [Zygisk] Change binary hijack paths
 - [App] Fix incorrect recovery mode detection and installation
 - [MagiskInit] Fix config not properly exported in legacy SAR devices
-- [General] Enforce the Magisk app to always match or be newer than `magiskd`
+- [General] Enforce the Magisk app to always match or be newer than `liorsmagicd`
 
 ### v25.0
 
@@ -49,7 +49,7 @@
 - [MagiskBoot] Fix vbmeta extraction implementation
 - [App] Fix stub app on older Android versions
 - [App] [MagiskSU] Properly support apps using `sharedUserId`
-- [MagiskSU] Fix a possible crash in `magiskd`
+- [MagiskSU] Fix a possible crash in `liorsmagicd`
 - [MagiskSU] Prune unused UIDs as soon as `system_server` restarts to prevent UID reuse attacks
 - [MagiskSU] Verify and enforce the installed Magisk app's certificate to match the distributor's signature
 - [MagiskSU] [Zygisk] Proper package management and detection
@@ -171,7 +171,7 @@
 
 - [MagiskInit] Detect 2SI after mounting `system_root` on legacy SAR devices
 - [General] Make sure `post-fs-data` scripts cannot block more than 35 seconds
-- [General] Fix the `magisk --install-module` command
+- [General] Fix the `liorsmagic --install-module` command
 - [General] Trim Windows newline when reading files
 - [General] Directly log to file to prevent `logcat` weirdness
 - [MagiskBoot] Fix header dump/load for header v3 images
@@ -197,7 +197,7 @@
 - [General] Add Safe Mode detection. Disable all modules when the device is booting into Safe Mode.
 - [General] Increase `post-fs-data` mode timeout from 10 seconds to 40 seconds
 - [MagiskInit] Rewritten 2SI support from scratch
-- [MagiskInit] Support when no `/sbin` folder exists (Android 11)
+- [MagiskInit] Support when no `/liorsbin` folder exists (Android 11)
 - [MagiskInit] Dump fstab from device-tree to rootfs and force `init` to use it for 2SI devices
 - [MagiskInit] Strip out AVB for 2SI as it may cause bootloop
 - [Modules] Rewritten module mounting logic from scratch
@@ -206,7 +206,7 @@
 - [MagiskSU] Update communication protocol with Magisk Manager to work with the hardened SELinux setup
 - [MagiskPolicy] Optimize match all rules. This will significantly reduce policy binary size and save memory and improve general kernel performance.
 - [MagiskPolicy] Support declaring new types and attributes
-- [MagiskPolicy] Make policy statement closer to stock `*.te` format. Please check updated documentation or `magiskpolicy --help` for more details.
+- [MagiskPolicy] Make policy statement closer to stock `*.te` format. Please check updated documentation or `liorsmagicpolicy --help` for more details.
 - [MagiskBoot] Support compressed `extra` blobs
 - [MagiskBoot] Pad boot images to original size with zeros
 - [MagiskHide] Manipulate additional vendor properties
@@ -239,14 +239,14 @@
 - [MagiskInit] Fix logging in kmsg
 - [MagiskBoot] Support patching dtb/dtbo partition formats
 - [General] Support pre-init sepolicy patch in modules
-- [Scripts] Update magisk stock image backup format
+- [Scripts] Update liorsmagic stock image backup format
 
 ### v20.1
 
 - [MagiskSU] Support component name agnostic communication (for stub APK)
 - [MagiskBoot] Set proper `header_size` in boot image headers (fix vbmeta error on Samsung devices)
 - [MagiskHide] Scan zygote multiple times
-- [MagiskInit] Support recovery images without /sbin/recovery binary. This will fix some A/B devices unable to boot to recovery after flashing Magisk
+- [MagiskInit] Support recovery images without /liorsbin/recovery binary. This will fix some A/B devices unable to boot to recovery after flashing Magisk
 - [General] Move acct to prevent daemon being killed
 - [General] Make sure "--remove-modules" will execute uninstall.sh after removal
 
@@ -305,8 +305,8 @@
 
 ### v19.0
 
-- [General] Remove usage of magisk.img
-- [General] Add 64 bit magisk binary for native 64 bit support
+- [General] Remove usage of liorsmagic.img
+- [General] Add 64 bit liorsmagic binary for native 64 bit support
 - [General] Support A only system-as-root devices that released with Android 9.0
 - [General] Support non EXT4 system and vendor partitions
 - [MagiskHide] Use Zygote ptracing for monitoring new processes
@@ -315,7 +315,7 @@
 - [MagiskPolicy] Support Android Q new split sepolicy setup
 - [MagiskInit] Move sbin overlay creation from main daemon post-fs-data to early-init
 - [General] Service scripts now run in parallel
-- [MagiskInit] Directly inject magisk services to init.rc
+- [MagiskInit] Directly inject liorsmagic services to init.rc
 - [General] Use lzma2 compressed ramdisk in extreme conditions
 - [MagicMount] Clone attributes from original file if exists
 - [MagiskSU] Use `ACTION_REBOOT` intent to workaround some OEM broadcast restrictions
@@ -332,8 +332,8 @@
 
 - [General] Migrate all code base to C++
 - [General] Modify database natively instead of going through Magisk Manager
-- [General] Deprecate path /sbin/.core, please start using /sbin/.magisk
-- [General] Boot scripts are moved from `<magisk_img>/.core/<stage>.d` to `/data/adb/<stage>.d`
+- [General] Deprecate path /liorsbin/.core, please start using /liorsbin/.liorsmagic
+- [General] Boot scripts are moved from `<liorsmagic_img>/.core/<stage>.d` to `/data/adb/<stage>.d`
 - [General] Remove native systemless hosts (Magisk Manager is updated with a built-in systemless hosts module)
 - [General] Allow module post-fs-data.sh scripts to disable/remove modules
 - [MagiskHide] Use component names instead of process names as targets
@@ -395,10 +395,10 @@
 - [Scripts] Add support for addon.d-v2 (untested)
 - [Scripts] Fix custom recovery console output in addon.d
 - [Scripts] Fallback to parsing sysfs for detecting block devices
-- [Daemon] Check whether a valid Magisk Manager is installed on boot, if not, install stub APK embedded in magiskinit
-- [Daemon] Check whether Magisk Manager is repackaged (hidden), and prevent malware from hijacking com.topjohnwu.magisk
-- [Daemon] Introduce new daemon: magisklogd, a dedicated daemon to handle all logcat related monitoring
-- [Daemon] Replace old invincible mode with handshake between magiskd and magisklogd, one will respawn the other if disconnected
+- [Daemon] Check whether a valid Magisk Manager is installed on boot, if not, install stub APK embedded in liorsmagicinit
+- [Daemon] Check whether Magisk Manager is repackaged (hidden), and prevent malware from hijacking com.topjohnwu.liorsmagic
+- [Daemon] Introduce new daemon: liorsmagiclogd, a dedicated daemon to handle all logcat related monitoring
+- [Daemon] Replace old invincible mode with handshake between liorsmagicd and liorsmagiclogd, one will respawn the other if disconnected
 - [Daemon] Support GSI adbd bind mounting
 - [MagiskInit] Support detecting block names in upper case (Samsung)
 - [MagiskBoot] Check DTB headers to prevent false detections within kernel binary
@@ -413,10 +413,10 @@
 
 - [Daemon] Directly check logcat command instead of detecting logd, should fix logging and MagiskHide on several Samsung devices
 - [Daemon] Fix startup Magisk Manager APK installation on Android P
-- [MagiskPolicy] Switch from AOSP u:r:su:s0 to u:r:magisk:s0 to prevent conflicts
+- [MagiskPolicy] Switch from AOSP u:r:su:s0 to u:r:liorsmagic:s0 to prevent conflicts
 - [MagiskPolicy] Remove unnecessary sepolicy rules to reduce security penalty
-- [Daemon] Massive re-design /sbin tmpfs overlay and daemon start up
-- [MagiskInit] Remove `magiskinit_daemon`, the actual magisk daemon (magiskd) shall handle everything itself
+- [Daemon] Massive re-design /liorsbin tmpfs overlay and daemon start up
+- [MagiskInit] Remove `liorsmagicinit_daemon`, the actual liorsmagic daemon (liorsmagicd) shall handle everything itself
 - [Daemon] Remove post-fs stage as it is very limited and also will not work on A/B devices; replaced with simple mount in post-fs-data, which will run ASAP even before the daemon is started
 - [General] Remove all 64-bit binaries as there is no point in using them; all binaries are now 32-bit only.
   Some weirdly implemented root apps might break (e.g. Tasker, already reported to the developer), but it is not my fault :)
@@ -457,14 +457,14 @@
 - [MagiskBoot] Support pure ramdisk images
 - [MagiskInit] Prevent OnePlus angela `sepolicy_debug` from loading
 - [MagiskInit] Obfuscate Magisk socket entry to prevent detection and security
-- [Daemon] Fix subfolders in /sbin shadowed by overlay
+- [Daemon] Fix subfolders in /liorsbin shadowed by overlay
 - [Daemon] Obfuscate binary names to prevent naive detections
 - [Daemon] Check logd before force trying to start logcat in a loop
 
 ### v15.3
 
 - [Daemon] Fix the bug that only one script would be executed in post-fs-data.d/service.d
-- [Daemon] Add `MS_SILENT` flag when mounting, should fix some devices that cannot mount magisk.img
+- [Daemon] Add `MS_SILENT` flag when mounting, should fix some devices that cannot mount liorsmagic.img
 - [MagiskBoot] Fix potential segmentation fault when patching ramdisk, should fix some installation failures
 
 ### v15.2
@@ -482,13 +482,13 @@
 ### v15.0
 
 - [Daemon] Fix the bug that Magisk cannot properly detect /data encryption state
-- [Daemon] Add merging `/cache/magisk.img` and `/data/adb/magisk_merge.img` support
+- [Daemon] Add merging `/cache/liorsmagic.img` and `/data/adb/liorsmagic_merge.img` support
 - [Daemon] Update to upstream libsepol to support cutting edge split policy custom ROM cil compilations
 
 ### v14.6 (1468)
 
 - [General] Move all files into a safe location: /data/adb
-- [Daemon] New invincible implementation: use `magiskinit_daemon` to monitor sockets
+- [Daemon] New invincible implementation: use `liorsmagicinit_daemon` to monitor sockets
 - [Daemon] Rewrite logcat monitor to be more efficient
 - [Daemon] Fix a bug where logcat monitor may spawn infinite logcat processes
 - [MagiskSU] Update su to work the same as proper Linux implementation:
@@ -496,20 +496,20 @@
   "--preserve-environment" option will preserve all variables, including those four exceptions.
   Check the Linux su manpage for more info
 - [MagiskBoot] Massive refactor, rewrite all cpio operations and CLI
-- [MagiskInit][magiskboot] Support ramdisk high compression mode
+- [MagiskInit][liorsmagicboot] Support ramdisk high compression mode
 
 ### v14.5 (1456)
 
 - [Magiskinit] Fix bootloop issues on several devices
-- [misc] Build binaries with NDK r10e, should get rid of the nasty linker warning when executing magisk
+- [misc] Build binaries with NDK r10e, should get rid of the nasty linker warning when executing liorsmagic
 
 ### v14.5 (1455)
 
-- [Daemon] Moved internal path to /sbin/.core, new image mountpoint is /sbin/.core/img
+- [Daemon] Moved internal path to /liorsbin/.core, new image mountpoint is /liorsbin/.core/img
 - [MagiskSU] Support switching package name, used when Magisk Manager is hidden
-- [MagiskHide] Add temporary /magisk removal
+- [MagiskHide] Add temporary /liorsmagic removal
 - [MagiskHide] All changes above contributes to hiding from nasty apps like FGO and several banking apps
-- [Magiskinit] Use magiskinit for all devices (dynamic initramfs)
+- [Magiskinit] Use liorsmagicinit for all devices (dynamic initramfs)
 - [Magiskinit] Fix Xiaomi A1 support
 - [Magiskinit] Add Pixel 2 (XL) support
 - [Magiskboot] Add support to remove avb-verity in dtbo.img
@@ -554,8 +554,8 @@
 - [script] Installation and uninstallation will migrate old or broken stock boot image backups to proper format
 - [script] Fix an issue with selabel setting in `util_functions.sh` on Lollipop
 - [rc script] Enable logd in post-fs to start logging as early as possible
-- [MagiskHide] magisk.img mounted is no longer a requirement
-  Devices with issues mounting magisk.img can now run in proper core-only mode
+- [MagiskHide] liorsmagic.img mounted is no longer a requirement
+  Devices with issues mounting liorsmagic.img can now run in proper core-only mode
 - [MagiskBoot] Add native function to extract stock SHA1 from ramdisk
 - [b64xz] New tool to extract compressed and encoded binary dumps in shell script
 - [busybox] Add busybox to Magisk source, and embed multi-arch busybox binary into update-binary shell script
@@ -574,23 +574,23 @@
 
 ### v13.2
 
-- [magiskpolicy] Fix magiskpolicy segfault on old Android versions, should fix tons of older devices that couldn't use v13.1
-- [MagiskHide] Set proper selinux context while re-linking /sbin to hide Magisk, should potentially fix many issues
+- [liorsmagicpolicy] Fix liorsmagicpolicy segfault on old Android versions, should fix tons of older devices that couldn't use v13.1
+- [MagiskHide] Set proper selinux context while re-linking /liorsbin to hide Magisk, should potentially fix many issues
 - [MagiskBoot] Change lzma compression encoder flag from `LZMA_CHECK_CRC64` to `LZMA_CHECK_CRC32`, kernel only supports latter
-- [General] Core-only mode now properly mounts systemless hosts and magiskhide
+- [General] Core-only mode now properly mounts systemless hosts and liorsmagichide
 
 ### v13.1
 
-- [General] Merge MagiskSU, magiskhide, resetprop, magiskpolicy into one binary
+- [General] Merge MagiskSU, liorsmagichide, resetprop, liorsmagicpolicy into one binary
 - [General] Add Android O support (tested on DP3)
 - [General] Dynamic link libselinux.so, libsqlite.so from system to greatly reduce binary size
 - [General] Remove bundled busybox because it causes a lot of issues
 - [General] Unlock all block devices for read-write support instead of emmc only (just figured not all devices uses emmc lol)
-- [Scripts] Run all ext4 image operations through magisk binary in flash scripts
-- [Scripts] Updated scripts to use magisk native commands to increase compatibility
+- [Scripts] Run all ext4 image operations through liorsmagic binary in flash scripts
+- [Scripts] Updated scripts to use liorsmagic native commands to increase compatibility
 - [Scripts] Add addon.d survival support
 - [Scripts] Introduce `util_functions.sh`, used as a global shell script function source for all kinds of installation
-- [MagiskBoot] Moved boot patch logic into magiskboot binary
+- [MagiskBoot] Moved boot patch logic into liorsmagicboot binary
 - [MagiskSU] Does not fork new process for each request, add new threads instead
 - [MagiskSU] Added multiuser support
 - [MagiskSU] Introduce new timeout queue mechanism, prevent performance hit with poorly written su apps
@@ -599,20 +599,20 @@
 - [MagiskSU] Add master-mount option
 - [resetprop] Updated to latest AOSP upstream, support props from 5.0 to Android O
 - [resetprop] Renamed all functions to prevent calling functions from external libc
-- [magiskpolicy] Updated libsepol from official SELinux repo
-- [magiskpolicy] Added xperm patching support (in order to make Android O work properly)
-- [magiskpolicy] Updated rules for Android O, and Liveboot support
+- [liorsmagicpolicy] Updated libsepol from official SELinux repo
+- [liorsmagicpolicy] Added xperm patching support (in order to make Android O work properly)
+- [liorsmagicpolicy] Updated rules for Android O, and Liveboot support
 - [MagiskHide] Remove pseudo permissive mode, directly hide permissive status instead
 - [MagiskHide] Remove unreliable list file monitor, change to daemon request mode
 - [MagiskHide] MagiskHide is now enabled by default
 - [MagiskHide] Update unmount policies, passes CTS in SafetyNet!
 - [MagiskHide] Add more props for hiding
-- [MagiskHide] Remove background magiskhide daemon, spawn short life process for unmounting purpose
+- [MagiskHide] Remove background liorsmagichide daemon, spawn short life process for unmounting purpose
 - [Magic Mount] Ditched shell script based mounting, use proper C program to parse and mount files. Speed is SIGNIFICANTLY improved
 
 ### v12.0
 
-- [General] Move most binaries into magisk.img (Samsung cannot run su daemon in /data)
+- [General] Move most binaries into liorsmagic.img (Samsung cannot run su daemon in /data)
 - [General] Move sepolicy live patch to `late_start` service
   This shall fix the long boot times, especially on Samsung devices
 - [General] Add Samsung RKP hexpatch back, should now work on Samsung stock kernels
@@ -631,8 +631,8 @@
 
 - [Magic Mount] Fix mounting issues with devices that have separate /vendor partitions
 - [MagiskBoot] Whole new boot image patching tool, please check release note for more info
-- [magiskpolicy] Rename sepolicy-inject to magiskpolicy
-- [magiskpolicy] Update a rule to allow chcon everything properly
+- [liorsmagicpolicy] Rename sepolicy-inject to liorsmagicpolicy
+- [liorsmagicpolicy] Update a rule to allow chcon everything properly
 - [MagiskHide] Prevent multirom crashes
 - [MagiskHide] Add patches for ro.debuggable, ro.secure, ro.build.type, ro.build.tags, ro.build.selinux
 - [MagiskHide] Change /sys/fs/selinux/enforce, /sys/fs/selinux/policy permissions for Samsung compatibility
@@ -642,7 +642,7 @@
 ### v11.1
 
 - [sepolicy-inject] Add missing messages
-- [magiskhide] Start MagiskHide with scripts
+- [liorsmagichide] Start MagiskHide with scripts
 
 ### v11.0
 
@@ -688,7 +688,7 @@
 - [Magisk Hide] Send SIGSTOP to pause target process ASAP to prevent crashing if unmounting too late
 - [Magisk Hide] Hiding should work under any conditions, including adding libs and /system root etc.
 - [phh] Root the device if no proper root detected
-- [phh] Move `/sbin` to `/sbin_orig` and link back, fix Samsung no-suid issue
+- [phh] Move `/liorsbin` to `/liorsbin_orig` and link back, fix Samsung no-suid issue
 - [scripts] Improve SuperSU integration, now uses sukernel to patch ramdisk, support SuperSU built in ramdisk restore
 - [template] Add PROPFILE option to load system.prop
 

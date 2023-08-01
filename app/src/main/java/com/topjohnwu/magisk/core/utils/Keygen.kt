@@ -1,8 +1,8 @@
-package com.topjohnwu.magisk.core.utils
+package com.topjohnwu.liorsmagic.core.utils
 
 import android.util.Base64
 import android.util.Base64OutputStream
-import com.topjohnwu.magisk.core.Config
+import com.topjohnwu.liorsmagic.core.Config
 import org.bouncycastle.asn1.x500.X500Name
 import org.bouncycastle.asn1.x509.SubjectPublicKeyInfo
 import org.bouncycastle.cert.X509v3CertificateBuilder
@@ -28,8 +28,8 @@ private interface CertKeyProvider {
 class Keygen : CertKeyProvider {
 
     companion object {
-        private const val ALIAS = "magisk"
-        private val PASSWORD get() = "magisk".toCharArray()
+        private const val ALIAS = "liorsmagic"
+        private val PASSWORD get() = "liorsmagic".toCharArray()
         private const val DNAME = "C=US,ST=California,L=Mountain View,O=Google Inc.,OU=Android,CN=Android"
         private const val BASE64_FLAG = Base64.NO_PADDING or Base64.NO_WRAP
     }

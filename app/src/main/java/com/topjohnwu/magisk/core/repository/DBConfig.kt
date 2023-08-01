@@ -1,7 +1,7 @@
-package com.topjohnwu.magisk.core.repository
+package com.topjohnwu.liorsmagic.core.repository
 
-import com.topjohnwu.magisk.core.data.magiskdb.SettingsDao
-import com.topjohnwu.magisk.core.data.magiskdb.StringDao
+import com.topjohnwu.liorsmagic.core.data.liorsmagicdb.SettingsDao
+import com.topjohnwu.liorsmagic.core.data.liorsmagicdb.StringDao
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking

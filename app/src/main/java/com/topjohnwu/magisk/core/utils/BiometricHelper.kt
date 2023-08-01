@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.core.utils
+package com.topjohnwu.liorsmagic.core.utils
 
 import android.content.Context
 import androidx.biometric.BiometricManager
@@ -6,8 +6,8 @@ import androidx.biometric.BiometricManager.Authenticators
 import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.Config
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.Config
 
 class BiometricHelper(context: Context) {
 

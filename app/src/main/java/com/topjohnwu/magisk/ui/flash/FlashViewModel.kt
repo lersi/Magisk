@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.ui.flash
+package com.topjohnwu.liorsmagic.ui.flash
 
 import android.view.MenuItem
 import androidx.databinding.Bindable
@@ -7,21 +7,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
-import com.topjohnwu.magisk.BR
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.arch.BaseViewModel
-import com.topjohnwu.magisk.core.Const
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.ktx.reboot
-import com.topjohnwu.magisk.core.ktx.synchronized
-import com.topjohnwu.magisk.core.ktx.timeFormatStandard
-import com.topjohnwu.magisk.core.ktx.toTime
-import com.topjohnwu.magisk.core.tasks.FlashZip
-import com.topjohnwu.magisk.core.tasks.MagiskInstaller
-import com.topjohnwu.magisk.core.utils.MediaStoreUtils
-import com.topjohnwu.magisk.core.utils.MediaStoreUtils.outputStream
-import com.topjohnwu.magisk.databinding.set
-import com.topjohnwu.magisk.events.SnackbarEvent
+import com.topjohnwu.liorsmagic.BR
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.arch.BaseViewModel
+import com.topjohnwu.liorsmagic.core.Const
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.ktx.reboot
+import com.topjohnwu.liorsmagic.core.ktx.synchronized
+import com.topjohnwu.liorsmagic.core.ktx.timeFormatStandard
+import com.topjohnwu.liorsmagic.core.ktx.toTime
+import com.topjohnwu.liorsmagic.core.tasks.FlashZip
+import com.topjohnwu.liorsmagic.core.tasks.MagiskInstaller
+import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils
+import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils.outputStream
+import com.topjohnwu.liorsmagic.databinding.set
+import com.topjohnwu.liorsmagic.events.SnackbarEvent
 import com.topjohnwu.superuser.CallbackList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -65,7 +65,7 @@ class FlashViewModel : BaseViewModel() {
                     showReboot = false
                     MagiskInstaller.Uninstall(outItems, logItems).exec()
                 }
-                Const.Value.FLASH_MAGISK -> {
+                Const.Value.FLASH_LIORSMAGIC -> {
                     if (Info.isEmulator)
                         MagiskInstaller.Emulator(outItems, logItems).exec()
                     else
@@ -101,7 +101,7 @@ class FlashViewModel : BaseViewModel() {
 
     private fun savePressed() = withExternalRW {
         viewModelScope.launch(Dispatchers.IO) {
-            val name = "magisk_install_log_%s.log".format(
+            val name = "liorsmagic_install_log_%s.log".format(
                 System.currentTimeMillis().toTime(timeFormatStandard)
             )
             val file = MediaStoreUtils.getFile(name, true)

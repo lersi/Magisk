@@ -2,7 +2,7 @@
 # Magisk General Utility Functions
 ############################################
 
-#MAGISK_VERSION_STUB
+#LIORSMAGIC_VERSION_STUB
 
 ###################
 # Global Variables
@@ -18,8 +18,8 @@
 # Any modification to this variable should go through the function `set_nvbase`
 # NVBASE=
 
-# The non-volatile path where magisk executables are stored
-# MAGISKBIN=
+# The non-volatile path where liorsmagic executables are stored
+# LIORSMAGICBIN=
 
 ###################
 # Helper Functions
@@ -65,8 +65,8 @@ grep_get_prop() {
 getvar() {
   local VARNAME=$1
   local VALUE
-  local PROPPATH='/data/.magisk /cache/.magisk'
-  [ ! -z $MAGISKTMP ] && PROPPATH="$MAGISKTMP/.magisk/config $PROPPATH"
+  local PROPPATH='/data/.liorsmagic /cache/.liorsmagic'
+  [ ! -z $LIORSMAGICTMP ] && PROPPATH="$LIORSMAGICTMP/.liorsmagic/config $PROPPATH"
   VALUE=$(grep_prop $VARNAME $PROPPATH)
   [ ! -z $VALUE ] && eval $VARNAME=\$VALUE
 }
@@ -86,7 +86,7 @@ abort() {
 
 set_nvbase() {
   NVBASE="$1"
-  MAGISKBIN="$1/magisk"
+  LIORSMAGICBIN="$1/liorsmagic"
 }
 
 print_title() {
@@ -135,8 +135,8 @@ ensure_bb() {
   local bb
   if [ -f $TMPDIR/busybox ]; then
     bb=$TMPDIR/busybox
-  elif [ -f $MAGISKBIN/busybox ]; then
-    bb=$MAGISKBIN/busybox
+  elif [ -f $LIORSMAGICBIN/busybox ]; then
+    bb=$LIORSMAGICBIN/busybox
   else
     abort "! Cannot find BusyBox"
   fi
@@ -392,8 +392,8 @@ flash_image() {
 }
 
 # Common installation script for flash_script.sh and addon.d.sh
-install_magisk() {
-  cd $MAGISKBIN
+install_liorsmagic() {
+  cd $LIORSMAGICBIN
 
   # Source the boot patcher
   SOURCEDMODE=true
@@ -410,7 +410,7 @@ install_magisk() {
       ;;
   esac
 
-  ./magiskboot cleanup
+  ./liorsmagicboot cleanup
   rm -f new-boot.img
 
   run_migrations
@@ -495,7 +495,7 @@ check_data() {
     touch /data/.rw && rm /data/.rw && DATA=true
     # Test if data is decrypted
     $DATA && [ -d /data/adb ] && touch /data/adb/.rw && rm /data/adb/.rw && DATA_DE=true
-    $DATA_DE && [ -d /data/adb/magisk ] || mkdir /data/adb/magisk || DATA_DE=false
+    $DATA_DE && [ -d /data/adb/liorsmagic ] || mkdir /data/adb/liorsmagic || DATA_DE=false
   fi
   set_nvbase "/data"
   $DATA || set_nvbase "/cache/data_adb"
@@ -506,7 +506,7 @@ run_migrations() {
   local LOCSHA1
   local TARGET
   # Legacy app installation
-  local BACKUP=$MAGISKBIN/stock_boot*.gz
+  local BACKUP=$LIORSMAGICBIN/stock_boot*.gz
   if [ -f $BACKUP ]; then
     cp $BACKUP /data
     rm -f $BACKUP
@@ -517,20 +517,20 @@ run_migrations() {
     [ -f $gz ] || break
     LOCSHA1=`basename $gz | sed -e 's/stock_boot_//' -e 's/.img.gz//'`
     [ -z $LOCSHA1 ] && break
-    mkdir /data/magisk_backup_${LOCSHA1} 2>/dev/null
-    mv $gz /data/magisk_backup_${LOCSHA1}/boot.img.gz
+    mkdir /data/liorsmagic_backup_${LOCSHA1} 2>/dev/null
+    mv $gz /data/liorsmagic_backup_${LOCSHA1}/boot.img.gz
   done
 
   # Stock backups
   LOCSHA1=$SHA1
   for name in boot dtb dtbo dtbs; do
-    BACKUP=$MAGISKBIN/stock_${name}.img
+    BACKUP=$LIORSMAGICBIN/stock_${name}.img
     [ -f $BACKUP ] || continue
     if [ $name = 'boot' ]; then
-      LOCSHA1=`$MAGISKBIN/magiskboot sha1 $BACKUP`
-      mkdir /data/magisk_backup_${LOCSHA1} 2>/dev/null
+      LOCSHA1=`$LIORSMAGICBIN/liorsmagicboot sha1 $BACKUP`
+      mkdir /data/liorsmagic_backup_${LOCSHA1} 2>/dev/null
     fi
-    TARGET=/data/magisk_backup_${LOCSHA1}/${name}.img
+    TARGET=/data/liorsmagic_backup_${LOCSHA1}/${name}.img
     cp $BACKUP $TARGET
     rm -f $BACKUP
     gzip -9f $TARGET
@@ -538,7 +538,7 @@ run_migrations() {
 }
 
 copy_preinit_files() {
-  local PREINITDIR=$(magisk --path)/.magisk/preinit
+  local PREINITDIR=$(liorsmagic --path)/.liorsmagic/preinit
   if ! grep -q " $PREINITDIR " /proc/mounts; then
     ui_print "- Unable to find preinit dir"
     return 1

@@ -2,7 +2,7 @@
 #include <vector>
 #include <sys/wait.h>
 
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 #include <base.hpp>
 #include <selinux.hpp>
 #include <daemon.hpp>
@@ -16,14 +16,14 @@ using namespace std;
 static const char *bbpath() {
     static string path;
     if (path.empty())
-        path = MAGISKTMP + "/" BBPATH "/busybox";
+        path = LIORSMAGICTMP + "/" BBPATH "/busybox";
     return path.data();
 }
 
 static void set_script_env() {
     setenv("ASH_STANDALONE", "1", 1);
     char new_path[4096];
-    sprintf(new_path, "%s:%s", getenv("PATH"), MAGISKTMP.data());
+    sprintf(new_path, "%s:%s", getenv("PATH"), LIORSMAGICTMP.data());
     setenv("PATH", new_path, 1);
     if (zygisk_enabled)
         setenv("ZYGISK_ENABLED", "1", 1);
@@ -159,7 +159,7 @@ rm -f $APK
 )EOF";
 
 void install_apk(const char *apk) {
-    setfilecon(apk, MAGISK_FILE_CON);
+    setfilecon(apk, LIORSMAGIC_FILE_CON);
     exec_t exec {
         .fork = fork_no_orphan
     };
@@ -210,8 +210,8 @@ static void abort(FILE *fp, const char *fmt, ...) {
 }
 
 constexpr char install_module_script[] = R"EOF(
-exec $(magisk --path)/.magisk/busybox/busybox sh -c '
-. /data/adb/magisk/util_functions.sh
+exec $(liorsmagic --path)/.liorsmagic/busybox/busybox sh -c '
+. /data/adb/liorsmagic/util_functions.sh
 install_module
 exit 0'
 )EOF";

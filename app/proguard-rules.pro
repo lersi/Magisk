@@ -16,14 +16,14 @@
 }
 
 # Stub
--keep class com.topjohnwu.magisk.core.App { <init>(java.lang.Object); }
+-keep class com.topjohnwu.liorsmagic.core.App { <init>(java.lang.Object); }
 -keepclassmembers class androidx.appcompat.app.AppCompatDelegateImpl {
   boolean mActivityHandlesConfigFlagsChecked;
   int mActivityHandlesConfigFlags;
 }
 
 # main
--keep,allowoptimization public class com.topjohnwu.magisk.signing.SignBoot {
+-keep,allowoptimization public class com.topjohnwu.liorsmagic.signing.SignBoot {
     public static void main(java.lang.String[]);
 }
 

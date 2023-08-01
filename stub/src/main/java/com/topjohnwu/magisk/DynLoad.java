@@ -1,6 +1,6 @@
-package com.topjohnwu.magisk;
+package com.topjohnwu.liorsmagic;
 
-import static com.topjohnwu.magisk.BuildConfig.APPLICATION_ID;
+import static com.topjohnwu.liorsmagic.BuildConfig.APPLICATION_ID;
 
 import android.app.AppComponentFactory;
 import android.app.Application;
@@ -11,7 +11,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
 
-import com.topjohnwu.magisk.utils.APKInstall;
+import com.topjohnwu.liorsmagic.utils.APKInstall;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -58,7 +58,7 @@ public class DynLoad {
         // Copy from external for easier development
         if (BuildConfig.DEBUG) {
             try {
-                File external = new File(context.getExternalFilesDir(null), "magisk.apk");
+                File external = new File(context.getExternalFilesDir(null), "liorsmagic.apk");
                 if (external.exists()) {
                     try {
                         var in = new FileInputStream(external);

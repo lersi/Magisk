@@ -1,10 +1,10 @@
-package com.topjohnwu.magisk.core.repository
+package com.topjohnwu.liorsmagic.core.repository
 
-import com.topjohnwu.magisk.core.Const
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.data.SuLogDao
-import com.topjohnwu.magisk.core.ktx.await
-import com.topjohnwu.magisk.core.model.su.SuLog
+import com.topjohnwu.liorsmagic.core.Const
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.data.SuLogDao
+import com.topjohnwu.liorsmagic.core.ktx.await
+import com.topjohnwu.liorsmagic.core.model.su.SuLog
 import com.topjohnwu.superuser.Shell
 
 
@@ -29,7 +29,7 @@ class LogRepository(
             }
         }
         if (Info.env.isActive) {
-            Shell.cmd("cat ${Const.MAGISK_LOG} || logcat -d -s Magisk").to(list).await()
+            Shell.cmd("cat ${Const.LIORSMAGIC_LOG} || logcat -d -s Magisk").to(list).await()
         } else {
             Shell.cmd("logcat -d").to(list).await()
         }
@@ -39,7 +39,7 @@ class LogRepository(
     suspend fun clearLogs() = logDao.deleteAll()
 
     fun clearMagiskLogs(cb: (Shell.Result) -> Unit) =
-        Shell.cmd("echo -n > ${Const.MAGISK_LOG}").submit(cb)
+        Shell.cmd("echo -n > ${Const.LIORSMAGIC_LOG}").submit(cb)
 
     suspend fun insert(log: SuLog) = logDao.insert(log)
 

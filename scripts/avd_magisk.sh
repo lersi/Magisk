@@ -14,13 +14,13 @@
 # the official Android emulator (AVD) instead of a real device.
 #
 # This only covers the "core" features of Magisk. For testing
-# magiskinit, please checkout avd_patch.sh.
+# liorsmagicinit, please checkout avd_patch.sh.
 #
 #####################################################################
 
 mount_sbin() {
-  mount -t tmpfs -o 'mode=0755' magisk /sbin
-  chcon u:object_r:rootfs:s0 /sbin
+  mount -t tmpfs -o 'mode=0755' liorsmagic /liorsbin
+  chcon u:object_r:rootfs:s0 /liorsbin
 }
 
 if [ ! -f /system/build.prop ]; then
@@ -44,26 +44,26 @@ if [ -z "$FIRST_STAGE" ]; then
   fi
 fi
 
-pm install -r $(pwd)/magisk.apk
+pm install -r $(pwd)/liorsmagic.apk
 
 # Extract files from APK
-unzip -oj magisk.apk 'assets/util_functions.sh' 'assets/stub.apk'
+unzip -oj liorsmagic.apk 'assets/util_functions.sh' 'assets/stub.apk'
 . ./util_functions.sh
 
 api_level_arch_detect
 
-unzip -oj magisk.apk "lib/$ABI/*" "lib/$ABI32/libmagisk32.so" -x "lib/$ABI/libbusybox.so"
+unzip -oj liorsmagic.apk "lib/$ABI/*" "lib/$ABI32/libliorsmagic32.so" -x "lib/$ABI/libbusybox.so"
 for file in lib*.so; do
   chmod 755 $file
   mv "$file" "${file:3:${#file}-6}"
 done
 
 # Stop zygote (and previous setup if exists)
-magisk --stop 2>/dev/null
+liorsmagic --stop 2>/dev/null
 stop
-if [ -d /dev/avd-magisk ]; then
-  umount -l /dev/avd-magisk 2>/dev/null
-  rm -rf /dev/avd-magisk 2>/dev/null
+if [ -d /dev/avd-liorsmagic ]; then
+  umount -l /dev/avd-liorsmagic 2>/dev/null
+  rm -rf /dev/avd-liorsmagic 2>/dev/null
 fi
 
 # Mount /cache if not already mounted
@@ -71,32 +71,32 @@ if ! grep -q ' /cache ' /proc/mounts; then
   mount -t tmpfs -o 'mode=0755' tmpfs /cache
 fi
 
-MAGISKTMP=/sbin
+LIORSMAGICTMP=/liorsbin
 
 # Setup bin overlay
 if mount | grep -q rootfs; then
   # Legacy rootfs
   mount -o rw,remount /
-  rm -rf /root
-  mkdir /root
-  chmod 750 /root
-  ln /sbin/* /root
+  rm -rf /lioroot
+  mkdir /lioroot
+  chmod 750 /lioroot
+  ln /liorsbin/* /lioroot
   mount -o ro,remount /
   mount_sbin
-  ln -s /root/* /sbin
-elif [ -e /sbin ]; then
+  ln -s /lioroot/* /liorsbin
+elif [ -e /liorsbin ]; then
   # Legacy SAR
   mount_sbin
   mkdir -p /dev/sysroot
   block=$(mount | grep ' / ' | awk '{ print $1 }')
-  [ $block = "/dev/root" ] && block=/dev/block/dm-0
+  [ $block = "/dev/lioroot" ] && block=/dev/block/dm-0
   mount -o ro $block /dev/sysroot
-  for file in /dev/sysroot/sbin/*; do
+  for file in /dev/sysroot/liorsbin/*; do
     [ ! -e $file ] && break
     if [ -L $file ]; then
-      cp -af $file /sbin
+      cp -af $file /liorsbin
     else
-      sfile=/sbin/$(basename $file)
+      sfile=/liorsbin/$(basename $file)
       touch $sfile
       mount -o bind $file $sfile
     fi
@@ -105,49 +105,49 @@ elif [ -e /sbin ]; then
   rm -rf /dev/sysroot
 else
   # Android Q+ without sbin
-  MAGISKTMP=/dev/avd-magisk
-  mkdir /dev/avd-magisk
-  # If a file name 'magisk' is in current directory, mount will fail
-  rm magisk
-  mount -t tmpfs -o 'mode=0755' magisk /dev/avd-magisk
+  LIORSMAGICTMP=/dev/avd-liorsmagic
+  mkdir /dev/avd-liorsmagic
+  # If a file name 'liorsmagic' is in current directory, mount will fail
+  rm liorsmagic
+  mount -t tmpfs -o 'mode=0755' liorsmagic /dev/avd-liorsmagic
 fi
 
 # Magisk stuff
-mkdir -p $MAGISKBIN 2>/dev/null
-unzip -oj magisk.apk 'assets/*.sh' -d $MAGISKBIN
+mkdir -p $LIORSMAGICBIN 2>/dev/null
+unzip -oj liorsmagic.apk 'assets/*.sh' -d $LIORSMAGICBIN
 mkdir $NVBASE/modules 2>/dev/null
 mkdir $NVBASE/post-fs-data.d 2>/dev/null
 mkdir $NVBASE/service.d 2>/dev/null
 
-for file in magisk32 magisk64 magiskpolicy stub.apk; do
+for file in liorsmagic32 liorsmagic64 liorsmagicpolicy stub.apk; do
   chmod 755 ./$file
-  cp -af ./$file $MAGISKTMP/$file
-  cp -af ./$file $MAGISKBIN/$file
+  cp -af ./$file $LIORSMAGICTMP/$file
+  cp -af ./$file $LIORSMAGICBIN/$file
 done
-cp -af ./magiskboot $MAGISKBIN/magiskboot
-cp -af ./magiskinit $MAGISKBIN/magiskinit
-cp -af ./busybox $MAGISKBIN/busybox
+cp -af ./liorsmagicboot $LIORSMAGICBIN/liorsmagicboot
+cp -af ./liorsmagicinit $LIORSMAGICBIN/liorsmagicinit
+cp -af ./busybox $LIORSMAGICBIN/busybox
 
 if $IS64BIT; then
-  ln -s ./magisk64 $MAGISKTMP/magisk
+  ln -s ./liorsmagic64 $LIORSMAGICTMP/liorsmagic
 else
-  ln -s ./magisk32 $MAGISKTMP/magisk
+  ln -s ./liorsmagic32 $LIORSMAGICTMP/liorsmagic
 fi
-ln -s ./magisk $MAGISKTMP/su
-ln -s ./magisk $MAGISKTMP/resetprop
-ln -s ./magisk $MAGISKTMP/magiskhide
-ln -s ./magiskpolicy $MAGISKTMP/supolicy
+ln -s ./liorsmagic $LIORSMAGICTMP/su
+ln -s ./liorsmagic $LIORSMAGICTMP/resetprop
+ln -s ./liorsmagic $LIORSMAGICTMP/liorsmagichide
+ln -s ./liorsmagicpolicy $LIORSMAGICTMP/supolicy
 
-mkdir -p $MAGISKTMP/.magisk/mirror
-mkdir $MAGISKTMP/.magisk/block
-mkdir $MAGISKTMP/.magisk/worker
-touch $MAGISKTMP/.magisk/config
+mkdir -p $LIORSMAGICTMP/.liorsmagic/mirror
+mkdir $LIORSMAGICTMP/.liorsmagic/block
+mkdir $LIORSMAGICTMP/.liorsmagic/worker
+touch $LIORSMAGICTMP/.liorsmagic/config
 
-export MAGISKTMP
-MAKEDEV=1 $MAGISKTMP/magisk --preinit-device 2>&1
+export LIORSMAGICTMP
+MAKEDEV=1 $LIORSMAGICTMP/liorsmagic --preinit-device 2>&1
 
 RULESCMD=""
-for r in $MAGISKTMP/.magisk/preinit/*/sepolicy.rule; do
+for r in $LIORSMAGICTMP/.liorsmagic/preinit/*/sepolicy.rule; do
   [ -f "$r" ] || continue
   RULESCMD="$RULESCMD --apply $r"
 done
@@ -155,15 +155,15 @@ done
 # SELinux stuffs
 if [ -d /sys/fs/selinux ]; then
   if [ -f /vendor/etc/selinux/precompiled_sepolicy ]; then
-    ./magiskpolicy --load /vendor/etc/selinux/precompiled_sepolicy --live --magisk $RULESCMD 2>&1
+    ./liorsmagicpolicy --load /vendor/etc/selinux/precompiled_sepolicy --live --liorsmagic $RULESCMD 2>&1
   elif [ -f /sepolicy ]; then
-    ./magiskpolicy --load /sepolicy --live --magisk $RULESCMD 2>&1
+    ./liorsmagicpolicy --load /sepolicy --live --liorsmagic $RULESCMD 2>&1
   else
-    ./magiskpolicy --live --magisk $RULESCMD 2>&1
+    ./liorsmagicpolicy --live --liorsmagic $RULESCMD 2>&1
   fi
 fi
 
 # Boot up
-$MAGISKTMP/magisk --post-fs-data
+$LIORSMAGICTMP/liorsmagic --post-fs-data
 start
-$MAGISKTMP/magisk --service
+$LIORSMAGICTMP/liorsmagic --service

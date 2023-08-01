@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.ui.surequest
+package com.topjohnwu.liorsmagic.ui.surequest
 
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -8,13 +8,13 @@ import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
 import androidx.lifecycle.lifecycleScope
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.arch.UIActivity
-import com.topjohnwu.magisk.arch.viewModel
-import com.topjohnwu.magisk.core.su.SuCallbackHandler
-import com.topjohnwu.magisk.core.su.SuCallbackHandler.REQUEST
-import com.topjohnwu.magisk.databinding.ActivityRequestBinding
-import com.topjohnwu.magisk.ui.theme.Theme
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.arch.UIActivity
+import com.topjohnwu.liorsmagic.arch.viewModel
+import com.topjohnwu.liorsmagic.core.su.SuCallbackHandler
+import com.topjohnwu.liorsmagic.core.su.SuCallbackHandler.REQUEST
+import com.topjohnwu.liorsmagic.databinding.ActivityRequestBinding
+import com.topjohnwu.liorsmagic.ui.theme.Theme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

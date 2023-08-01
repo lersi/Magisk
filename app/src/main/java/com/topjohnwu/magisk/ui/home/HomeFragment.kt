@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.ui.home
+package com.topjohnwu.liorsmagic.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.MenuProvider
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.arch.BaseFragment
-import com.topjohnwu.magisk.arch.viewModel
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.download.DownloadService
-import com.topjohnwu.magisk.databinding.FragmentHomeMd2Binding
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.arch.BaseFragment
+import com.topjohnwu.liorsmagic.arch.viewModel
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.download.DownloadService
+import com.topjohnwu.liorsmagic.databinding.FragmentHomeMd2Binding
 
 class HomeFragment : BaseFragment<FragmentHomeMd2Binding>(), MenuProvider {
 

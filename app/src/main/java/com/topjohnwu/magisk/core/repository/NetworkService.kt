@@ -1,15 +1,15 @@
-package com.topjohnwu.magisk.core.repository
+package com.topjohnwu.liorsmagic.core.repository
 
-import com.topjohnwu.magisk.core.Config
-import com.topjohnwu.magisk.core.Config.Value.BETA_CHANNEL
-import com.topjohnwu.magisk.core.Config.Value.CANARY_CHANNEL
-import com.topjohnwu.magisk.core.Config.Value.CUSTOM_CHANNEL
-import com.topjohnwu.magisk.core.Config.Value.DEBUG_CHANNEL
-import com.topjohnwu.magisk.core.Config.Value.DEFAULT_CHANNEL
-import com.topjohnwu.magisk.core.Config.Value.STABLE_CHANNEL
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.data.GithubPageServices
-import com.topjohnwu.magisk.core.data.RawServices
+import com.topjohnwu.liorsmagic.core.Config
+import com.topjohnwu.liorsmagic.core.Config.Value.BETA_CHANNEL
+import com.topjohnwu.liorsmagic.core.Config.Value.CANARY_CHANNEL
+import com.topjohnwu.liorsmagic.core.Config.Value.CUSTOM_CHANNEL
+import com.topjohnwu.liorsmagic.core.Config.Value.DEBUG_CHANNEL
+import com.topjohnwu.liorsmagic.core.Config.Value.DEFAULT_CHANNEL
+import com.topjohnwu.liorsmagic.core.Config.Value.STABLE_CHANNEL
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.data.GithubPageServices
+import com.topjohnwu.liorsmagic.core.data.RawServices
 import retrofit2.HttpException
 import timber.log.Timber
 import java.io.IOException
@@ -27,7 +27,7 @@ class NetworkService(
             CUSTOM_CHANNEL -> fetchCustomUpdate(Config.customChannelUrl)
             else -> throw IllegalArgumentException()
         }
-        if (info.magisk.versionCode < Info.env.versionCode &&
+        if (info.liorsmagic.versionCode < Info.env.versionCode &&
             Config.updateChannel == DEFAULT_CHANNEL) {
             Config.updateChannel = BETA_CHANNEL
             info = fetchBetaUpdate()

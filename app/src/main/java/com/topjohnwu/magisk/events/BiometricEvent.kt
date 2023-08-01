@@ -1,10 +1,10 @@
-package com.topjohnwu.magisk.events
+package com.topjohnwu.liorsmagic.events
 
-import com.topjohnwu.magisk.arch.ActivityExecutor
-import com.topjohnwu.magisk.arch.UIActivity
-import com.topjohnwu.magisk.arch.ViewEvent
-import com.topjohnwu.magisk.core.di.ServiceLocator
-import com.topjohnwu.magisk.core.utils.BiometricHelper
+import com.topjohnwu.liorsmagic.arch.ActivityExecutor
+import com.topjohnwu.liorsmagic.arch.UIActivity
+import com.topjohnwu.liorsmagic.arch.ViewEvent
+import com.topjohnwu.liorsmagic.core.di.ServiceLocator
+import com.topjohnwu.liorsmagic.core.utils.BiometricHelper
 
 class BiometricEvent(
     builder: Builder.() -> Unit

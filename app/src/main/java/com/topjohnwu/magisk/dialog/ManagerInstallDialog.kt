@@ -1,12 +1,12 @@
-package com.topjohnwu.magisk.dialog
+package com.topjohnwu.liorsmagic.dialog
 
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.Info
-import com.topjohnwu.magisk.core.di.AppContext
-import com.topjohnwu.magisk.core.di.ServiceLocator
-import com.topjohnwu.magisk.core.download.DownloadService
-import com.topjohnwu.magisk.core.download.Subject
-import com.topjohnwu.magisk.view.MagiskDialog
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.Info
+import com.topjohnwu.liorsmagic.core.di.AppContext
+import com.topjohnwu.liorsmagic.core.di.ServiceLocator
+import com.topjohnwu.liorsmagic.core.download.DownloadService
+import com.topjohnwu.liorsmagic.core.download.Subject
+import com.topjohnwu.liorsmagic.view.MagiskDialog
 import java.io.File
 
 class ManagerInstallDialog : MarkDownDialog() {
@@ -14,12 +14,12 @@ class ManagerInstallDialog : MarkDownDialog() {
     private val svc get() = ServiceLocator.networkService
 
     override suspend fun getMarkdownText(): String {
-        val text = svc.fetchString(Info.remote.magisk.note)
+        val text = svc.fetchString(Info.remote.liorsmagic.note)
         // Cache the changelog
         AppContext.cacheDir.listFiles { _, name -> name.endsWith(".md") }.orEmpty().forEach {
             it.delete()
         }
-        File(AppContext.cacheDir, "${Info.remote.magisk.versionCode}.md").writeText(text)
+        File(AppContext.cacheDir, "${Info.remote.liorsmagic.versionCode}.md").writeText(text)
         return text
     }
 

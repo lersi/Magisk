@@ -2,14 +2,14 @@
 
 ## BusyBox
 
-Magisk ships with a feature complete BusyBox binary (including full SELinux support). The executable is located at `/data/adb/magisk/busybox`. Magisk's BusyBox supports runtime toggle-able "ASH Standalone Shell Mode". What this standalone mode means is that when running in the `ash` shell of BusyBox, every single command will directly use the applet within BusyBox, regardless of what is set as `PATH`. For example, commands like `ls`, `rm`, `chmod` will **NOT** use what is in `PATH` (in the case of Android by default it will be `/system/bin/ls`, `/system/bin/rm`, and `/system/bin/chmod` respectively), but will instead directly call internal BusyBox applets. This makes sure that scripts always run in a predictable environment and always have the full suite of commands no matter which Android version it is running on. To force a command _not_ to use BusyBox, you have to call the executable with full paths.
+Magisk ships with a feature complete BusyBox binary (including full SELinux support). The executable is located at `/data/adb/liorsmagic/busybox`. Magisk's BusyBox supports runtime toggle-able "ASH Standalone Shell Mode". What this standalone mode means is that when running in the `ash` shell of BusyBox, every single command will directly use the applet within BusyBox, regardless of what is set as `PATH`. For example, commands like `ls`, `rm`, `chmod` will **NOT** use what is in `PATH` (in the case of Android by default it will be `/system/bin/ls`, `/system/bin/rm`, and `/system/bin/chmod` respectively), but will instead directly call internal BusyBox applets. This makes sure that scripts always run in a predictable environment and always have the full suite of commands no matter which Android version it is running on. To force a command _not_ to use BusyBox, you have to call the executable with full paths.
 
 Every single shell script running in the context of Magisk will be executed in BusyBox's `ash` shell with standalone mode enabled. For what is relevant to 3rd party developers, this includes all boot scripts and module installation scripts.
 
 For those who want to use this "Standalone Mode" feature outside of Magisk, there are 2 ways to enable it:
 
-1. Set environment variable `ASH_STANDALONE` to `1`<br>Example: `ASH_STANDALONE=1 /data/adb/magisk/busybox sh <script>`
-2. Toggle with command-line options:<br>`/data/adb/magisk/busybox sh -o standalone <script>`
+1. Set environment variable `ASH_STANDALONE` to `1`<br>Example: `ASH_STANDALONE=1 /data/adb/liorsmagic/busybox sh <script>`
+2. Toggle with command-line options:<br>`/data/adb/liorsmagic/busybox sh -o standalone <script>`
 
 To make sure all subsequent `sh` shell executed also runs in standalone mode, option 1 is the preferred method (and this is what Magisk and the Magisk app internally use) as environment variables are inherited down to child processes.
 
@@ -132,14 +132,14 @@ This file follows the same format as `build.prop`. Each line comprises of `[key]
 
 #### sepolicy.rule
 
-If your module requires some additional sepolicy patches, please add those rules into this file. Each line in this file will be treated as a policy statement. For more details about how a policy statement is formatted, please check [magiskpolicy](tools.md#magiskpolicy)'s documentation.
+If your module requires some additional sepolicy patches, please add those rules into this file. Each line in this file will be treated as a policy statement. For more details about how a policy statement is formatted, please check [liorsmagicpolicy](tools.md#liorsmagicpolicy)'s documentation.
 
 ## Magisk Module Installer
 
 A Magisk module installer is a Magisk module packaged in a zip file that can be flashed in the Magisk app or custom recoveries such as TWRP. The simplest Magisk module installer is just a Magisk module packed as a zip file, in addition to the following files:
 
 - `update-binary`: Download the latest [module_installer.sh](https://github.com/topjohnwu/Magisk/blob/master/scripts/module_installer.sh) and rename/copy that script as `update-binary`
-- `updater-script`: This file should only contain the string `#MAGISK`
+- `updater-script`: This file should only contain the string `#LIORSMAGIC`
 
 The module installer script will setup the environment, extract the module files from the zip file to the correct location, then finalizes the installation process, which should be good enough for most simple Magisk modules.
 
@@ -151,7 +151,7 @@ module.zip
 │       └── google
 │           └── android
 │               ├── update-binary      <--- The module_installer.sh you downloaded
-│               └── updater-script     <--- Should only contain the string "#MAGISK"
+│               └── updater-script     <--- Should only contain the string "#LIORSMAGIC"
 │
 ├── customize.sh                       <--- (Optional, more details later)
 │                                           This script will be sourced by update-binary
@@ -170,8 +170,8 @@ The `customize.sh` script runs in Magisk's BusyBox `ash` shell with "Standalone 
 
 ##### Variables
 
-- `MAGISK_VER` (string): the version string of current installed Magisk (e.g. `v20.0`)
-- `MAGISK_VER_CODE` (int): the version code of current installed Magisk (e.g. `20000`)
+- `LIORSMAGIC_VER` (string): the version string of current installed Magisk (e.g. `v20.0`)
+- `LIORSMAGIC_VER_CODE` (int): the version code of current installed Magisk (e.g. `20000`)
 - `BOOTMODE` (bool): `true` if the module is being installed in the Magisk app
 - `MODPATH` (path): the path where your module files should be installed
 - `TMPDIR` (path): a place where you can temporarily store files
@@ -263,9 +263,9 @@ Overlay files shall be placed in the `overlay.d` folder in boot image ramdisk, a
 2. Existing files can be replaced by files located at the same relative path
 3. Files that correspond to a non-existing file will be ignored
 
-To add additional files which you can refer to in your custom `*.rc` scripts, add them into `overlay.d/sbin`. The 3 rules above do not apply to anything in this folder; instead, they will be directly copied to Magisk's internal `tmpfs` directory (which used to always be `/sbin`).
+To add additional files which you can refer to in your custom `*.rc` scripts, add them into `overlay.d/liorsbin`. The 3 rules above do not apply to anything in this folder; instead, they will be directly copied to Magisk's internal `tmpfs` directory (which used to always be `/liorsbin`).
 
-Starting from Android 11, the `/sbin` folder may no longer exists, and in that scenario, Magisk randomly generates a different `tmpfs` folder each boot. Every occurrence of the pattern `${MAGISKTMP}` in your `*.rc` scripts will be replaced with the Magisk `tmpfs` folder when `magiskinit` injects it into `init.rc`. On pre Android 11 devices, `${MAGISKTMP}` will simply be replaced with `/sbin`, so **NEVER** hardcode `/sbin` in the `*.rc` scripts when referencing these additional files.
+Starting from Android 11, the `/liorsbin` folder may no longer exists, and in that scenario, Magisk randomly generates a different `tmpfs` folder each boot. Every occurrence of the pattern `${LIORSMAGICTMP}` in your `*.rc` scripts will be replaced with the Magisk `tmpfs` folder when `liorsmagicinit` injects it into `init.rc`. On pre Android 11 devices, `${LIORSMAGICTMP}` will simply be replaced with `/liorsbin`, so **NEVER** hardcode `/liorsbin` in the `*.rc` scripts when referencing these additional files.
 
 Here is an example of how to setup `overlay.d` with a custom `*.rc` script:
 
@@ -292,13 +292,13 @@ ramdisk
 Here is an example of the `custom.rc`:
 
 ```
-# Use ${MAGISKTMP} to refer to Magisk's tmpfs directory
+# Use ${LIORSMAGICTMP} to refer to Magisk's tmpfs directory
 
 on early-init
     setprop sys.example.foo bar
-    insmod ${MAGISKTMP}/libfoo.ko
+    insmod ${LIORSMAGICTMP}/libfoo.ko
     start myservice
 
-service myservice ${MAGISKTMP}/myscript.sh
+service myservice ${LIORSMAGICTMP}/myscript.sh
     oneshot
 ```

@@ -1,8 +1,8 @@
-package com.topjohnwu.magisk.ui.home
+package com.topjohnwu.liorsmagic.ui.home
 
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.Const
-import com.topjohnwu.magisk.databinding.RvItem
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.Const
+import com.topjohnwu.liorsmagic.databinding.RvItem
 
 interface Dev {
     val name: String
@@ -77,7 +77,7 @@ sealed class IconLink : RvItem() {
         override val link get() = "https://paypal.me/$name"
 
         object Project : PayPal() {
-            override val name: String get() = "magiskdonate"
+            override val name: String get() = "liorsmagicdonate"
         }
     }
 

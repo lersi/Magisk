@@ -146,7 +146,7 @@
 - Fix restore Magisk Manager settings on Android P
 - Verify existing file checksums to prevent unnecessary re-downloads
 - Update SNET extension to use new Google API, fix "Invalid Response" errors
-- Move fingerprint settings to magisk database to prevent the settings to be easily removed
+- Move fingerprint settings to liorsmagic database to prevent the settings to be easily removed
 - Fingerprint settings are now guarded with fingerprint authentications before it can get changed
 - Prevent any files to be downloaded to /sdcard/MagiskManager
 

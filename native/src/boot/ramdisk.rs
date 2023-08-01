@@ -16,7 +16,7 @@ pub trait MagiskCpio {
     fn backup(&mut self, origin: &Utf8CStr) -> LoggedResult<()>;
 }
 
-const MAGISK_PATCHED: i32 = 1 << 0;
+const LIORSMAGIC_PATCHED: i32 = 1 << 0;
 const UNSUPPORTED_CPIO: i32 = 1 << 1;
 const SONY_INIT: i32 = 1 << 2;
 
@@ -67,19 +67,19 @@ impl MagiskCpio for Cpio {
             "sbin/launch_daemonsu.sh",
             "sbin/su",
             "init.xposed.rc",
-            "boot/sbin/launch_daemonsu.sh",
+            "boot/liorsbin/launch_daemonsu.sh",
         ] {
             if self.exists(file) {
                 return UNSUPPORTED_CPIO;
             }
         }
         for file in [
-            ".backup/.magisk",
-            "init.magisk.rc",
-            "overlay/init.magisk.rc",
+            ".backup/.liorsmagic",
+            "init.liorsmagic.rc",
+            "overlay/init.liorsmagic.rc",
         ] {
             if self.exists(file) {
-                ret |= MAGISK_PATCHED;
+                ret |= LIORSMAGIC_PATCHED;
                 break;
             }
         }
@@ -99,7 +99,7 @@ impl MagiskCpio for Cpio {
                     if let Ok(data) = from_utf8(&entry.data) {
                         rm_list.push_str(data);
                     }
-                } else if name != ".backup/.magisk" {
+                } else if name != ".backup/.liorsmagic" {
                     let new_name = &name[8..];
                     eprintln!("Restore [{}] -> [{}]", name, new_name);
                     backups.insert(new_name.to_string(), entry);

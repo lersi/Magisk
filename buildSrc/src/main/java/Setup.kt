@@ -71,7 +71,7 @@ fun Project.setupCommon() {
     androidBase {
         compileSdkVersion(33)
         buildToolsVersion = "33.0.2"
-        ndkPath = "$sdkDirectory/ndk/magisk"
+        ndkPath = "$sdkDirectory/ndk/liorsmagic"
 
         defaultConfig {
             minSdk = 23
@@ -225,26 +225,26 @@ fun Project.setupApp() {
         into("src/main/jniLibs")
         into("armeabi-v7a") {
             from(rootProject.file("native/out/armeabi-v7a")) {
-                include("busybox", "magiskboot", "magiskinit", "magiskpolicy", "magisk")
-                rename { if (it == "magisk") "libmagisk32.so" else "lib$it.so" }
+                include("busybox", "liorsmagicboot", "liorsmagicinit", "liorsmagicpolicy", "liorsmagic")
+                rename { if (it == "liorsmagic") "libliorsmagic32.so" else "lib$it.so" }
             }
         }
         into("x86") {
             from(rootProject.file("native/out/x86")) {
-                include("busybox", "magiskboot", "magiskinit", "magiskpolicy", "magisk")
-                rename { if (it == "magisk") "libmagisk32.so" else "lib$it.so" }
+                include("busybox", "liorsmagicboot", "liorsmagicinit", "liorsmagicpolicy", "liorsmagic")
+                rename { if (it == "liorsmagic") "libliorsmagic32.so" else "lib$it.so" }
             }
         }
         into("arm64-v8a") {
             from(rootProject.file("native/out/arm64-v8a")) {
-                include("busybox", "magiskboot", "magiskinit", "magiskpolicy", "magisk")
-                rename { if (it == "magisk") "libmagisk64.so" else "lib$it.so" }
+                include("busybox", "liorsmagicboot", "liorsmagicinit", "liorsmagicpolicy", "liorsmagic")
+                rename { if (it == "liorsmagic") "libliorsmagic64.so" else "lib$it.so" }
             }
         }
         into("x86_64") {
             from(rootProject.file("native/out/x86_64")) {
-                include("busybox", "magiskboot", "magiskinit", "magiskpolicy", "magisk")
-                rename { if (it == "magisk") "libmagisk64.so" else "lib$it.so" }
+                include("busybox", "liorsmagicboot", "liorsmagicinit", "liorsmagicpolicy", "liorsmagic")
+                rename { if (it == "liorsmagic") "libliorsmagic64.so" else "lib$it.so" }
             }
         }
         onlyIf {
@@ -297,8 +297,8 @@ fun Project.setupApp() {
             filesMatching("**/util_functions.sh") {
                 filter {
                     it.replace(
-                        "#MAGISK_VERSION_STUB",
-                        "MAGISK_VER='${Config.version}'\nMAGISK_VER_CODE=${Config.versionCode}"
+                        "#LIORSMAGIC_VERSION_STUB",
+                        "LIORSMAGIC_VER='${Config.version}'\nLIORSMAGIC_VER_CODE=${Config.versionCode}"
                     )
                 }
                 filter<FixCrLfFilter>("eol" to FixCrLfFilter.CrLf.newInstance("lf"))

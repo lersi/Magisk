@@ -21,11 +21,11 @@ struct BootConfig {
 
 #define DEFAULT_DT_DIR "/proc/device-tree/firmware/android"
 #define INIT_PATH  "/system/bin/init"
-#define REDIR_PATH "/data/magiskinit"
+#define REDIR_PATH "/data/liorsmagicinit"
 
 extern std::vector<std::string> mount_list;
 
-int magisk_proxy_main(int argc, char *argv[]);
+int liorsmagic_proxy_main(int argc, char *argv[]);
 bool unxz(int fd, const uint8_t *buf, size_t size);
 void load_kernel_info(BootConfig *config);
 bool check_two_stage();

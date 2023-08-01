@@ -1,6 +1,6 @@
-package com.topjohnwu.magisk.core.data.magiskdb
+package com.topjohnwu.liorsmagic.core.data.liorsmagicdb
 
-import com.topjohnwu.magisk.core.ktx.await
+import com.topjohnwu.liorsmagic.core.ktx.await
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -12,7 +12,7 @@ open class MagiskDB {
         mapper: suspend (Map<String, String>) -> R
     ): List<R> {
         return withContext(Dispatchers.IO) {
-            val out = Shell.cmd("magisk --sqlite '$query'").await().out
+            val out = Shell.cmd("liorsmagic --sqlite '$query'").await().out
             out.map { line ->
                 line.split("\\|".toRegex())
                     .map { it.split("=", limit = 2) }

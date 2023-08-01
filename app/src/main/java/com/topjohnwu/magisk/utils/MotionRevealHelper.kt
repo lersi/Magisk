@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.utils
+package com.topjohnwu.liorsmagic.utils
 
 import android.animation.Animator
 import android.animation.AnimatorSet
@@ -14,7 +14,7 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.google.android.material.circularreveal.CircularRevealCompat
 import com.google.android.material.circularreveal.CircularRevealWidget
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.topjohnwu.magisk.core.utils.currentLocale
+import com.topjohnwu.liorsmagic.core.utils.currentLocale
 import kotlin.math.hypot
 
 object MotionRevealHelper {

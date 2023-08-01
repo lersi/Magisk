@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.ui.log
+package com.topjohnwu.liorsmagic.ui.log
 
 import android.os.Bundle
 import android.view.Menu
@@ -7,12 +7,12 @@ import android.view.MenuItem
 import android.view.View
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.arch.BaseFragment
-import com.topjohnwu.magisk.arch.viewModel
-import com.topjohnwu.magisk.databinding.FragmentLogMd2Binding
-import com.topjohnwu.magisk.ui.MainActivity
-import com.topjohnwu.magisk.utils.MotionRevealHelper
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.arch.BaseFragment
+import com.topjohnwu.liorsmagic.arch.viewModel
+import com.topjohnwu.liorsmagic.databinding.FragmentLogMd2Binding
+import com.topjohnwu.liorsmagic.ui.MainActivity
+import com.topjohnwu.liorsmagic.utils.MotionRevealHelper
 import rikka.recyclerview.addEdgeSpacing
 import rikka.recyclerview.addItemSpacing
 import rikka.recyclerview.fixEdgeEffect

@@ -1,15 +1,15 @@
-package com.topjohnwu.magisk.core.download
+package com.topjohnwu.liorsmagic.core.download
 
 import android.app.Notification
 import android.content.Intent
 import android.os.Build
 import androidx.lifecycle.MutableLiveData
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.base.BaseService
-import com.topjohnwu.magisk.core.di.ServiceLocator
-import com.topjohnwu.magisk.core.ktx.synchronized
-import com.topjohnwu.magisk.core.utils.ProgressInputStream
-import com.topjohnwu.magisk.view.Notifications
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.base.BaseService
+import com.topjohnwu.liorsmagic.core.di.ServiceLocator
+import com.topjohnwu.liorsmagic.core.ktx.synchronized
+import com.topjohnwu.liorsmagic.core.utils.ProgressInputStream
+import com.topjohnwu.liorsmagic.view.Notifications
 import okhttp3.ResponseBody
 import java.io.InputStream
 

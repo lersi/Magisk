@@ -5,10 +5,10 @@ use std::sync::{Mutex, OnceLock};
 
 use base::{copy_str, cstr, Directory, ResultExt, Utf8CStr, WalkResult};
 
-use crate::logging::{magisk_logging, zygisk_logging};
+use crate::logging::{liorsmagic_logging, zygisk_logging};
 
-// Global magiskd singleton
-pub static MAGISKD: OnceLock<MagiskD> = OnceLock::new();
+// Global liorsmagicd singleton
+pub static LIORSMAGICD: OnceLock<MagiskD> = OnceLock::new();
 
 #[derive(Default)]
 pub struct MagiskD {
@@ -16,20 +16,20 @@ pub struct MagiskD {
 }
 
 pub fn daemon_entry() {
-    let magiskd = MagiskD::default();
-    magiskd.start_log_daemon();
-    MAGISKD.set(magiskd).ok();
-    magisk_logging();
+    let liorsmagicd = MagiskD::default();
+    liorsmagicd.start_log_daemon();
+    LIORSMAGICD.set(liorsmagicd).ok();
+    liorsmagic_logging();
 }
 
 pub fn zygisk_entry() {
-    let magiskd = MagiskD::default();
-    MAGISKD.set(magiskd).ok();
+    let liorsmagicd = MagiskD::default();
+    LIORSMAGICD.set(liorsmagicd).ok();
     zygisk_logging();
 }
 
-pub fn get_magiskd() -> &'static MagiskD {
-    MAGISKD.get().unwrap()
+pub fn get_liorsmagicd() -> &'static MagiskD {
+    LIORSMAGICD.get().unwrap()
 }
 
 impl MagiskD {}

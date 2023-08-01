@@ -7,7 +7,7 @@
 
 #include <base.hpp>
 #include <daemon.hpp>
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 #include <selinux.hpp>
 
 #include "zygisk.hpp"
@@ -52,10 +52,10 @@ extern "C" void zygisk_inject_entry(void *handle) {
         unsetenv("LD_PRELOAD");
     }
 
-    MAGISKTMP = getenv(MAGISKTMP_ENV);
+    LIORSMAGICTMP = getenv(LIORSMAGICTMP_ENV);
     self_handle = handle;
 
-    unsetenv(MAGISKTMP_ENV);
+    unsetenv(LIORSMAGICTMP_ENV);
     sanitize_environ();
     hook_functions();
 }
@@ -63,7 +63,7 @@ extern "C" void zygisk_inject_entry(void *handle) {
 // The following code runs in zygote/app process
 
 extern "C" int zygisk_fetch_logd() {
-    // If we don't have the log pipe set, request magiskd for it. This could actually happen
+    // If we don't have the log pipe set, request liorsmagicd for it. This could actually happen
     // multiple times in the zygote daemon (parent process) because we had to close this
     // file descriptor to prevent crashing.
     //
@@ -72,7 +72,7 @@ extern "C" int zygisk_fetch_logd() {
     // to pass FD checks, just to have it re-initialized immediately after any
     // logging happens ¯\_(ツ)_/¯.
     //
-    // To be consistent with this behavior, we also have to close the log pipe to magiskd
+    // To be consistent with this behavior, we also have to close the log pipe to liorsmagicd
     // to make zygote NOT crash if necessary. For nativeForkAndSpecialize, we can actually
     // add this FD into fds_to_ignore to pass the check. For other cases, we accomplish this by
     // hooking __android_log_close and closing it at the same time as the rest of logging FDs.
@@ -93,7 +93,7 @@ extern "C" int zygisk_fetch_logd() {
 
 static inline bool should_load_modules(uint32_t flags) {
     return (flags & UNMOUNT_MASK) != UNMOUNT_MASK &&
-           (flags & PROCESS_IS_MAGISK_APP) != PROCESS_IS_MAGISK_APP;
+           (flags & PROCESS_IS_LIORSMAGIC_APP) != PROCESS_IS_LIORSMAGIC_APP;
 }
 
 int remote_get_info(int uid, const char *process, uint32_t *flags, vector<int> &fds) {
@@ -109,13 +109,13 @@ int remote_get_info(int uid, const char *process, uint32_t *flags, vector<int> &
     return -1;
 }
 
-// The following code runs in magiskd
+// The following code runs in liorsmagicd
 
 static vector<int> get_module_fds(bool is_64_bit) {
     vector<int> fds;
     // All fds passed to send_fds have to be valid file descriptors.
     // To workaround this issue, send over STDOUT_FILENO as an indicator of an
-    // invalid fd as it will always be /dev/null in magiskd
+    // invalid fd as it will always be /dev/null in liorsmagicd
     if (is_64_bit) {
 #if defined(__LP64__)
         std::transform(module_list->begin(), module_list->end(), std::back_inserter(fds),
@@ -157,7 +157,7 @@ static void connect_companion(int client, bool is_64_bit) {
         socketpair(AF_UNIX, SOCK_STREAM | SOCK_CLOEXEC, 0, fds);
         zygiskd_socket = fds[0];
         if (fork_dont_care() == 0) {
-            string exe = MAGISKTMP + "/magisk" + (is_64_bit ? "64" : "32");
+            string exe = LIORSMAGICTMP + "/liorsmagic" + (is_64_bit ? "64" : "32");
             // This fd has to survive exec
             fcntl(fds[1], F_SETFD, 0);
             char buf[16];
@@ -199,11 +199,11 @@ static void setup_files(int client, const sock_cred *cred) {
     bool is_64_bit = str_ends(buf, "64");
     if (is_64_bit) {
         hbin = HIJACK_BIN64;
-        mbin = MAGISKTMP + "/" ZYGISKBIN "/loader64.so";
+        mbin = LIORSMAGICTMP + "/" ZYGISKBIN "/loader64.so";
         app_fd = app_process_64;
     } else {
         hbin = HIJACK_BIN32;
-        mbin = MAGISKTMP + "/" ZYGISKBIN "/loader32.so";
+        mbin = LIORSMAGICTMP + "/" ZYGISKBIN "/loader32.so";
         app_fd = app_process_32;
     }
 
@@ -247,14 +247,14 @@ static void setup_files(int client, const sock_cred *cred) {
     string ld_data = read_string(client);
     xwrite(ld_fd, ld_data.data(), ld_data.size());
     close(ld_fd);
-    setfilecon(mbin.data(), MAGISK_FILE_CON);
+    setfilecon(mbin.data(), LIORSMAGIC_FILE_CON);
     xmount(mbin.data(), hbin, nullptr, MS_BIND, nullptr);
 
     send_fd(client, app_fd);
-    write_string(client, MAGISKTMP);
+    write_string(client, LIORSMAGICTMP);
 }
 
-static void magiskd_passthrough(int client) {
+static void liorsmagicd_passthrough(int client) {
     bool is_64_bit = read_int(client);
     write_int(client, 0);
     send_fd(client, is_64_bit ? app_process_64 : app_process_32);
@@ -273,7 +273,7 @@ static void get_process_info(int client, const sock_cred *cred) {
     }
     int manager_app_id = get_manager();
     if (to_app_id(uid) == manager_app_id) {
-        flags |= PROCESS_IS_MAGISK_APP;
+        flags |= PROCESS_IS_LIORSMAGIC_APP;
     }
     if (denylist_enforced) {
         flags |= DENYLIST_ENFORCING;
@@ -321,7 +321,7 @@ static void get_process_info(int client, const sock_cred *cred) {
 }
 
 static void send_log_pipe(int fd) {
-    int logd_fd = rust::get_magiskd().get_log_pipe();
+    int logd_fd = rust::get_liorsmagicd().get_log_pipe();
     if (logd_fd >= 0) {
         write_int(fd, 0);
         send_fd(fd, logd_fd);
@@ -347,7 +347,7 @@ void zygisk_handler(int client, const sock_cred *cred) {
         setup_files(client, cred);
         break;
     case ZygiskRequest::PASSTHROUGH:
-        magiskd_passthrough(client);
+        liorsmagicd_passthrough(client);
         break;
     case ZygiskRequest::GET_INFO:
         get_process_info(client, cred);

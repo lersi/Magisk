@@ -1,12 +1,12 @@
-package com.topjohnwu.magisk.ui.module
+package com.topjohnwu.liorsmagic.ui.module
 
 import android.os.Bundle
 import android.view.View
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.arch.BaseFragment
-import com.topjohnwu.magisk.arch.viewModel
-import com.topjohnwu.magisk.core.utils.MediaStoreUtils.displayName
-import com.topjohnwu.magisk.databinding.FragmentModuleMd2Binding
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.arch.BaseFragment
+import com.topjohnwu.liorsmagic.arch.viewModel
+import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils.displayName
+import com.topjohnwu.liorsmagic.databinding.FragmentModuleMd2Binding
 import rikka.recyclerview.addEdgeSpacing
 import rikka.recyclerview.addInvalidateItemDecorationsObserver
 import rikka.recyclerview.addItemSpacing

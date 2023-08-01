@@ -1,7 +1,7 @@
-package com.topjohnwu.magisk.core.ktx
+package com.topjohnwu.liorsmagic.core.ktx
 
 import androidx.collection.SparseArrayCompat
-import com.topjohnwu.magisk.core.utils.currentLocale
+import com.topjohnwu.liorsmagic.core.utils.currentLocale
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.flow

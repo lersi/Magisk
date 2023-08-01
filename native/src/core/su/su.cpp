@@ -13,7 +13,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 #include <base.hpp>
 #include <flags.h>
 
@@ -131,10 +131,10 @@ int su_client_main(int argc, char *argv[]) {
                 su_req.shell = optarg;
                 break;
             case 'V':
-                printf("%d\n", MAGISK_VER_CODE);
+                printf("%d\n", LIORSMAGIC_VER_CODE);
                 exit(EXIT_SUCCESS);
             case 'v':
-                printf("%s\n", MAGISK_VERSION ":MAGISKSU");
+                printf("%s\n", LIORSMAGIC_VERSION ":LIORSMAGICSU");
                 exit(EXIT_SUCCESS);
             case 'Z':
                 su_req.context = optarg;

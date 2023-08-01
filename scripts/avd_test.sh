@@ -84,7 +84,7 @@ run_test() {
   pid=$!
   timeout $boot_timeout bash -c wait_for_boot
 
-  adb shell magisk -v
+  adb shell liorsmagic -v
   kill -INT $pid
   wait $pid
 

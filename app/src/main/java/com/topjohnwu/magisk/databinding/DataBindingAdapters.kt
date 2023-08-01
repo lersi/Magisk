@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.databinding
+package com.topjohnwu.liorsmagic.databinding
 
 import android.animation.ValueAnimator
 import android.content.res.ColorStateList
@@ -25,9 +25,9 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
 import com.google.android.material.textfield.TextInputLayout
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.di.ServiceLocator
-import com.topjohnwu.magisk.utils.TextHolder
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.di.ServiceLocator
+import com.topjohnwu.liorsmagic.utils.TextHolder
 import com.topjohnwu.superuser.internal.UiThreadHandler
 import com.topjohnwu.widget.IndeterminateCheckBox
 import kotlin.math.roundToInt

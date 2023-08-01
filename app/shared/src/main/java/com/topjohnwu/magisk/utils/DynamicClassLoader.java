@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.utils;
+package com.topjohnwu.liorsmagic.utils;
 
 import android.os.Process;
 

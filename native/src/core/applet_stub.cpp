@@ -1,6 +1,6 @@
 #include <sys/stat.h>
 
-#include <magisk.hpp>
+#include <liorsmagic.hpp>
 #include <selinux.hpp>
 #include <base.hpp>
 

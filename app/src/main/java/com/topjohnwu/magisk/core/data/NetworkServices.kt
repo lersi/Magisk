@@ -1,8 +1,8 @@
-package com.topjohnwu.magisk.core.data
+package com.topjohnwu.liorsmagic.core.data
 
-import com.topjohnwu.magisk.core.model.BranchInfo
-import com.topjohnwu.magisk.core.model.ModuleJson
-import com.topjohnwu.magisk.core.model.UpdateInfo
+import com.topjohnwu.liorsmagic.core.model.BranchInfo
+import com.topjohnwu.liorsmagic.core.model.ModuleJson
+import com.topjohnwu.liorsmagic.core.model.UpdateInfo
 import okhttp3.ResponseBody
 import retrofit2.http.*
 

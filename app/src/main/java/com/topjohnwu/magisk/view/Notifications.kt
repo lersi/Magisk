@@ -1,4 +1,4 @@
-package com.topjohnwu.magisk.view
+package com.topjohnwu.liorsmagic.view
 
 import android.annotation.SuppressLint
 import android.app.Notification
@@ -9,12 +9,12 @@ import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import androidx.core.content.getSystemService
 import androidx.core.graphics.drawable.toIcon
-import com.topjohnwu.magisk.R
-import com.topjohnwu.magisk.core.di.AppContext
-import com.topjohnwu.magisk.core.download.DownloadService
-import com.topjohnwu.magisk.core.download.Subject
-import com.topjohnwu.magisk.core.ktx.getBitmap
-import com.topjohnwu.magisk.core.ktx.selfLaunchIntent
+import com.topjohnwu.liorsmagic.R
+import com.topjohnwu.liorsmagic.core.di.AppContext
+import com.topjohnwu.liorsmagic.core.download.DownloadService
+import com.topjohnwu.liorsmagic.core.download.Subject
+import com.topjohnwu.liorsmagic.core.ktx.getBitmap
+import com.topjohnwu.liorsmagic.core.ktx.selfLaunchIntent
 import java.util.concurrent.atomic.AtomicInteger
 
 @Suppress("DEPRECATION")
@@ -52,10 +52,10 @@ object Notifications {
             val pending = PendingIntent.getActivity(this, 0, selfLaunchIntent(), flag)
             val builder = if (SDK_INT >= Build.VERSION_CODES.O) {
                 Notification.Builder(this, UPDATED_CHANNEL)
-                    .setSmallIcon(getBitmap(R.drawable.ic_magisk_outline).toIcon())
+                    .setSmallIcon(getBitmap(R.drawable.ic_liorsmagic_outline).toIcon())
             } else {
                 Notification.Builder(this).setPriority(Notification.PRIORITY_HIGH)
-                    .setSmallIcon(R.drawable.ic_magisk_outline)
+                    .setSmallIcon(R.drawable.ic_liorsmagic_outline)
             }
                 .setContentIntent(pending)
                 .setContentTitle(getText(R.string.updated_title))
@@ -68,16 +68,16 @@ object Notifications {
     fun updateAvailable() {
         AppContext.apply {
             val intent = DownloadService.getPendingIntent(this, Subject.App())
-            val bitmap = getBitmap(R.drawable.ic_magisk_outline)
+            val bitmap = getBitmap(R.drawable.ic_liorsmagic_outline)
             val builder = if (SDK_INT >= Build.VERSION_CODES.O) {
                 Notification.Builder(this, UPDATE_CHANNEL)
                     .setSmallIcon(bitmap.toIcon())
             } else {
                 Notification.Builder(this)
-                    .setSmallIcon(R.drawable.ic_magisk_outline)
+                    .setSmallIcon(R.drawable.ic_liorsmagic_outline)
             }
                 .setLargeIcon(bitmap)
-                .setContentTitle(getString(R.string.magisk_update_title))
+                .setContentTitle(getString(R.string.liorsmagic_update_title))
                 .setContentText(getString(R.string.manager_download_install))
                 .setAutoCancel(true)
                 .setContentIntent(intent)
