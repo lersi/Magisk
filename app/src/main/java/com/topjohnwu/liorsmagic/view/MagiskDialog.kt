@@ -22,7 +22,7 @@ import com.google.android.material.shape.MaterialShapeDrawable
 import com.topjohnwu.liorsmagic.BR
 import com.topjohnwu.liorsmagic.R
 import com.topjohnwu.liorsmagic.core.base.BaseActivity
-import com.topjohnwu.liorsmagic.databinding.DialogMagiskBaseBinding
+import com.topjohnwu.liorsmagic.databinding.DialogLiorsmagicBaseBinding
 import com.topjohnwu.liorsmagic.databinding.DiffItem
 import com.topjohnwu.liorsmagic.databinding.ItemWrapper
 import com.topjohnwu.liorsmagic.databinding.ObservableHost
@@ -38,8 +38,8 @@ class MagiskDialog(
     context: Activity, theme: Int = 0
 ) : AppCompatDialog(context, theme) {
 
-    private val binding: DialogMagiskBaseBinding =
-        DialogMagiskBaseBinding.inflate(LayoutInflater.from(context))
+    private val binding: DialogLiorsmagicBaseBinding =
+        DialogLiorsmagicBaseBinding.inflate(LayoutInflater.from(context))
     private val data = Data()
 
     val activity: BaseActivity get() = ownerActivity as BaseActivity
