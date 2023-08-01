@@ -1,4 +1,4 @@
-#!/liorsbin/sh
+#!/sbin/sh
 
 #################
 # Initialization

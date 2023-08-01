@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
             init = new LegacySARInit(argv, &config);
         else if (config.force_normal_boot)
             init = new FirstStageInit(argv, &config);
-        else if (access("/liorsbin/recovery", F_OK) == 0 || access("/system/bin/recovery", F_OK) == 0)
+        else if (access("/sbin/recovery", F_OK) == 0 || access("/system/bin/recovery", F_OK) == 0)
             init = new RecoveryInit(argv, &config);
         else if (check_two_stage())
             init = new FirstStageInit(argv, &config);

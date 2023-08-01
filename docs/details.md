@@ -4,14 +4,14 @@
 
 ### Paths in "Liorsmagic tmpfs directory"
 
-Liorsmagic will mount a `tmpfs` directory to store some temporary data. For devices with the `/liorsbin` folder, it will be chosen as it will also act as an overlay to inject binaries into `PATH`. From Android 11 onwards, the `/liorsbin` folder might not exist, so Liorsmagic will randomly create a folder under `/dev` and use it as the base folder.
+Liorsmagic will mount a `tmpfs` directory to store some temporary data. For devices with the `/sbin` folder, it will be chosen as it will also act as an overlay to inject binaries into `PATH`. From Android 11 onwards, the `/sbin` folder might not exist, so Liorsmagic will randomly create a folder under `/dev` and use it as the base folder.
 
 ```
 # In order to get the current base folder Liorsmagic is using,
 # use the command `liorsmagic --path`.
 # Binaries like liorsmagic, liorsmagicinit, and all symlinks to
 # applets are directly stored in this path. This means when
-# this is /liorsbin, these binaries will be directly in PATH.
+# this is /sbin, these binaries will be directly in PATH.
 LIORSMAGICTMP=$(liorsmagic --path)
 
 # Liorsmagic internal stuffs

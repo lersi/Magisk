@@ -19,8 +19,8 @@
 #####################################################################
 
 mount_sbin() {
-  mount -t tmpfs -o 'mode=0755' liorsmagic /liorsbin
-  chcon u:object_r:rootfs:s0 /liorsbin
+  mount -t tmpfs -o 'mode=0755' liorsmagic /sbin
+  chcon u:object_r:rootfs:s0 /sbin
 }
 
 if [ ! -f /system/build.prop ]; then
@@ -71,7 +71,7 @@ if ! grep -q ' /cache ' /proc/mounts; then
   mount -t tmpfs -o 'mode=0755' tmpfs /cache
 fi
 
-LIORSMAGICTMP=/liorsbin
+LIORSMAGICTMP=/sbin
 
 # Setup bin overlay
 if mount | grep -q rootfs; then
@@ -80,23 +80,23 @@ if mount | grep -q rootfs; then
   rm -rf /lioroot
   mkdir /lioroot
   chmod 750 /lioroot
-  ln /liorsbin/* /lioroot
+  ln /sbin/* /lioroot
   mount -o ro,remount /
   mount_sbin
-  ln -s /lioroot/* /liorsbin
-elif [ -e /liorsbin ]; then
+  ln -s /lioroot/* /sbin
+elif [ -e /sbin ]; then
   # Legacy SAR
   mount_sbin
   mkdir -p /dev/sysroot
   block=$(mount | grep ' / ' | awk '{ print $1 }')
   [ $block = "/dev/lioroot" ] && block=/dev/block/dm-0
   mount -o ro $block /dev/sysroot
-  for file in /dev/sysroot/liorsbin/*; do
+  for file in /dev/sysroot/sbin/*; do
     [ ! -e $file ] && break
     if [ -L $file ]; then
-      cp -af $file /liorsbin
+      cp -af $file /sbin
     else
-      sfile=/liorsbin/$(basename $file)
+      sfile=/sbin/$(basename $file)
       touch $sfile
       mount -o bind $file $sfile
     fi

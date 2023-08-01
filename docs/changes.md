@@ -197,7 +197,7 @@
 - [General] Add Safe Mode detection. Disable all modules when the device is booting into Safe Mode.
 - [General] Increase `post-fs-data` mode timeout from 10 seconds to 40 seconds
 - [LiorsmagicInit] Rewritten 2SI support from scratch
-- [LiorsmagicInit] Support when no `/liorsbin` folder exists (Android 11)
+- [LiorsmagicInit] Support when no `/sbin` folder exists (Android 11)
 - [LiorsmagicInit] Dump fstab from device-tree to rootfs and force `init` to use it for 2SI devices
 - [LiorsmagicInit] Strip out AVB for 2SI as it may cause bootloop
 - [Modules] Rewritten module mounting logic from scratch
@@ -246,7 +246,7 @@
 - [LiorsmagicSU] Support component name agnostic communication (for stub APK)
 - [LiorsmagicBoot] Set proper `header_size` in boot image headers (fix vbmeta error on Samsung devices)
 - [LiorsmagicHide] Scan zygote multiple times
-- [LiorsmagicInit] Support recovery images without /liorsbin/recovery binary. This will fix some A/B devices unable to boot to recovery after flashing Liorsmagic
+- [LiorsmagicInit] Support recovery images without /sbin/recovery binary. This will fix some A/B devices unable to boot to recovery after flashing Liorsmagic
 - [General] Move acct to prevent daemon being killed
 - [General] Make sure "--remove-modules" will execute uninstall.sh after removal
 
@@ -332,7 +332,7 @@
 
 - [General] Migrate all code base to C++
 - [General] Modify database natively instead of going through Liorsmagic Manager
-- [General] Deprecate path /liorsbin/.core, please start using /liorsbin/.liorsmagic
+- [General] Deprecate path /sbin/.core, please start using /sbin/.liorsmagic
 - [General] Boot scripts are moved from `<liorsmagic_img>/.core/<stage>.d` to `/data/adb/<stage>.d`
 - [General] Remove native systemless hosts (Liorsmagic Manager is updated with a built-in systemless hosts module)
 - [General] Allow module post-fs-data.sh scripts to disable/remove modules
@@ -415,7 +415,7 @@
 - [Daemon] Fix startup Liorsmagic Manager APK installation on Android P
 - [LiorsmagicPolicy] Switch from AOSP u:r:su:s0 to u:r:liorsmagic:s0 to prevent conflicts
 - [LiorsmagicPolicy] Remove unnecessary sepolicy rules to reduce security penalty
-- [Daemon] Massive re-design /liorsbin tmpfs overlay and daemon start up
+- [Daemon] Massive re-design /sbin tmpfs overlay and daemon start up
 - [LiorsmagicInit] Remove `liorsmagicinit_daemon`, the actual liorsmagic daemon (liorsmagicd) shall handle everything itself
 - [Daemon] Remove post-fs stage as it is very limited and also will not work on A/B devices; replaced with simple mount in post-fs-data, which will run ASAP even before the daemon is started
 - [General] Remove all 64-bit binaries as there is no point in using them; all binaries are now 32-bit only.
@@ -457,7 +457,7 @@
 - [LiorsmagicBoot] Support pure ramdisk images
 - [LiorsmagicInit] Prevent OnePlus angela `sepolicy_debug` from loading
 - [LiorsmagicInit] Obfuscate Liorsmagic socket entry to prevent detection and security
-- [Daemon] Fix subfolders in /liorsbin shadowed by overlay
+- [Daemon] Fix subfolders in /sbin shadowed by overlay
 - [Daemon] Obfuscate binary names to prevent naive detections
 - [Daemon] Check logd before force trying to start logcat in a loop
 
@@ -505,7 +505,7 @@
 
 ### v14.5 (1455)
 
-- [Daemon] Moved internal path to /liorsbin/.core, new image mountpoint is /liorsbin/.core/img
+- [Daemon] Moved internal path to /sbin/.core, new image mountpoint is /sbin/.core/img
 - [LiorsmagicSU] Support switching package name, used when Liorsmagic Manager is hidden
 - [LiorsmagicHide] Add temporary /liorsmagic removal
 - [LiorsmagicHide] All changes above contributes to hiding from nasty apps like FGO and several banking apps
@@ -575,7 +575,7 @@
 ### v13.2
 
 - [liorsmagicpolicy] Fix liorsmagicpolicy segfault on old Android versions, should fix tons of older devices that couldn't use v13.1
-- [LiorsmagicHide] Set proper selinux context while re-linking /liorsbin to hide Liorsmagic, should potentially fix many issues
+- [LiorsmagicHide] Set proper selinux context while re-linking /sbin to hide Liorsmagic, should potentially fix many issues
 - [LiorsmagicBoot] Change lzma compression encoder flag from `LZMA_CHECK_CRC64` to `LZMA_CHECK_CRC32`, kernel only supports latter
 - [General] Core-only mode now properly mounts systemless hosts and liorsmagichide
 
@@ -688,7 +688,7 @@
 - [Liorsmagic Hide] Send SIGSTOP to pause target process ASAP to prevent crashing if unmounting too late
 - [Liorsmagic Hide] Hiding should work under any conditions, including adding libs and /system root etc.
 - [phh] Root the device if no proper root detected
-- [phh] Move `/liorsbin` to `/liorsbin_orig` and link back, fix Samsung no-suid issue
+- [phh] Move `/sbin` to `/sbin_orig` and link back, fix Samsung no-suid issue
 - [scripts] Improve SuperSU integration, now uses sukernel to patch ramdisk, support SuperSU built in ramdisk restore
 - [template] Add PROPFILE option to load system.prop
 

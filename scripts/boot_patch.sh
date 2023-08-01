@@ -190,10 +190,10 @@ fi
 ./liorsmagicboot cpio ramdisk.cpio \
 "add 0750 $INIT liorsmagicinit" \
 "mkdir 0750 overlay.d" \
-"mkdir 0750 overlay.d/liorsbin" \
-"$SKIP32 add 0644 overlay.d/liorsbin/liorsmagic32.xz liorsmagic32.xz" \
-"$SKIP64 add 0644 overlay.d/liorsbin/liorsmagic64.xz liorsmagic64.xz" \
-"add 0644 overlay.d/liorsbin/stub.xz stub.xz" \
+"mkdir 0750 overlay.d/sbin" \
+"$SKIP32 add 0644 overlay.d/sbin/liorsmagic32.xz liorsmagic32.xz" \
+"$SKIP64 add 0644 overlay.d/sbin/liorsmagic64.xz liorsmagic64.xz" \
+"add 0644 overlay.d/sbin/stub.xz stub.xz" \
 "patch" \
 "$SKIP_BACKUP backup ramdisk.cpio.orig" \
 "mkdir 000 .backup" \

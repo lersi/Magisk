@@ -415,8 +415,8 @@ string find_liorsmagic_tmp() {
     if (access("/debug_ramdisk/" INTLROOT, F_OK) == 0) {
         return "/debug_ramdisk";
     }
-    if (access("/liorsbin/" INTLROOT, F_OK) == 0) {
-        return "/liorsbin";
+    if (access("/sbin/" INTLROOT, F_OK) == 0) {
+        return "/sbin";
     }
     // Fallback to lookup from mountinfo for manual mount, e.g. avd
     for (const auto &mount: parse_mount_info("self")) {

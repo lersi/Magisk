@@ -78,7 +78,7 @@ void restorecon() {
 void restore_tmpcon() {
     if (!selinux_enabled())
         return;
-    if (LIORSMAGICTMP == "/liorsbin")
+    if (LIORSMAGICTMP == "/sbin")
         setfilecon(LIORSMAGICTMP.data(), ROOT_CON);
     else
         chmod(LIORSMAGICTMP.data(), 0711);

@@ -112,7 +112,7 @@ static void recreate_sbin(const char *mirror, bool use_bind_mount) {
     int src = dirfd(dp.get());
     char buf[4096];
     for (dirent *entry; (entry = xreaddir(dp.get()));) {
-        string sbin_path = "/liorsbin/"s + entry->d_name;
+        string sbin_path = "/sbin/"s + entry->d_name;
         struct stat st;
         fstatat(src, entry->d_name, &st, AT_SYMLINK_NOFOLLOW);
         if (S_ISLNK(st.st_mode)) {
@@ -159,9 +159,9 @@ static void magic_mount(const string &sdir, const string &ddir = "") {
 }
 
 static void extract_files(bool sbin) {
-    const char *m32 = sbin ? "/liorsbin/liorsmagic32.xz" : "liorsmagic32.xz";
-    const char *m64 = sbin ? "/liorsbin/liorsmagic64.xz" : "liorsmagic64.xz";
-    const char *stub_xz = sbin ? "/liorsbin/stub.xz" : "stub.xz";
+    const char *m32 = sbin ? "/sbin/liorsmagic32.xz" : "liorsmagic32.xz";
+    const char *m64 = sbin ? "/sbin/liorsmagic64.xz" : "liorsmagic64.xz";
+    const char *stub_xz = sbin ? "/sbin/stub.xz" : "stub.xz";
 
     if (access(m32, F_OK) == 0) {
         mmap_data liorsmagic(m32);
@@ -208,8 +208,8 @@ void LiorsmagicInit::patch_ro_root() {
 
     string tmp_dir;
 
-    if (access("/liorsbin", F_OK) == 0) {
-        tmp_dir = "/liorsbin";
+    if (access("/sbin", F_OK) == 0) {
+        tmp_dir = "/sbin";
     } else {
         tmp_dir = "/debug_ramdisk";
         xmkdir("/data/debug_ramdisk", 0);
@@ -219,11 +219,11 @@ void LiorsmagicInit::patch_ro_root() {
     setup_tmp(tmp_dir.data());
     chdir(tmp_dir.data());
 
-    if (tmp_dir == "/liorsbin") {
+    if (tmp_dir == "/sbin") {
         // Recreate original sbin structure
         xmkdir(ROOTMIR, 0755);
         xmount("/", ROOTMIR, nullptr, MS_BIND, nullptr);
-        recreate_sbin(ROOTMIR "/liorsbin", true);
+        recreate_sbin(ROOTMIR "/sbin", true);
         xumount2(ROOTMIR, MNT_DETACH);
     } else {
         // Restore debug_ramdisk
@@ -252,9 +252,9 @@ void LiorsmagicInit::patch_ro_root() {
 #endif
 
     load_overlay_rc(ROOTOVL);
-    if (access(ROOTOVL "/liorsbin", F_OK) == 0) {
-        // Move files in overlay.d/liorsbin into tmp_dir
-        mv_path(ROOTOVL "/liorsbin", ".");
+    if (access(ROOTOVL "/sbin", F_OK) == 0) {
+        // Move files in overlay.d/sbin into tmp_dir
+        mv_path(ROOTOVL "/sbin", ".");
     }
 
     // Patch init.rc
@@ -299,10 +299,10 @@ void LiorsmagicInit::patch_rw_root() {
     mount_list.emplace_back("/data");
     parse_config_file();
 
-    // Create hardlink mirror of /liorsbin to /lioroot
+    // Create hardlink mirror of /sbin to /lioroot
     mkdir("/lioroot", 0777);
-    clone_attr("/liorsbin", "/lioroot");
-    link_path("/liorsbin", "/lioroot");
+    clone_attr("/sbin", "/lioroot");
+    link_path("/sbin", "/lioroot");
 
     // Handle overlays
     load_overlay_rc("/overlay.d");
@@ -311,7 +311,7 @@ void LiorsmagicInit::patch_rw_root() {
     rm_rf("/.backup");
 
     // Patch init.rc
-    patch_init_rc("/init.rc", "/init.p.rc", "/liorsbin");
+    patch_init_rc("/init.rc", "/init.p.rc", "/sbin");
     rename("/init.p.rc", "/init.rc");
 
     bool treble;
@@ -336,7 +336,7 @@ void LiorsmagicInit::patch_rw_root() {
     chdir("/");
 
     // Dump liorsmagicinit as liorsmagic
-    cp_afc(REDIR_PATH, "/liorsbin/liorsmagic");
+    cp_afc(REDIR_PATH, "/sbin/liorsmagic");
 }
 
 int liorsmagic_proxy_main(int argc, char *argv[]) {
@@ -346,12 +346,12 @@ int liorsmagic_proxy_main(int argc, char *argv[]) {
     // Mount rootfs as rw to do post-init rootfs patches
     xmount(nullptr, "/", nullptr, MS_REMOUNT, nullptr);
 
-    unlink("/liorsbin/liorsmagic");
+    unlink("/sbin/liorsmagic");
 
-    // Move tmpfs to /liorsbin
+    // Move tmpfs to /sbin
     // make parent private before MS_MOVE
     xmount(nullptr, PRE_TMPSRC, nullptr, MS_PRIVATE, nullptr);
-    xmount(PRE_TMPDIR, "/liorsbin", nullptr, MS_MOVE, nullptr);
+    xmount(PRE_TMPDIR, "/sbin", nullptr, MS_MOVE, nullptr);
     xumount2(PRE_TMPSRC, MNT_DETACH);
     rmdir(PRE_TMPDIR);
     rmdir(PRE_TMPSRC);
@@ -361,6 +361,6 @@ int liorsmagic_proxy_main(int argc, char *argv[]) {
 
     // Tell liorsmagicd to remount rootfs
     setenv("REMOUNT_ROOT", "1", 1);
-    execv("/liorsbin/liorsmagic", argv);
+    execv("/sbin/liorsmagic", argv);
     return 1;
 }

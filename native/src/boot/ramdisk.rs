@@ -67,7 +67,7 @@ impl LiorsmagicCpio for Cpio {
             "sbin/launch_daemonsu.sh",
             "sbin/liorsu",
             "init.xposed.rc",
-            "boot/liorsbin/launch_daemonsu.sh",
+            "boot/sbin/launch_daemonsu.sh",
         ] {
             if self.exists(file) {
                 return UNSUPPORTED_CPIO;

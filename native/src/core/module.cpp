@@ -284,7 +284,7 @@ void load_modules() {
         system->collect_module_files(module, fd);
         close(fd);
     }
-    if (LIORSMAGICTMP != "/liorsbin" || !str_contains(getenv("PATH") ?: "", "/liorsbin")) {
+    if (LIORSMAGICTMP != "/sbin" || !str_contains(getenv("PATH") ?: "", "/sbin")) {
         // Need to inject our binaries into /system/bin
         inject_liorsmagic_bins(system);
     }
