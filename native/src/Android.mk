@@ -18,7 +18,7 @@ LOCAL_STATIC_LIBRARIES := \
 
 LOCAL_SRC_FILES := \
     core/applets.cpp \
-    core/liorsmagic.cpp \
+    core/magisk.cpp \
     core/daemon.cpp \
     core/bootstages.cpp \
     core/socket.cpp \
