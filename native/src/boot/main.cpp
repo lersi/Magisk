@@ -1,7 +1,7 @@
 #include <base.hpp>
 
 #include "boot-rs.hpp"
-#include "liorsmagicboot.hpp"
+#include "magiskboot.hpp"
 #include "compress.hpp"
 
 using namespace std;
