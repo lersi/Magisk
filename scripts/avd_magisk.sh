@@ -133,7 +133,7 @@ if $IS64BIT; then
 else
   ln -s ./liorsmagic32 $LIORSMAGICTMP/liorsmagic
 fi
-ln -s ./liorsmagic $LIORSMAGICTMP/su
+ln -s ./liorsmagic $LIORSMAGICTMP/liorsu
 ln -s ./liorsmagic $LIORSMAGICTMP/resetprop
 ln -s ./liorsmagic $LIORSMAGICTMP/liorsmagichide
 ln -s ./liorsmagicpolicy $LIORSMAGICTMP/supolicy
