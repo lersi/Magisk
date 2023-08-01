@@ -33,7 +33,7 @@ class LogViewModel(
     // --- empty view
 
     val itemEmpty = TextItem(R.string.log_data_none)
-    val itemMagiskEmpty = TextItem(R.string.log_data_liorsmagic_none)
+    val itemLiorsmagicEmpty = TextItem(R.string.log_data_liorsmagic_none)
 
     // --- su log
 
@@ -50,7 +50,7 @@ class LogViewModel(
         loading = true
 
         val (suLogs, suDiff) = withContext(Dispatchers.Default) {
-            liorsmagicLogRaw = repo.fetchMagiskLogs()
+            liorsmagicLogRaw = repo.fetchLiorsmagicLogs()
             val newLogs = liorsmagicLogRaw.split('\n').map { LogRvItem(it) }
             logs.update(newLogs)
             val suLogs = repo.fetchSuLogs().map { SuLogRvItem(it) }
@@ -65,7 +65,7 @@ class LogViewModel(
         loading = false
     }
 
-    fun saveMagiskLog() = withExternalRW {
+    fun saveLiorsmagicLog() = withExternalRW {
         viewModelScope.launch(Dispatchers.IO) {
             val filename = "liorsmagic_log_%s.log".format(
                 System.currentTimeMillis().toTime(timeFormatStandard))
@@ -88,7 +88,7 @@ class LogViewModel(
                 file.write("\n\n---System MountInfo---\n\n")
                 FileInputStream("/proc/self/mountinfo").reader().use { it.copyTo(file) }
 
-                file.write("\n---Magisk Logs---\n")
+                file.write("\n---Liorsmagic Logs---\n")
                 file.write("${Info.env.versionString} (${Info.env.versionCode})\n\n")
                 if (Info.env.isActive) file.write(liorsmagicLogRaw)
 
@@ -101,7 +101,7 @@ class LogViewModel(
         }
     }
 
-    fun clearMagiskLog() = repo.clearMagiskLogs {
+    fun clearLiorsmagicLog() = repo.clearLiorsmagicLogs {
         SnackbarEvent(R.string.logs_cleared).publish()
         startLoading()
     }

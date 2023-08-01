@@ -36,7 +36,7 @@ void sepolicy::liorsmagic_rules() {
     allow(ALL, SEPOL_FILE_TYPE, "lnk_file", ALL);
     allow(ALL, SEPOL_FILE_TYPE, "sock_file", ALL);
 
-    // Allow these processes to access MagiskSU
+    // Allow these processes to access LiorsmagicSU
     const char *clients[]{"zygote", "shell",
                           "system_app", "platform_app", "priv_app",
                           "untrusted_app", "untrusted_app_all"};

@@ -488,7 +488,7 @@ def build_apk(args, module):
 
 
 def build_app(args):
-    header("* Building the Magisk app")
+    header("* Building the Liorsmagic app")
     build_apk(args, "app")
 
     # Stub building is directly integrated into the main app
@@ -653,7 +653,7 @@ def build_all(args):
     build_app(args)
 
 
-parser = argparse.ArgumentParser(description="Magisk build script")
+parser = argparse.ArgumentParser(description="Liorsmagic build script")
 parser.set_defaults(func=lambda x: None)
 parser.add_argument(
     "-r", "--release", action="store_true", help="compile in release mode"
@@ -683,7 +683,7 @@ cargo_parser = subparsers.add_parser("cargo", help="run cargo with proper enviro
 cargo_parser.add_argument("commands", nargs=argparse.REMAINDER)
 cargo_parser.set_defaults(func=run_cargo_cmd)
 
-app_parser = subparsers.add_parser("app", help="build the Magisk app")
+app_parser = subparsers.add_parser("app", help="build the Liorsmagic app")
 app_parser.set_defaults(func=build_app)
 
 stub_parser = subparsers.add_parser("stub", help="build the stub app")
@@ -708,7 +708,7 @@ clean_parser.add_argument(
 )
 clean_parser.set_defaults(func=cleanup)
 
-ndk_parser = subparsers.add_parser("ndk", help="setup Magisk NDK")
+ndk_parser = subparsers.add_parser("ndk", help="setup Liorsmagic NDK")
 ndk_parser.set_defaults(func=setup_ndk)
 
 if len(sys.argv) == 1:

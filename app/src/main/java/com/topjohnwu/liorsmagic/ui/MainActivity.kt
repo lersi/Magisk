@@ -27,7 +27,7 @@ import com.topjohnwu.liorsmagic.core.model.module.LocalModule
 import com.topjohnwu.liorsmagic.core.tasks.HideAPK
 import com.topjohnwu.liorsmagic.databinding.ActivityMainMd2Binding
 import com.topjohnwu.liorsmagic.ui.home.HomeFragmentDirections
-import com.topjohnwu.liorsmagic.view.MagiskDialog
+import com.topjohnwu.liorsmagic.view.LiorsmagicDialog
 import com.topjohnwu.liorsmagic.view.Shortcuts
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -171,10 +171,10 @@ class MainActivity : SplashActivity<ActivityMainMd2Binding>() {
 
     private fun showUnsupportedMessage() {
         if (Info.env.isUnsupported) {
-            MagiskDialog(this).apply {
+            LiorsmagicDialog(this).apply {
                 setTitle(R.string.unsupport_liorsmagic_title)
                 setMessage(R.string.unsupport_liorsmagic_msg, Const.Version.MIN_VERSION)
-                setButton(MagiskDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
+                setButton(LiorsmagicDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
                 setCancelable(false)
             }.show()
         }
@@ -183,28 +183,28 @@ class MainActivity : SplashActivity<ActivityMainMd2Binding>() {
                 ?.split(':')
                 ?.filterNot { File("$it/liorsmagic").exists() }
                 ?.any { File("$it/su").exists() } == true) {
-            MagiskDialog(this).apply {
+            LiorsmagicDialog(this).apply {
                 setTitle(R.string.unsupport_general_title)
                 setMessage(R.string.unsupport_other_su_msg)
-                setButton(MagiskDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
+                setButton(LiorsmagicDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
                 setCancelable(false)
             }.show()
         }
 
         if (applicationInfo.flags and ApplicationInfo.FLAG_SYSTEM != 0) {
-            MagiskDialog(this).apply {
+            LiorsmagicDialog(this).apply {
                 setTitle(R.string.unsupport_general_title)
                 setMessage(R.string.unsupport_system_app_msg)
-                setButton(MagiskDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
+                setButton(LiorsmagicDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
                 setCancelable(false)
             }.show()
         }
 
         if (applicationInfo.flags and ApplicationInfo.FLAG_EXTERNAL_STORAGE != 0) {
-            MagiskDialog(this).apply {
+            LiorsmagicDialog(this).apply {
                 setTitle(R.string.unsupport_general_title)
                 setMessage(R.string.unsupport_external_storage_msg)
-                setButton(MagiskDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
+                setButton(LiorsmagicDialog.ButtonType.POSITIVE) { text = android.R.string.ok }
                 setCancelable(false)
             }.show()
         }
@@ -215,13 +215,13 @@ class MainActivity : SplashActivity<ActivityMainMd2Binding>() {
             ShortcutManagerCompat.isRequestPinShortcutSupported(this)) {
             // Ask and show dialog
             Config.askedHome = true
-            MagiskDialog(this).apply {
+            LiorsmagicDialog(this).apply {
                 setTitle(R.string.add_shortcut_title)
                 setMessage(R.string.add_shortcut_msg)
-                setButton(MagiskDialog.ButtonType.NEGATIVE) {
+                setButton(LiorsmagicDialog.ButtonType.NEGATIVE) {
                     text = android.R.string.cancel
                 }
-                setButton(MagiskDialog.ButtonType.POSITIVE) {
+                setButton(LiorsmagicDialog.ButtonType.POSITIVE) {
                     text = android.R.string.ok
                     onClick {
                         Shortcuts.addHomeIcon(this@MainActivity)

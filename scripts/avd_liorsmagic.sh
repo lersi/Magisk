@@ -1,5 +1,5 @@
 #####################################################################
-#   AVD Magisk Setup
+#   AVD Liorsmagic Setup
 #####################################################################
 #
 # Support API level: 23 - 33
@@ -7,13 +7,13 @@
 # With an emulator booted and accessible via ADB, usage:
 # ./build.py emulator
 #
-# This script will stop zygote, simulate the Magisk start up process
+# This script will stop zygote, simulate the Liorsmagic start up process
 # that would've happened before zygote was started, and finally
 # restart zygote. This is useful for setting up the emulator for
-# developing Magisk, testing modules, and developing root apps using
+# developing Liorsmagic, testing modules, and developing root apps using
 # the official Android emulator (AVD) instead of a real device.
 #
-# This only covers the "core" features of Magisk. For testing
+# This only covers the "core" features of Liorsmagic. For testing
 # liorsmagicinit, please checkout avd_patch.sh.
 #
 #####################################################################
@@ -112,7 +112,7 @@ else
   mount -t tmpfs -o 'mode=0755' liorsmagic /dev/avd-liorsmagic
 fi
 
-# Magisk stuff
+# Liorsmagic stuff
 mkdir -p $LIORSMAGICBIN 2>/dev/null
 unzip -oj liorsmagic.apk 'assets/*.sh' -d $LIORSMAGICBIN
 mkdir $NVBASE/modules 2>/dev/null

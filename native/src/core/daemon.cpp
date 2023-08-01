@@ -316,7 +316,7 @@ static void daemon_entry() {
 
     rust::daemon_entry();
 
-    LOGI(NAME_WITH_VER(Magisk) " daemon started\n");
+    LOGI(NAME_WITH_VER(Liorsmagic) " daemon started\n");
 
     // Escape from cgroup
     int pid = getpid();

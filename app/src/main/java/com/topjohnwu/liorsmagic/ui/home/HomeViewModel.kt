@@ -138,7 +138,7 @@ class HomeViewModel(
         }
     }
 
-    fun onMagiskPressed() = withExternalRW {
+    fun onLiorsmagicPressed() = withExternalRW {
         HomeFragmentDirections.actionHomeFragmentToInstallFragment().navigate()
     }
 

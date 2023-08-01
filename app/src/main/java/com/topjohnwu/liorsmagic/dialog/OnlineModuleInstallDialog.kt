@@ -6,7 +6,7 @@ import com.topjohnwu.liorsmagic.core.download.Action
 import com.topjohnwu.liorsmagic.core.download.DownloadService
 import com.topjohnwu.liorsmagic.core.download.Subject
 import com.topjohnwu.liorsmagic.core.model.module.OnlineModule
-import com.topjohnwu.liorsmagic.view.MagiskDialog
+import com.topjohnwu.liorsmagic.view.LiorsmagicDialog
 
 class OnlineModuleInstallDialog(private val item: OnlineModule) : MarkDownDialog() {
 
@@ -17,7 +17,7 @@ class OnlineModuleInstallDialog(private val item: OnlineModule) : MarkDownDialog
         return if (str.length > 1000) str.substring(0, 1000) else str
     }
 
-    override fun build(dialog: MagiskDialog) {
+    override fun build(dialog: LiorsmagicDialog) {
         super.build(dialog)
         dialog.apply {
 
@@ -32,15 +32,15 @@ class OnlineModuleInstallDialog(private val item: OnlineModule) : MarkDownDialog
 
             setTitle(title)
             setCancelable(true)
-            setButton(MagiskDialog.ButtonType.NEGATIVE) {
+            setButton(LiorsmagicDialog.ButtonType.NEGATIVE) {
                 text = R.string.download
                 onClick { download(false) }
             }
-            setButton(MagiskDialog.ButtonType.POSITIVE) {
+            setButton(LiorsmagicDialog.ButtonType.POSITIVE) {
                 text = R.string.install
                 onClick { download(true) }
             }
-            setButton(MagiskDialog.ButtonType.NEUTRAL) {
+            setButton(LiorsmagicDialog.ButtonType.NEUTRAL) {
                 text = android.R.string.cancel
             }
         }

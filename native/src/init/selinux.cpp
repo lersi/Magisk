@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void MagiskInit::patch_sepolicy(const char *in, const char *out) {
+void LiorsmagicInit::patch_sepolicy(const char *in, const char *out) {
     LOGD("Patching monolithic policy\n");
     auto sepol = unique_ptr<sepolicy>(sepolicy::from_file(in));
 
@@ -42,7 +42,7 @@ void MagiskInit::patch_sepolicy(const char *in, const char *out) {
 #define MOCK_LOAD      SELINUXMOCK "/load"
 #define MOCK_ENFORCE   SELINUXMOCK "/enforce"
 
-bool MagiskInit::hijack_sepolicy() {
+bool LiorsmagicInit::hijack_sepolicy() {
     xmkdir(SELINUXMOCK, 0);
 
     if (access("/system/bin/init", F_OK) == 0) {

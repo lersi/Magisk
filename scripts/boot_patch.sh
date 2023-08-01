@@ -1,6 +1,6 @@
 #!/system/bin/sh
 #######################################################################################
-# Magisk Boot Image Patcher
+# Liorsmagic Boot Image Patcher
 #######################################################################################
 #
 # Usage: boot_patch.sh <bootimage>
@@ -12,7 +12,7 @@
 #
 # File name          Type      Description
 #
-# boot_patch.sh      script    A script to patch boot image for Magisk.
+# boot_patch.sh      script    A script to patch boot image for Liorsmagic.
 #                  (this file) The script will use files in its same
 #                              directory to complete the patching process.
 # util_functions.sh  script    A script which hosts all functions required
@@ -20,7 +20,7 @@
 # liorsmagicinit         binary    The binary to replace /init.
 # liorsmagic(32/64)      binary    The liorsmagic binaries.
 # liorsmagicboot         binary    A tool to manipulate boot images.
-# stub.apk           binary    The stub Magisk app to embed into ramdisk.
+# stub.apk           binary    The stub Liorsmagic app to embed into ramdisk.
 # chromeos           folder    This folder includes the utility and keys to sign
 #                  (optional)  chromeos boot images. Only used for Pixel C.
 #
@@ -125,8 +125,8 @@ case $((STATUS & 3)) in
     cat $BOOTIMAGE > stock_boot.img
     cp -af ramdisk.cpio ramdisk.cpio.orig 2>/dev/null
     ;;
-  1 )  # Magisk patched
-    ui_print "- Magisk patched boot image detected"
+  1 )  # Liorsmagic patched
+    ui_print "- Liorsmagic patched boot image detected"
     ./liorsmagicboot cpio ramdisk.cpio \
     "extract .backup/.liorsmagic config.orig" \
     "restore"
@@ -209,7 +209,7 @@ rm -f ramdisk.cpio.orig config liorsmagic*.xz stub.xz
 for dt in dtb kernel_dtb extra; do
   if [ -f $dt ]; then
     if ! ./liorsmagicboot dtb $dt test; then
-      ui_print "! Boot image $dt was patched by old (unsupported) Magisk"
+      ui_print "! Boot image $dt was patched by old (unsupported) Liorsmagic"
       abort "! Please try again with *unpatched* boot image"
     fi
     if ./liorsmagicboot dtb $dt patch; then

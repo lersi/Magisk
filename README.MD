@@ -6,40 +6,40 @@
 
 ## Introduction
 
-Magisk is a suite of open source software for customizing Android, supporting devices higher than Android 6.0.<br>
+Liorsmagic is a suite of open source software for customizing Android, supporting devices higher than Android 6.0.<br>
 Some highlight features:
 
-- **MagiskSU**: Provide root access for applications
-- **Magisk Modules**: Modify read-only partitions by installing modules
-- **MagiskBoot**: The most complete tool for unpacking and repacking Android boot images
+- **LiorsmagicSU**: Provide root access for applications
+- **Liorsmagic Modules**: Modify read-only partitions by installing modules
+- **LiorsmagicBoot**: The most complete tool for unpacking and repacking Android boot images
 - **Zygisk**: Run code in every Android applications' processes
 
 ## Downloads
 
-[Github](https://github.com/topjohnwu/Magisk/) is the only source where you can get official Magisk information and downloads.
+[Github](https://github.com/topjohnwu/Liorsmagic/) is the only source where you can get official Liorsmagic information and downloads.
 
-[![](https://img.shields.io/badge/Magisk-v26.1-blue)](https://github.com/topjohnwu/Magisk/releases/tag/v26.1)
-[![](https://img.shields.io/badge/Magisk%20Beta-v26.1-blue)](https://github.com/topjohnwu/Magisk/releases/tag/v26.1)
-[![](https://img.shields.io/badge/Magisk-Canary-red)](https://raw.githubusercontent.com/topjohnwu/liorsmagic-files/canary/app-release.apk)
-[![](https://img.shields.io/badge/Magisk-Debug-red)](https://raw.githubusercontent.com/topjohnwu/liorsmagic-files/canary/app-debug.apk)
+[![](https://img.shields.io/badge/Liorsmagic-v26.1-blue)](https://github.com/topjohnwu/Liorsmagic/releases/tag/v26.1)
+[![](https://img.shields.io/badge/Liorsmagic%20Beta-v26.1-blue)](https://github.com/topjohnwu/Liorsmagic/releases/tag/v26.1)
+[![](https://img.shields.io/badge/Liorsmagic-Canary-red)](https://raw.githubusercontent.com/topjohnwu/liorsmagic-files/canary/app-release.apk)
+[![](https://img.shields.io/badge/Liorsmagic-Debug-red)](https://raw.githubusercontent.com/topjohnwu/liorsmagic-files/canary/app-debug.apk)
 
 ## Useful Links
 
-- [Installation Instruction](https://topjohnwu.github.io/Magisk/install.html)
-- [Building and Development](https://topjohnwu.github.io/Magisk/build.html)
-- [Magisk Documentation](https://topjohnwu.github.io/Magisk/)
+- [Installation Instruction](https://topjohnwu.github.io/Liorsmagic/install.html)
+- [Building and Development](https://topjohnwu.github.io/Liorsmagic/build.html)
+- [Liorsmagic Documentation](https://topjohnwu.github.io/Liorsmagic/)
 
 ## Bug Reports
 
 **Only bug reports from Debug builds will be accepted.**
 
 For installation issues, upload both boot image and install logs.<br>
-For Magisk issues, upload boot logcat or dmesg.<br>
-For Magisk app crashes, record and upload the logcat when the crash occurs.
+For Liorsmagic issues, upload boot logcat or dmesg.<br>
+For Liorsmagic app crashes, record and upload the logcat when the crash occurs.
 
 ## Translation Contributions
 
-Default string resources for the Magisk app and its stub APK are located here:
+Default string resources for the Liorsmagic app and its stub APK are located here:
 
 - `app/src/main/res/values/strings.xml`
 - `stub/src/main/res/values/strings.xml`
@@ -48,7 +48,7 @@ Translate each and place them in the respective locations (`[module]/src/main/re
 
 ## License
 
-    Magisk, including all git submodules are free software:
+    Liorsmagic, including all git submodules are free software:
     you can redistribute it and/or modify it under the terms of the
     GNU General Public License as published by the Free Software Foundation,
     either version 3 of the License, or (at your option) any later version.

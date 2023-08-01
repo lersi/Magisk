@@ -10,7 +10,7 @@ import androidx.core.net.toUri
 import com.topjohnwu.liorsmagic.core.Info
 import com.topjohnwu.liorsmagic.core.di.AppContext
 import com.topjohnwu.liorsmagic.core.ktx.cachedFile
-import com.topjohnwu.liorsmagic.core.model.MagiskJson
+import com.topjohnwu.liorsmagic.core.model.LiorsmagicJson
 import com.topjohnwu.liorsmagic.core.model.module.OnlineModule
 import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils
 import com.topjohnwu.liorsmagic.ui.flash.FlashFragment
@@ -57,10 +57,10 @@ sealed class Subject : Parcelable {
 
     @Parcelize
     class App(
-        private val json: MagiskJson = Info.remote.liorsmagic,
+        private val json: LiorsmagicJson = Info.remote.liorsmagic,
         override val notifyId: Int = Notifications.nextId()
     ) : Subject() {
-        override val title: String get() = "Magisk-${json.version}(${json.versionCode})"
+        override val title: String get() = "Liorsmagic-${json.version}(${json.versionCode})"
         override val url: String get() = json.link
 
         @IgnoredOnParcel

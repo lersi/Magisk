@@ -6,18 +6,18 @@ import com.topjohnwu.liorsmagic.R
 import com.topjohnwu.liorsmagic.core.Const
 import com.topjohnwu.liorsmagic.events.DialogBuilder
 import com.topjohnwu.liorsmagic.ui.module.ModuleViewModel
-import com.topjohnwu.liorsmagic.view.MagiskDialog
+import com.topjohnwu.liorsmagic.view.LiorsmagicDialog
 
 class LocalModuleInstallDialog(
     private val viewModel: ModuleViewModel,
     private val uri: Uri,
     private val displayName: String
 ) : DialogBuilder {
-    override fun build(dialog: MagiskDialog) {
+    override fun build(dialog: LiorsmagicDialog) {
         dialog.apply {
             setTitle(R.string.confirm_install_title)
             setMessage(context.getString(R.string.confirm_install, displayName))
-            setButton(MagiskDialog.ButtonType.POSITIVE) {
+            setButton(LiorsmagicDialog.ButtonType.POSITIVE) {
                 text = android.R.string.ok
                 onClick {
                     viewModel.apply {
@@ -25,7 +25,7 @@ class LocalModuleInstallDialog(
                     }
                 }
             }
-            setButton(MagiskDialog.ButtonType.NEGATIVE) {
+            setButton(LiorsmagicDialog.ButtonType.NEGATIVE) {
                 text = android.R.string.cancel
             }
         }

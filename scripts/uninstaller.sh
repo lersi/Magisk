@@ -1,6 +1,6 @@
 #LIORSMAGIC
 ############################################
-# Magisk Uninstaller (updater-script)
+# Liorsmagic Uninstaller (updater-script)
 ############################################
 
 ##############
@@ -33,12 +33,12 @@ if echo $LIORSMAGIC_VER | grep -q '\.'; then
 else
   PRETTY_VER="$LIORSMAGIC_VER($LIORSMAGIC_VER_CODE)"
 fi
-print_title "Magisk $PRETTY_VER Uninstaller"
+print_title "Liorsmagic $PRETTY_VER Uninstaller"
 
-is_mounted /data || mount /data || abort "! Unable to mount /data, please uninstall with the Magisk app"
+is_mounted /data || mount /data || abort "! Unable to mount /data, please uninstall with the Liorsmagic app"
 mount_partitions
 check_data
-$DATA_DE || abort "! Cannot access /data, please uninstall with the Magisk app"
+$DATA_DE || abort "! Cannot access /data, please uninstall with the Liorsmagic app"
 get_flags
 find_boot_image
 
@@ -100,8 +100,8 @@ case $((STATUS & 3)) in
   0 )  # Stock boot
     ui_print "- Stock boot image detected"
     ;;
-  1 )  # Magisk patched
-    ui_print "- Magisk patched image detected"
+  1 )  # Liorsmagic patched
+    ui_print "- Liorsmagic patched image detected"
     # Find SHA1 of stock boot image
     ./liorsmagicboot cpio ramdisk.cpio "extract .backup/.liorsmagic config.orig"
     if [ -f config.orig ]; then
@@ -146,10 +146,10 @@ if $BOOTMODE; then
   liorsmagic --remove-modules -n
 fi
 
-ui_print "- Removing Magisk files"
+ui_print "- Removing Liorsmagic files"
 rm -rf \
 /cache/*liorsmagic* /cache/unblock /data/*liorsmagic* /data/cache/*liorsmagic* /data/property/*liorsmagic* \
-/data/Magisk.apk /data/busybox /data/custom_ramdisk_patch.sh /data/adb/*liorsmagic* \
+/data/Liorsmagic.apk /data/busybox /data/custom_ramdisk_patch.sh /data/adb/*liorsmagic* \
 /data/adb/post-fs-data.d /data/adb/service.d /data/adb/modules* \
 /data/unencrypted/liorsmagic /metadata/liorsmagic /persist/liorsmagic /mnt/vendor/persist/liorsmagic
 
@@ -164,13 +164,13 @@ cd /
 
 if $BOOTMODE; then
   ui_print "********************************************"
-  ui_print " The Magisk app will uninstall itself, and"
+  ui_print " The Liorsmagic app will uninstall itself, and"
   ui_print " the device will reboot after a few seconds"
   ui_print "********************************************"
   (sleep 8; /system/bin/reboot)&
 else
   ui_print "********************************************"
-  ui_print " The Magisk app will not be uninstalled"
+  ui_print " The Liorsmagic app will not be uninstalled"
   ui_print " Please uninstall it manually after reboot"
   ui_print "********************************************"
   recovery_cleanup

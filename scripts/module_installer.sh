@@ -11,7 +11,7 @@ ui_print() { echo "$1"; }
 
 require_new_liorsmagic() {
   ui_print "*******************************"
-  ui_print " Please install Magisk v20.4+! "
+  ui_print " Please install Liorsmagic v20.4+! "
   ui_print "*******************************"
   exit 1
 }

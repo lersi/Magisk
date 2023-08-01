@@ -13,7 +13,7 @@ using namespace std;
 
 [[noreturn]] static void usage() {
     fprintf(stderr,
-R"EOF(Magisk - Multi-purpose Utility
+R"EOF(Liorsmagic - Multi-purpose Utility
 
 Usage: liorsmagic [applet [arguments]...]
    or: liorsmagic [options]...
@@ -32,11 +32,11 @@ Advanced Options (Internal APIs):
    --[init trigger]          callback on init triggers. Valid triggers:
                              post-fs-data, service, boot-complete, zygote-restart
    --unlock-blocks           set BLKROSET flag to OFF for all block devices
-   --restorecon              restore selinux context on Magisk files
+   --restorecon              restore selinux context on Liorsmagic files
    --clone-attr SRC DEST     clone permission, owner, and selinux context
    --clone SRC DEST          clone SRC to DEST
-   --sqlite SQL              exec SQL commands to Magisk database
-   --path                    print Magisk tmpfs mount path
+   --sqlite SQL              exec SQL commands to Liorsmagic database
+   --path                    print Liorsmagic tmpfs mount path
    --denylist ARGS           denylist config CLI
    --preinit-device          resolve a device to store preinit files
 

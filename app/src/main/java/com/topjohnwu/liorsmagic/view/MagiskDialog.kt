@@ -30,11 +30,11 @@ import com.topjohnwu.liorsmagic.databinding.RvItem
 import com.topjohnwu.liorsmagic.databinding.bindExtra
 import com.topjohnwu.liorsmagic.databinding.set
 import com.topjohnwu.liorsmagic.databinding.setAdapter
-import com.topjohnwu.liorsmagic.view.MagiskDialog.DialogClickListener
+import com.topjohnwu.liorsmagic.view.LiorsmagicDialog.DialogClickListener
 
 typealias DialogButtonClickListener = (DialogInterface) -> Unit
 
-class MagiskDialog(
+class LiorsmagicDialog(
     context: Activity, theme: Int = 0
 ) : AppCompatDialog(context, theme) {
 
@@ -119,7 +119,7 @@ class MagiskDialog(
         }
 
         fun clicked() {
-            onClickAction(this@MagiskDialog)
+            onClickAction(this@LiorsmagicDialog)
             if (!doNotDismiss) {
                 dismiss()
             }

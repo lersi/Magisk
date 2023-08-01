@@ -10,7 +10,7 @@ import com.topjohnwu.liorsmagic.core.ktx.activity
 import com.topjohnwu.liorsmagic.databinding.ObservableRvItem
 import com.topjohnwu.liorsmagic.databinding.set
 import com.topjohnwu.liorsmagic.utils.TextHolder
-import com.topjohnwu.liorsmagic.view.MagiskDialog
+import com.topjohnwu.liorsmagic.view.LiorsmagicDialog
 
 sealed class BaseSettingsItem : ObservableRvItem() {
 
@@ -75,10 +75,10 @@ sealed class BaseSettingsItem : ObservableRvItem() {
 
         override fun onPressed(view: View, handler: Handler) {
             handler.onItemPressed(view, this) {
-                MagiskDialog(view.activity).apply {
+                LiorsmagicDialog(view.activity).apply {
                     setTitle(title.getText(view.resources))
                     setView(getView(view.context))
-                    setButton(MagiskDialog.ButtonType.POSITIVE) {
+                    setButton(LiorsmagicDialog.ButtonType.POSITIVE) {
                         text = android.R.string.ok
                         onClick {
                             inputResult?.let { result ->
@@ -90,7 +90,7 @@ sealed class BaseSettingsItem : ObservableRvItem() {
                             doNotDismiss = true
                         }
                     }
-                    setButton(MagiskDialog.ButtonType.NEGATIVE) {
+                    setButton(LiorsmagicDialog.ButtonType.NEGATIVE) {
                         text = android.R.string.cancel
                     }
                 }.show()
@@ -118,9 +118,9 @@ sealed class BaseSettingsItem : ObservableRvItem() {
 
         override fun onPressed(view: View, handler: Handler) {
             handler.onItemPressed(view, this) {
-                MagiskDialog(view.activity).apply {
+                LiorsmagicDialog(view.activity).apply {
                     setTitle(title.getText(view.resources))
-                    setButton(MagiskDialog.ButtonType.NEGATIVE) {
+                    setButton(LiorsmagicDialog.ButtonType.NEGATIVE) {
                         text = android.R.string.cancel
                     }
                     setListItems(entries(view.resources)) {

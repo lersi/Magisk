@@ -2,7 +2,7 @@
 # ADDOND_VERSION=2
 ########################################################
 #
-# Magisk Survival Script for ROMs with addon.d support
+# Liorsmagic Survival Script for ROMs with addon.d support
 # by topjohnwu and osm0sis
 #
 ########################################################
@@ -27,17 +27,17 @@ trampoline() {
     fi
     ui_print() {
       if $BOOTMODE; then
-        log -t Magisk -- "$1"
+        log -t Liorsmagic -- "$1"
       else
         echo -e "ui_print $1\nui_print" >> /proc/self/fd/$OUTFD
       fi
     }
 
     ui_print "***********************"
-    ui_print " Magisk addon.d failed"
+    ui_print " Liorsmagic addon.d failed"
     ui_print "***********************"
-    ui_print "! Cannot find Magisk binaries - was data wiped or not decrypted?"
-    ui_print "! Reflash OTA from decrypted recovery or reflash Magisk"
+    ui_print "! Cannot find Liorsmagic binaries - was data wiped or not decrypted?"
+    ui_print "! Reflash OTA from decrypted recovery or reflash Liorsmagic"
   fi
   exit 1
 }
@@ -64,7 +64,7 @@ initialize() {
 
   if $BOOTMODE; then
     # Override ui_print when booted
-    ui_print() { log -t Magisk -- "$1"; }
+    ui_print() { log -t Liorsmagic -- "$1"; }
   fi
   OUTFD=
   setup_flashable
@@ -85,7 +85,7 @@ main() {
   else
     PRETTY_VER="$LIORSMAGIC_VER($LIORSMAGIC_VER_CODE)"
   fi
-  print_title "Magisk $PRETTY_VER addon.d"
+  print_title "Liorsmagic $PRETTY_VER addon.d"
 
   mount_partitions
   check_data

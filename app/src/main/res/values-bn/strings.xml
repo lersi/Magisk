@@ -90,7 +90,7 @@
 
     <!--SafetyNet-->
 
-    <!--MagiskHide-->
+    <!--LiorsmagicHide-->
     <string name="show_system_app">সিস্টেম অ্যাপ দেখান</string>
     <string name="show_os_app">ওএস অ্যাপ দেখান</string>
     <string name="hide_filter_hint">নাম অনুসারে ফিল্টার করুন</string>

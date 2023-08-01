@@ -7,7 +7,7 @@ using namespace std;
 
 [[noreturn]] static void usage(char *arg0) {
     fprintf(stderr,
-R"EOF(MagiskPolicy - SELinux Policy Patch Tool
+R"EOF(LiorsmagicPolicy - SELinux Policy Patch Tool
 
 Usage: %s [--options...] [policy statements...]
 
@@ -19,7 +19,7 @@ Options:
    --compile-split   compile split cil policies
    --save FILE       dump monolithic sepolicy to FILE
    --live            immediately load sepolicy into the kernel
-   --liorsmagic          apply built-in Magisk sepolicy rules
+   --liorsmagic          apply built-in Liorsmagic sepolicy rules
    --apply FILE      apply rules from FILE, read and parsed
                      line by line as policy statements
                      (multiple --apply are allowed)

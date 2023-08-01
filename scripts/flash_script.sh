@@ -1,6 +1,6 @@
 #LIORSMAGIC
 ############################################
-# Magisk Flash Script (updater-script)
+# Liorsmagic Flash Script (updater-script)
 ############################################
 
 ##############
@@ -33,7 +33,7 @@ if echo $LIORSMAGIC_VER | grep -q '\.'; then
 else
   PRETTY_VER="$LIORSMAGIC_VER($LIORSMAGIC_VER_CODE)"
 fi
-print_title "Magisk $PRETTY_VER Installer"
+print_title "Liorsmagic $PRETTY_VER Installer"
 
 is_mounted /data || mount /data || is_mounted /cache || mount /cache
 mount_partitions
@@ -47,7 +47,7 @@ ui_print "- Target image: $BOOTIMAGE"
 # Detect version and architecture
 api_level_arch_detect
 
-[ $API -lt 23 ] && abort "! Magisk only support Android 6.0 and above"
+[ $API -lt 23 ] && abort "! Liorsmagic only support Android 6.0 and above"
 
 ui_print "- Device platform: $ABI"
 
@@ -71,7 +71,7 @@ rm -rf $LIORSMAGICBIN/* 2>/dev/null
 mkdir -p $LIORSMAGICBIN 2>/dev/null
 cp -af $BINDIR/. $COMMONDIR/. $BBBIN $LIORSMAGICBIN
 
-# Remove files only used by the Magisk app
+# Remove files only used by the Liorsmagic app
 rm -f $LIORSMAGICBIN/bootctl $LIORSMAGICBIN/main.jar \
   $LIORSMAGICBIN/module_installer.sh $LIORSMAGICBIN/uninstaller.sh
 

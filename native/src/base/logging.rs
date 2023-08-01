@@ -7,7 +7,7 @@ use std::process::exit;
 use crate::ffi::LogLevel;
 use crate::BufFormatter;
 
-// Error handling and logging throughout the Rust codebase in Magisk:
+// Error handling and logging throughout the Rust codebase in Liorsmagic:
 //
 // All errors should be logged and consumed as soon as possible and converted into LoggedError.
 // Implement `From<ErrorType> for LoggedError` for non-standard error types so that we can

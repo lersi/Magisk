@@ -6,7 +6,7 @@ import com.topjohnwu.liorsmagic.core.di.AppContext
 import com.topjohnwu.liorsmagic.core.di.ServiceLocator
 import com.topjohnwu.liorsmagic.core.download.DownloadService
 import com.topjohnwu.liorsmagic.core.download.Subject
-import com.topjohnwu.liorsmagic.view.MagiskDialog
+import com.topjohnwu.liorsmagic.view.LiorsmagicDialog
 import java.io.File
 
 class ManagerInstallDialog : MarkDownDialog() {
@@ -23,15 +23,15 @@ class ManagerInstallDialog : MarkDownDialog() {
         return text
     }
 
-    override fun build(dialog: MagiskDialog) {
+    override fun build(dialog: LiorsmagicDialog) {
         super.build(dialog)
         dialog.apply {
             setCancelable(true)
-            setButton(MagiskDialog.ButtonType.POSITIVE) {
+            setButton(LiorsmagicDialog.ButtonType.POSITIVE) {
                 text = R.string.install
                 onClick { DownloadService.start(activity, Subject.App()) }
             }
-            setButton(MagiskDialog.ButtonType.NEGATIVE) {
+            setButton(LiorsmagicDialog.ButtonType.NEGATIVE) {
                 text = android.R.string.cancel
             }
         }

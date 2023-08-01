@@ -5,19 +5,19 @@ import com.topjohnwu.liorsmagic.BuildConfig
 import com.topjohnwu.liorsmagic.R
 import com.topjohnwu.liorsmagic.core.Info
 import com.topjohnwu.liorsmagic.core.base.BaseActivity
-import com.topjohnwu.liorsmagic.core.tasks.MagiskInstaller
+import com.topjohnwu.liorsmagic.core.tasks.LiorsmagicInstaller
 import com.topjohnwu.liorsmagic.events.DialogBuilder
 import com.topjohnwu.liorsmagic.ui.home.HomeViewModel
-import com.topjohnwu.liorsmagic.view.MagiskDialog
+import com.topjohnwu.liorsmagic.view.LiorsmagicDialog
 import kotlinx.coroutines.launch
 
 class EnvFixDialog(private val vm: HomeViewModel, private val code: Int) : DialogBuilder {
 
-    override fun build(dialog: MagiskDialog) {
+    override fun build(dialog: LiorsmagicDialog) {
         dialog.apply {
             setTitle(R.string.env_fix_title)
             setMessage(R.string.env_fix_msg)
-            setButton(MagiskDialog.ButtonType.POSITIVE) {
+            setButton(LiorsmagicDialog.ButtonType.POSITIVE) {
                 text = android.R.string.ok
                 doNotDismiss = true
                 onClick {
@@ -28,13 +28,13 @@ class EnvFixDialog(private val vm: HomeViewModel, private val code: Int) : Dialo
                         setCancelable(false)
                     }
                     (dialog.ownerActivity as BaseActivity).lifecycleScope.launch {
-                        MagiskInstaller.FixEnv {
+                        LiorsmagicInstaller.FixEnv {
                             dialog.dismiss()
                         }.exec()
                     }
                 }
             }
-            setButton(MagiskDialog.ButtonType.NEGATIVE) {
+            setButton(LiorsmagicDialog.ButtonType.NEGATIVE) {
                 text = android.R.string.cancel
             }
         }
@@ -43,10 +43,10 @@ class EnvFixDialog(private val vm: HomeViewModel, private val code: Int) : Dialo
             Info.env.versionCode != BuildConfig.VERSION_CODE ||
             Info.env.versionString != BuildConfig.VERSION_NAME) {
             dialog.setMessage(R.string.env_full_fix_msg)
-            dialog.setButton(MagiskDialog.ButtonType.POSITIVE) {
+            dialog.setButton(LiorsmagicDialog.ButtonType.POSITIVE) {
                 text = android.R.string.ok
                 onClick {
-                    vm.onMagiskPressed()
+                    vm.onLiorsmagicPressed()
                     dialog.dismiss()
                 }
             }

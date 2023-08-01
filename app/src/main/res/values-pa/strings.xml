@@ -85,7 +85,7 @@
 
     <!--SafetyNet-->
 
-    <!-- MagiskHide -->
+    <!-- LiorsmagicHide -->
     <string name="show_system_app">ਸਿਸਟਮ ਐਪਸ ਦਿਖਾਓ</string>
     <string name="show_os_app">OS ਐਪਲੀਕੇਸ਼ਨ ਦਿਖਾਓ</string>
     <string name="hide_filter_hint">ਨਾਮ ਦੁਆਰਾ ਫਿਲਟਰ ਕਰੋ</string>

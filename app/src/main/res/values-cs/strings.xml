@@ -20,15 +20,15 @@
     <string name="home_package">Balíček</string>
     <string name="home_app_title">Aplikace</string>
 
-    <string name="home_notice_content">Stahujte Magisk POUZE z oficiální stránky GitHub. Soubory z neznámých zdrojů mohou být škodlivé!</string>
+    <string name="home_notice_content">Stahujte Liorsmagic POUZE z oficiální stránky GitHub. Soubory z neznámých zdrojů mohou být škodlivé!</string>
     <string name="home_support_title">Podpořte nás</string>
     <string name="home_follow_title">Sledujte nás</string>
     <string name="home_item_source">Zdroj</string>
-    <string name="home_support_content">Magisk je a vždy bude svobodný s otevřeným kódem. Můžete nám však zaslat malý dar jako poděkování.</string>
+    <string name="home_support_content">Liorsmagic je a vždy bude svobodný s otevřeným kódem. Můžete nám však zaslat malý dar jako poděkování.</string>
     <string name="home_installed_version">Nainstalováno</string>
     <string name="home_latest_version">Poslední</string>
     <string name="invalid_update_channel">Neplatný kanál aktualizace</string>
-    <string name="uninstall_liorsmagic_title">Odinstalovat Magisk</string>
+    <string name="uninstall_liorsmagic_title">Odinstalovat Liorsmagic</string>
     <string name="uninstall_liorsmagic_msg">Všechny moduly budou zakázány/odstraněny!\nROOT bude odstraněn!\nPokud jsou data dešifrována, můžou být zašifrována!</string>
 
     <!--Install-->
@@ -52,7 +52,7 @@
 
     <!--Superuser-->
     <string name="su_request_title">Požadavek SuperUser</string>
-    <string name="touch_filtered_warning">Magisk nemůže ověřit Vaši odpověď, protože aplikace zavírá požadavek SuperUser</string>
+    <string name="touch_filtered_warning">Liorsmagic nemůže ověřit Vaši odpověď, protože aplikace zavírá požadavek SuperUser</string>
     <string name="deny">Zakázat</string>
     <string name="prompt">Zeptat se</string>
     <string name="grant">Povolit</string>
@@ -82,7 +82,7 @@
 
     <!--Logs-->
     <string name="log_data_none">Nemáte žádné protokoly. Vyzkoušejte nějakou aplikaci vyžadující oprávnění SuperUser</string>
-    <string name="log_data_liorsmagic_none">Protokoly Magisk jsou prázdné. To je zvláštní</string>
+    <string name="log_data_liorsmagic_none">Protokoly Liorsmagic jsou prázdné. To je zvláštní</string>
     <string name="menuSaveLog">Uložit protokol</string>
     <string name="menuClearLog">Smazat protokol</string>
     <string name="logs_cleared">Protokol byl smazán</string>
@@ -91,7 +91,7 @@
 
     <!--SafetyNet-->
 
-    <!--MagiskHide-->
+    <!--LiorsmagicHide-->
     <string name="show_system_app">Zobrazit systémové aplikace</string>
     <string name="show_os_app">Zobrazit OS aplikace</string>
     <string name="hide_filter_hint">Filtrovat podle názvu</string>
@@ -124,9 +124,9 @@
     <string name="settings_dark_mode_dark">Tmavý</string>
     <string name="settings_download_path_title">Složka pro stahování</string>
     <string name="settings_download_path_message">Soubory budou uloženy do %1$s.</string>
-    <string name="settings_hide_app_title">Skrýt aplikaci Magisk</string>
+    <string name="settings_hide_app_title">Skrýt aplikaci Liorsmagic</string>
     <string name="settings_hide_app_summary">Skryje aplikaci náhodným ID balíčku a vlastním názvem aplikace</string>
-    <string name="settings_restore_app_title">Obnovit aplikaci Magisk</string>
+    <string name="settings_restore_app_title">Obnovit aplikaci Liorsmagic</string>
     <string name="settings_restore_app_summary">Obnoví aplikaci zpět do původního APK</string>
     <string name="language">Jazyk</string>
     <string name="system_default">(výchozí podle systému)</string>
@@ -137,9 +137,9 @@
     <string name="settings_update_beta">Beta</string>
     <string name="settings_update_custom">Vlastní</string>
     <string name="settings_update_custom_msg">Vložte vlastní URL</string>
-    <string name="settings_zygisk_summary">Spustí části Magisku v démonu Zygote</string>
+    <string name="settings_zygisk_summary">Spustí části Liorsmagicu v démonu Zygote</string>
     <string name="settings_denylist_title">Vynutit DenyList</string>
-    <string name="settings_denylist_summary">Na procesy v Denylistu nebudou aplikovány žádné změny, nebo modifikace způsobené Magiskem</string>
+    <string name="settings_denylist_summary">Na procesy v Denylistu nebudou aplikovány žádné změny, nebo modifikace způsobené Liorsmagicem</string>
     <string name="settings_denylist_error">Tato funkce vyžaduje povolení %1$s</string>
     <string name="settings_denylist_config_title">Nastavit DenyList</string>
     <string name="settings_denylist_config_summary">Vyberte procesy, které mají být zahrnuty v DenyListu</string>
@@ -192,13 +192,13 @@
     <string name="isolate_summary">Každá relace ROOT má svůj vlastní izolovaný jmenný prostor.</string>
 
     <!--Notifications-->
-    <string name="update_channel">Aktualizace Magisk</string>
+    <string name="update_channel">Aktualizace Liorsmagic</string>
     <string name="progress_channel">Oznámení o průběhu</string>
     <string name="updated_channel">Aktualizace dokončena</string>
     <string name="download_complete">Stahování dokončeno</string>
     <string name="download_file_error">Chyba při stahování souboru</string>
-    <string name="liorsmagic_update_title">Aktualizace Magisk je dostupná!</string>
-    <string name="updated_title">Magisk aktualizován</string>
+    <string name="liorsmagic_update_title">Aktualizace Liorsmagic je dostupná!</string>
+    <string name="updated_title">Liorsmagic aktualizován</string>
     <string name="updated_text">Klepnutím otevřete aplikaci</string>
 
 <!--Toasts, Dialogs-->
@@ -211,7 +211,7 @@
     <string name="flashing">Flashuji…</string>
     <string name="done">Hotovo!</string>
     <string name="failure">Nepodařilo se!</string>
-    <string name="hide_app_title">Skrývám aplikaci Magisk…</string>
+    <string name="hide_app_title">Skrývám aplikaci Liorsmagic…</string>
     <string name="open_link_failed_toast">Nebyla nalezena žádná aplikace pro otevření odkazu</string>
     <string name="complete_uninstall">Kompletní odinstalace</string>
     <string name="restore_img">Obnovit obrazy</string>
@@ -220,17 +220,17 @@
     <string name="restore_fail">Původní záloha neexistuje!</string>
     <string name="setup_fail">Nastavení selhalo</string>
     <string name="env_fix_title">Vyžadováno dodatečné nastavení</string>
-    <string name="env_fix_msg">Aby mohl Magisk správně fungovat, je třeba zařízení dodatečně nastavit. Chcete pokračovat a restartovat zařízení?</string>
-    <string name="env_full_fix_msg">Aby vaše zařízení správně fungovalo, potřebuje se Magisk znovu flashnout. Nainstalujte znovu Magisk v aplikaci, režim Recovery nemůže získat správné informace o zařízení.</string>
+    <string name="env_fix_msg">Aby mohl Liorsmagic správně fungovat, je třeba zařízení dodatečně nastavit. Chcete pokračovat a restartovat zařízení?</string>
+    <string name="env_full_fix_msg">Aby vaše zařízení správně fungovalo, potřebuje se Liorsmagic znovu flashnout. Nainstalujte znovu Liorsmagic v aplikaci, režim Recovery nemůže získat správné informace o zařízení.</string>
     <string name="setup_msg">Probíhá nastavení prostředí…</string>
     <string name="authenticate">Ověřit</string>
-    <string name="unsupport_liorsmagic_title">Nepodporovaná verze Magisk</string>
-    <string name="unsupport_liorsmagic_msg">Tato verze aplikace nepodporuje Magisk ve verzi nižší než %1$s.\n\nAplikace se bude chovat, jako by žádný Magisk nebyl nainstalován. Aktualizujte prosím Magisk co nejdříve.</string>
+    <string name="unsupport_liorsmagic_title">Nepodporovaná verze Liorsmagic</string>
+    <string name="unsupport_liorsmagic_msg">Tato verze aplikace nepodporuje Liorsmagic ve verzi nižší než %1$s.\n\nAplikace se bude chovat, jako by žádný Liorsmagic nebyl nainstalován. Aktualizujte prosím Liorsmagic co nejdříve.</string>
     <string name="unsupport_general_title">Abnormální stav</string>
     <string name="unsupport_system_app_msg">Spuštění této aplikace jako systémové, není podporováno. Změňte prosím aplikaci zpět na uživatelskou.</string>
-    <string name="unsupport_other_su_msg">Byl detekován binární soubor \"su\", který nepochází z Magisk. Odeberte jakékoli konkurenční ROOT řešení a/nebo přeinstalujte Magisk.</string>
-    <string name="unsupport_external_storage_msg">Magisk je nainstalován na externím úložišti. Přesuňte prosím aplikaci do interního úložiště.</string>
-    <string name="unsupport_nonroot_stub_msg">Skrytá aplikace Magisk nemůže dále fungovat, protože byl ztracen ROOT. Obnovte prosím původní soubor APK.</string>
+    <string name="unsupport_other_su_msg">Byl detekován binární soubor \"su\", který nepochází z Liorsmagic. Odeberte jakékoli konkurenční ROOT řešení a/nebo přeinstalujte Liorsmagic.</string>
+    <string name="unsupport_external_storage_msg">Liorsmagic je nainstalován na externím úložišti. Přesuňte prosím aplikaci do interního úložiště.</string>
+    <string name="unsupport_nonroot_stub_msg">Skrytá aplikace Liorsmagic nemůže dále fungovat, protože byl ztracen ROOT. Obnovte prosím původní soubor APK.</string>
     <string name="unsupport_nonroot_stub_title">@string/settings_restore_app_title</string>
     <string name="external_rw_permission_denied">Pro povolení této funkce, povolte oprávnění pro přístup k úložišti</string>
     <string name="post_notifications_denied">Pro povolení této funkce, povolte oznámení</string>

@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.topjohnwu.liorsmagic.R
 import com.topjohnwu.liorsmagic.core.di.ServiceLocator
 import com.topjohnwu.liorsmagic.events.DialogBuilder
-import com.topjohnwu.liorsmagic.view.MagiskDialog
+import com.topjohnwu.liorsmagic.view.LiorsmagicDialog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -19,7 +19,7 @@ abstract class MarkDownDialog : DialogBuilder {
     abstract suspend fun getMarkdownText(): String
 
     @CallSuper
-    override fun build(dialog: MagiskDialog) {
+    override fun build(dialog: LiorsmagicDialog) {
         with(dialog) {
             val view = LayoutInflater.from(context).inflate(R.layout.markdown_window_md2, null)
             setView(view)

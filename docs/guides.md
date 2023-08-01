@@ -2,20 +2,20 @@
 
 ## BusyBox
 
-Magisk ships with a feature complete BusyBox binary (including full SELinux support). The executable is located at `/data/adb/liorsmagic/busybox`. Magisk's BusyBox supports runtime toggle-able "ASH Standalone Shell Mode". What this standalone mode means is that when running in the `ash` shell of BusyBox, every single command will directly use the applet within BusyBox, regardless of what is set as `PATH`. For example, commands like `ls`, `rm`, `chmod` will **NOT** use what is in `PATH` (in the case of Android by default it will be `/system/bin/ls`, `/system/bin/rm`, and `/system/bin/chmod` respectively), but will instead directly call internal BusyBox applets. This makes sure that scripts always run in a predictable environment and always have the full suite of commands no matter which Android version it is running on. To force a command _not_ to use BusyBox, you have to call the executable with full paths.
+Liorsmagic ships with a feature complete BusyBox binary (including full SELinux support). The executable is located at `/data/adb/liorsmagic/busybox`. Liorsmagic's BusyBox supports runtime toggle-able "ASH Standalone Shell Mode". What this standalone mode means is that when running in the `ash` shell of BusyBox, every single command will directly use the applet within BusyBox, regardless of what is set as `PATH`. For example, commands like `ls`, `rm`, `chmod` will **NOT** use what is in `PATH` (in the case of Android by default it will be `/system/bin/ls`, `/system/bin/rm`, and `/system/bin/chmod` respectively), but will instead directly call internal BusyBox applets. This makes sure that scripts always run in a predictable environment and always have the full suite of commands no matter which Android version it is running on. To force a command _not_ to use BusyBox, you have to call the executable with full paths.
 
-Every single shell script running in the context of Magisk will be executed in BusyBox's `ash` shell with standalone mode enabled. For what is relevant to 3rd party developers, this includes all boot scripts and module installation scripts.
+Every single shell script running in the context of Liorsmagic will be executed in BusyBox's `ash` shell with standalone mode enabled. For what is relevant to 3rd party developers, this includes all boot scripts and module installation scripts.
 
-For those who want to use this "Standalone Mode" feature outside of Magisk, there are 2 ways to enable it:
+For those who want to use this "Standalone Mode" feature outside of Liorsmagic, there are 2 ways to enable it:
 
 1. Set environment variable `ASH_STANDALONE` to `1`<br>Example: `ASH_STANDALONE=1 /data/adb/liorsmagic/busybox sh <script>`
 2. Toggle with command-line options:<br>`/data/adb/liorsmagic/busybox sh -o standalone <script>`
 
-To make sure all subsequent `sh` shell executed also runs in standalone mode, option 1 is the preferred method (and this is what Magisk and the Magisk app internally use) as environment variables are inherited down to child processes.
+To make sure all subsequent `sh` shell executed also runs in standalone mode, option 1 is the preferred method (and this is what Liorsmagic and the Liorsmagic app internally use) as environment variables are inherited down to child processes.
 
-## Magisk Modules
+## Liorsmagic Modules
 
-A Magisk module is a folder placed in `/data/adb/modules` with the structure below:
+A Liorsmagic module is a folder placed in `/data/adb/modules` with the structure below:
 
 ```
 /data/adb/modules
@@ -44,7 +44,7 @@ A Magisk module is a folder placed in `/data/adb/modules` with the structure bel
 │   │
 │   │      *** Status Flags ***
 │   │
-│   ├── skip_mount          <--- If exists, Magisk will NOT mount your system folder
+│   ├── skip_mount          <--- If exists, Liorsmagic will NOT mount your system folder
 │   ├── disable             <--- If exists, the module will be disabled
 │   ├── remove              <--- If exists, the module will be removed next reboot
 │   │
@@ -52,7 +52,7 @@ A Magisk module is a folder placed in `/data/adb/modules` with the structure bel
 │   │
 │   ├── post-fs-data.sh     <--- This script will be executed in post-fs-data
 │   ├── service.sh          <--- This script will be executed in late_start service
-|   ├── uninstall.sh        <--- This script will be executed when Magisk removes your module
+|   ├── uninstall.sh        <--- This script will be executed when Liorsmagic removes your module
 │   ├── system.prop         <--- Properties in this file will be loaded as system properties by resetprop
 │   ├── sepolicy.rule       <--- Additional custom sepolicy rules
 │   │
@@ -92,7 +92,7 @@ updateJson=<url> (optional)
   ex: ✓ `a_module`, ✓ `a.module`, ✓ `module-101`, ✗ `a module`, ✗ `1_module`, ✗ `-a-module`<br>
   This is the **unique identifier** of your module. You should not change it once published.
 - `versionCode` has to be an **integer**. This is used to compare versions
-- `updateJson` should point to a URL that downloads a JSON to provide info so the Magisk app can update the module.
+- `updateJson` should point to a URL that downloads a JSON to provide info so the Liorsmagic app can update the module.
 - Others that weren't mentioned above can be any **single line** string.
 - Make sure to use the `UNIX (LF)` line break type and not the `Windows (CR+LF)` or `Macintosh (CR)`.
 
@@ -120,11 +120,11 @@ All files you want to replace/inject should be placed in this folder. This folde
 
 If you place a file named `.replace` in any of the folders, instead of merging its contents, that folder will directly replace the one in the real system. This can be very handy for swapping out an entire folder.
 
-If you want to replace files in `/vendor`, `/product`, or `/system_ext`, please place them under `system/vendor`, `system/product`, and `system/system_ext` respectively. Magisk will transparently handle whether these partitions are in a separate partition or not.
+If you want to replace files in `/vendor`, `/product`, or `/system_ext`, please place them under `system/vendor`, `system/product`, and `system/system_ext` respectively. Liorsmagic will transparently handle whether these partitions are in a separate partition or not.
 
 #### Zygisk
 
-Zygisk is a feature of Magisk that allows advanced module developers to run code directly in every Android applications' processes before they are specialized and running. For more details about the Zygisk API and building a Zygisk module, please checkout the [Zygisk Module Sample](https://github.com/topjohnwu/zygisk-module-sample) project.
+Zygisk is a feature of Liorsmagic that allows advanced module developers to run code directly in every Android applications' processes before they are specialized and running. For more details about the Zygisk API and building a Zygisk module, please checkout the [Zygisk Module Sample](https://github.com/topjohnwu/zygisk-module-sample) project.
 
 #### system.prop
 
@@ -134,14 +134,14 @@ This file follows the same format as `build.prop`. Each line comprises of `[key]
 
 If your module requires some additional sepolicy patches, please add those rules into this file. Each line in this file will be treated as a policy statement. For more details about how a policy statement is formatted, please check [liorsmagicpolicy](tools.md#liorsmagicpolicy)'s documentation.
 
-## Magisk Module Installer
+## Liorsmagic Module Installer
 
-A Magisk module installer is a Magisk module packaged in a zip file that can be flashed in the Magisk app or custom recoveries such as TWRP. The simplest Magisk module installer is just a Magisk module packed as a zip file, in addition to the following files:
+A Liorsmagic module installer is a Liorsmagic module packaged in a zip file that can be flashed in the Liorsmagic app or custom recoveries such as TWRP. The simplest Liorsmagic module installer is just a Liorsmagic module packed as a zip file, in addition to the following files:
 
-- `update-binary`: Download the latest [module_installer.sh](https://github.com/topjohnwu/Magisk/blob/master/scripts/module_installer.sh) and rename/copy that script as `update-binary`
+- `update-binary`: Download the latest [module_installer.sh](https://github.com/topjohnwu/Liorsmagic/blob/master/scripts/module_installer.sh) and rename/copy that script as `update-binary`
 - `updater-script`: This file should only contain the string `#LIORSMAGIC`
 
-The module installer script will setup the environment, extract the module files from the zip file to the correct location, then finalizes the installation process, which should be good enough for most simple Magisk modules.
+The module installer script will setup the environment, extract the module files from the zip file to the correct location, then finalizes the installation process, which should be good enough for most simple Liorsmagic modules.
 
 ```
 module.zip
@@ -166,13 +166,13 @@ If you need to customize the module installation process, optionally you can cre
 
 If you would like to fully control and customize the installation process, declare `SKIPUNZIP=1` in `customize.sh` to skip all default installation steps. By doing so, your `customize.sh` will be responsible to install everything by itself.
 
-The `customize.sh` script runs in Magisk's BusyBox `ash` shell with "Standalone Mode" enabled. The following variables and functions are available:
+The `customize.sh` script runs in Liorsmagic's BusyBox `ash` shell with "Standalone Mode" enabled. The following variables and functions are available:
 
 ##### Variables
 
-- `LIORSMAGIC_VER` (string): the version string of current installed Magisk (e.g. `v20.0`)
-- `LIORSMAGIC_VER_CODE` (int): the version code of current installed Magisk (e.g. `20000`)
-- `BOOTMODE` (bool): `true` if the module is being installed in the Magisk app
+- `LIORSMAGIC_VER` (string): the version string of current installed Liorsmagic (e.g. `v20.0`)
+- `LIORSMAGIC_VER_CODE` (int): the version code of current installed Liorsmagic (e.g. `20000`)
+- `BOOTMODE` (bool): `true` if the module is being installed in the Liorsmagic app
 - `MODPATH` (path): the path where your module files should be installed
 - `TMPDIR` (path): a place where you can temporarily store files
 - `ZIPFILE` (path): your module's installation zip
@@ -221,13 +221,13 @@ The list above will result in the following files being created: `$MODPATH/syste
 
 #### Notes
 
-- When your module is downloaded with the Magisk app, `update-binary` will be **forcefully** replaced with the latest [`module_installer.sh`](https://github.com/topjohnwu/Magisk/blob/master/scripts/module_installer.sh). **DO NOT** try to add any custom logic in `update-binary`.
+- When your module is downloaded with the Liorsmagic app, `update-binary` will be **forcefully** replaced with the latest [`module_installer.sh`](https://github.com/topjohnwu/Liorsmagic/blob/master/scripts/module_installer.sh). **DO NOT** try to add any custom logic in `update-binary`.
 - Due to historical reasons, **DO NOT** add a file named `install.sh` in your module installer zip.
 - **DO NOT** call `exit` at the end of `customize.sh`. The module installer script has to perform some cleanups before exiting.
 
 ## Boot Scripts
 
-In Magisk, you can run boot scripts in 2 different modes: **post-fs-data** and **late_start service** mode.
+In Liorsmagic, you can run boot scripts in 2 different modes: **post-fs-data** and **late_start service** mode.
 
 - post-fs-data mode
   - This stage is BLOCKING. The boot process is paused before execution is done, or 10 seconds have passed.
@@ -239,7 +239,7 @@ In Magisk, you can run boot scripts in 2 different modes: **post-fs-data** and *
   - This stage is NON-BLOCKING. Your script runs in parallel with the rest of the booting process.
   - **This is the recommended stage to run most scripts.**
 
-In Magisk, there are also 2 kinds of scripts: **general scripts** and **module scripts**.
+In Liorsmagic, there are also 2 kinds of scripts: **general scripts** and **module scripts**.
 
 - General Scripts
   - Placed in `/data/adb/post-fs-data.d` or `/data/adb/service.d`
@@ -251,11 +251,11 @@ In Magisk, there are also 2 kinds of scripts: **general scripts** and **module s
   - Only executed if the module is enabled
   - `post-fs-data.sh` runs in post-fs-data mode, and `service.sh` runs in late_start service mode.
 
-All boot scripts will run in Magisk's BusyBox `ash` shell with "Standalone Mode" enabled.
+All boot scripts will run in Liorsmagic's BusyBox `ash` shell with "Standalone Mode" enabled.
 
 ## Root Directory Overlay System
 
-Since `/` is read-only on system-as-root devices, Magisk provides an overlay system to enable developers to replace files in rootdir or add new `*.rc` scripts. This feature is designed mostly for custom kernel developers.
+Since `/` is read-only on system-as-root devices, Liorsmagic provides an overlay system to enable developers to replace files in rootdir or add new `*.rc` scripts. This feature is designed mostly for custom kernel developers.
 
 Overlay files shall be placed in the `overlay.d` folder in boot image ramdisk, and they follow these rules:
 
@@ -263,9 +263,9 @@ Overlay files shall be placed in the `overlay.d` folder in boot image ramdisk, a
 2. Existing files can be replaced by files located at the same relative path
 3. Files that correspond to a non-existing file will be ignored
 
-To add additional files which you can refer to in your custom `*.rc` scripts, add them into `overlay.d/liorsbin`. The 3 rules above do not apply to anything in this folder; instead, they will be directly copied to Magisk's internal `tmpfs` directory (which used to always be `/liorsbin`).
+To add additional files which you can refer to in your custom `*.rc` scripts, add them into `overlay.d/liorsbin`. The 3 rules above do not apply to anything in this folder; instead, they will be directly copied to Liorsmagic's internal `tmpfs` directory (which used to always be `/liorsbin`).
 
-Starting from Android 11, the `/liorsbin` folder may no longer exists, and in that scenario, Magisk randomly generates a different `tmpfs` folder each boot. Every occurrence of the pattern `${LIORSMAGICTMP}` in your `*.rc` scripts will be replaced with the Magisk `tmpfs` folder when `liorsmagicinit` injects it into `init.rc`. On pre Android 11 devices, `${LIORSMAGICTMP}` will simply be replaced with `/liorsbin`, so **NEVER** hardcode `/liorsbin` in the `*.rc` scripts when referencing these additional files.
+Starting from Android 11, the `/liorsbin` folder may no longer exists, and in that scenario, Liorsmagic randomly generates a different `tmpfs` folder each boot. Every occurrence of the pattern `${LIORSMAGICTMP}` in your `*.rc` scripts will be replaced with the Liorsmagic `tmpfs` folder when `liorsmagicinit` injects it into `init.rc`. On pre Android 11 devices, `${LIORSMAGICTMP}` will simply be replaced with `/liorsbin`, so **NEVER** hardcode `/liorsbin` in the `*.rc` scripts when referencing these additional files.
 
 Here is an example of how to setup `overlay.d` with a custom `*.rc` script:
 
@@ -275,7 +275,7 @@ ramdisk
 ├── overlay.d
 │   ├── sbin
 │   │   ├── libfoo.ko      <--- These 2 files will be copied
-│   │   └── myscript.sh    <--- into Magisk's tmpfs directory
+│   │   └── myscript.sh    <--- into Liorsmagic's tmpfs directory
 │   ├── custom.rc          <--- This file will be injected into init.rc
 │   ├── res
 │   │   └── random.png     <--- This file will replace /res/random.png
@@ -292,7 +292,7 @@ ramdisk
 Here is an example of the `custom.rc`:
 
 ```
-# Use ${LIORSMAGICTMP} to refer to Magisk's tmpfs directory
+# Use ${LIORSMAGICTMP} to refer to Liorsmagic's tmpfs directory
 
 on early-init
     setprop sys.example.foo bar

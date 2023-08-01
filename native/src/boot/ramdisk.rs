@@ -9,7 +9,7 @@ use base::{LoggedResult, Utf8CStr};
 use crate::cpio::{Cpio, CpioEntry};
 use crate::patch::{patch_encryption, patch_verity};
 
-pub trait MagiskCpio {
+pub trait LiorsmagicCpio {
     fn patch(&mut self);
     fn test(&self) -> i32;
     fn restore(&mut self) -> LoggedResult<()>;
@@ -25,7 +25,7 @@ fn check_env(env: &str) -> bool {
     env::var(env).map_or(false, |var| var == "true")
 }
 
-impl MagiskCpio for Cpio {
+impl LiorsmagicCpio for Cpio {
     fn patch(&mut self) {
         let keep_verity = check_env("KEEPVERITY");
         let keep_force_encrypt = check_env("KEEPFORCEENCRYPT");

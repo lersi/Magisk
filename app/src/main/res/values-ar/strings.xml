@@ -24,7 +24,7 @@
     <string name="home_installed_version">تم التثبيت</string>
     <string name="home_latest_version">آخر إصدار</string>
     <string name="invalid_update_channel">مصدر التحديث غير صالح</string>
-    <string name="uninstall_liorsmagic_title">إلغاء تثبيت Magisk</string>
+    <string name="uninstall_liorsmagic_title">إلغاء تثبيت Liorsmagic</string>
     <string name="uninstall_liorsmagic_msg">ستُعطل/ستُحذف جميع الإضافات. سيُحذف الروت، وربما ستشفر بياناتك إذا لم تكن غير مشفرة حالياً.</string>
 
     <!--Install-->
@@ -85,7 +85,7 @@
 
     <!--SafetyNet-->
 
-    <!-- MagiskHide -->
+    <!-- LiorsmagicHide -->
     <string name="show_system_app">إظهار برامج النظام</string>
     <string name="hide_filter_hint">البحث بالإسم</string>
     <string name="hide_search">ابحث</string>
@@ -164,7 +164,7 @@
     <string name="isolate_summary">جميع الجلسات الروت تستخدم NameSpace المعزول</string>
 
     <!--Notifications-->
-    <string name="update_channel">تحديثات Magisk</string>
+    <string name="update_channel">تحديثات Liorsmagic</string>
     <string name="progress_channel">إشعارات التقدم</string>
     <string name="download_complete">اكتمل التنزيل</string>
     <string name="download_file_error">فشل تنزيل الملف</string>

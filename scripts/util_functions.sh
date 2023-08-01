@@ -1,5 +1,5 @@
 ############################################
-# Magisk General Utility Functions
+# Liorsmagic General Utility Functions
 ############################################
 
 #LIORSMAGIC_VERSION_STUB
@@ -659,7 +659,7 @@ install_module() {
     set_permissions
   else
     print_title "$MODNAME" "by $MODAUTH"
-    print_title "Powered by Magisk"
+    print_title "Powered by Liorsmagic"
 
     unzip -o "$ZIPFILE" customize.sh -d $MODPATH >&2
 
@@ -686,7 +686,7 @@ install_module() {
   done
 
   if $BOOTMODE; then
-    # Update info for Magisk app
+    # Update info for Liorsmagic app
     mktouch $NVBASE/modules/$MODID/update
     rm -rf $NVBASE/modules/$MODID/remove 2>/dev/null
     rm -rf $NVBASE/modules/$MODID/disable 2>/dev/null

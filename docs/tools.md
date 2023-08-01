@@ -1,6 +1,6 @@
-# Magisk Tools
+# Liorsmagic Tools
 
-Magisk comes with a huge collections of tools for installation, daemons, and utilities for developers. This documentation covers the 4 binaries and all included applets. The binaries and applets are shown below:
+Liorsmagic comes with a huge collections of tools for installation, daemons, and utilities for developers. This documentation covers the 4 binaries and all included applets. The binaries and applets are shown below:
 
 ```
 liorsmagicboot                 /* binary */
@@ -75,7 +75,7 @@ Supported actions:
       test
         Test the cpio's status
         Return value is 0 or bitwise or-ed of following values:
-        0x1:Magisk    0x2:unsupported    0x4:Sony
+        0x1:Liorsmagic    0x2:unsupported    0x4:Sony
       patch
         Apply ramdisk patches
         Configure with env variables: KEEPVERITY KEEPFORCEENCRYPT
@@ -128,7 +128,7 @@ Supported actions:
 
 ### liorsmagicinit
 
-This binary will replace `init` in the ramdisk of a Magisk patched boot image. It is originally created for supporting devices using system-as-root, but the tool is extended to support all devices and became a crucial part of Magisk. More details can be found in the **Pre-Init** section in [Magisk Booting Process](details.md#liorsmagic-booting-process).
+This binary will replace `init` in the ramdisk of a Liorsmagic patched boot image. It is originally created for supporting devices using system-as-root, but the tool is extended to support all devices and became a crucial part of Liorsmagic. More details can be found in the **Pre-Init** section in [Liorsmagic Booting Process](details.md#liorsmagic-booting-process).
 
 ### liorsmagicpolicy
 
@@ -136,7 +136,7 @@ This binary will replace `init` in the ramdisk of a Magisk patched boot image. I
 
 This tool could be used for advanced developers to modify SELinux policies. In common scenarios like Linux server admins, they would directly modify the SELinux policy sources (`*.te`) and recompile the `sepolicy` binary, but here on Android we directly patch the binary file (or runtime policies).
 
-All processes spawned from the Magisk daemon, including root shells and all its forks, are running in the context `u:r:liorsmagic:s0`. The rule used on all Magisk installed systems can be viewed as stock `sepolicy` with these patches: `liorsmagicpolicy --liorsmagic 'allow liorsmagic * * *'`.
+All processes spawned from the Liorsmagic daemon, including root shells and all its forks, are running in the context `u:r:liorsmagic:s0`. The rule used on all Liorsmagic installed systems can be viewed as stock `sepolicy` with these patches: `liorsmagicpolicy --liorsmagic 'allow liorsmagic * * *'`.
 
 ```
 Usage: ./liorsmagicpolicy [--options...] [policy statements...]
@@ -149,7 +149,7 @@ Options:
    --compile-split   compile split cil policies
    --save FILE       dump monolithic sepolicy to FILE
    --live            immediately load sepolicy into the kernel
-   --liorsmagic          apply built-in Magisk sepolicy rules
+   --liorsmagic          apply built-in Liorsmagic sepolicy rules
    --apply FILE      apply rules from FILE, read and parsed
                      line by line as policy statements
                      (multiple --apply are allowed)
@@ -211,7 +211,7 @@ Supported policy statements:
 
 ### liorsmagic
 
-When the liorsmagic binary is called with the name `liorsmagic`, it works as a utility tool with many helper functions and the entry points for several Magisk services.
+When the liorsmagic binary is called with the name `liorsmagic`, it works as a utility tool with many helper functions and the entry points for several Liorsmagic services.
 
 ```
 Usage: liorsmagic [applet [arguments]...]
@@ -231,11 +231,11 @@ Advanced Options (Internal APIs):
    --[init trigger]          callback on init triggers. Valid triggers:
                              post-fs-data, service, boot-complete, zygote-restart
    --unlock-blocks           set BLKROSET flag to OFF for all block devices
-   --restorecon              restore selinux context on Magisk files
+   --restorecon              restore selinux context on Liorsmagic files
    --clone-attr SRC DEST     clone permission, owner, and selinux context
    --clone SRC DEST          clone SRC to DEST
-   --sqlite SQL              exec SQL commands to Magisk database
-   --path                    print Magisk tmpfs mount path
+   --sqlite SQL              exec SQL commands to Liorsmagic database
+   --path                    print Liorsmagic tmpfs mount path
    --denylist ARGS           denylist config CLI
 
 Available applets:
@@ -255,7 +255,7 @@ Actions:
 
 ### su
 
-An applet of `liorsmagic`, the MagiskSU entry point. Good old `su` command.
+An applet of `liorsmagic`, the LiorsmagicSU entry point. Good old `su` command.
 
 ```
 Usage: su [options] [-] [user [argument...]]

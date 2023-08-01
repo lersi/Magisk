@@ -182,7 +182,7 @@ void tmpfs_node::mount() {
 }
 
 /****************
- * Magisk Stuffs
+ * Liorsmagic Stuffs
  ****************/
 
 class liorsmagic_node : public node_entry {

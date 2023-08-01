@@ -1,4 +1,4 @@
-name: Magisk Build
+name: Liorsmagic Build
 
 on:
   push:

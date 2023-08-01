@@ -13,7 +13,7 @@ import com.topjohnwu.liorsmagic.arch.ViewEvent
 import com.topjohnwu.liorsmagic.core.base.ContentResultCallback
 import com.topjohnwu.liorsmagic.utils.TextHolder
 import com.topjohnwu.liorsmagic.utils.asText
-import com.topjohnwu.liorsmagic.view.MagiskDialog
+import com.topjohnwu.liorsmagic.view.LiorsmagicDialog
 import com.topjohnwu.liorsmagic.view.Shortcuts
 
 class PermissionEvent(
@@ -105,10 +105,10 @@ class DialogEvent(
     private val builder: DialogBuilder
 ) : ViewEvent(), ActivityExecutor {
     override fun invoke(activity: UIActivity<*>) {
-        MagiskDialog(activity).apply(builder::build).show()
+        LiorsmagicDialog(activity).apply(builder::build).show()
     }
 }
 
 interface DialogBuilder {
-    fun build(dialog: MagiskDialog)
+    fun build(dialog: LiorsmagicDialog)
 }

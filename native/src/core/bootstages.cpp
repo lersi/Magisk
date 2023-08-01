@@ -216,7 +216,7 @@ string find_preinit_device() {
 static bool liorsmagic_env() {
     char buf[4096];
 
-    LOGI("* Initializing Magisk environment\n");
+    LOGI("* Initializing Liorsmagic environment\n");
 
     preserve_stub_apk();
     string pkg;
@@ -386,7 +386,7 @@ static void post_fs_data() {
     }
 
     if (!liorsmagic_env()) {
-        LOGE("* Magisk environment incomplete, abort\n");
+        LOGE("* Liorsmagic environment incomplete, abort\n");
         goto early_abort;
     }
 

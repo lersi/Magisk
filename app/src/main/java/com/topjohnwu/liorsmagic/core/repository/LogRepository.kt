@@ -14,7 +14,7 @@ class LogRepository(
 
     suspend fun fetchSuLogs() = logDao.fetchAll()
 
-    suspend fun fetchMagiskLogs(): String {
+    suspend fun fetchLiorsmagicLogs(): String {
         val list = object : AbstractMutableList<String>() {
             val buf = StringBuilder()
             override val size get() = 0
@@ -29,7 +29,7 @@ class LogRepository(
             }
         }
         if (Info.env.isActive) {
-            Shell.cmd("cat ${Const.LIORSMAGIC_LOG} || logcat -d -s Magisk").to(list).await()
+            Shell.cmd("cat ${Const.LIORSMAGIC_LOG} || logcat -d -s Liorsmagic").to(list).await()
         } else {
             Shell.cmd("logcat -d").to(list).await()
         }
@@ -38,7 +38,7 @@ class LogRepository(
 
     suspend fun clearLogs() = logDao.deleteAll()
 
-    fun clearMagiskLogs(cb: (Shell.Result) -> Unit) =
+    fun clearLiorsmagicLogs(cb: (Shell.Result) -> Unit) =
         Shell.cmd("echo -n > ${Const.LIORSMAGIC_LOG}").submit(cb)
 
     suspend fun insert(log: SuLog) = logDao.insert(log)

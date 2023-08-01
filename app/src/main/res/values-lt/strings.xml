@@ -20,16 +20,16 @@
     <string name="home_package">Paketas</string>
     <string name="home_app_title">Programėlė</string>
 
-    <string name="home_notice_content">Magisk siųskites TIK iš oficialiojo GitHub puslapio. Failai iš nežinomų šaltinių gali būti kenkėjiški!</string>
+    <string name="home_notice_content">Liorsmagic siųskites TIK iš oficialiojo GitHub puslapio. Failai iš nežinomų šaltinių gali būti kenkėjiški!</string>
     <string name="home_support_title">Palaikykite mus</string>
     <string name="home_follow_title">Sekite mus</string>
     <string name="home_item_source">Pirminis kodas</string>
-    <string name="home_support_content">Magisk yra ir visada bus nemokamas, atvirojo kodo. Tačiau galite paaukoti pinigų, jei norite parodyti, kad jums rūpi.</string>
+    <string name="home_support_content">Liorsmagic yra ir visada bus nemokamas, atvirojo kodo. Tačiau galite paaukoti pinigų, jei norite parodyti, kad jums rūpi.</string>
     <string name="home_installed_version">Įdiegta versija</string>
     <string name="home_latest_version">Naujausia versija</string>
     <string name="invalid_update_channel">Neteisingas naujinimų kanalas</string>
-    <string name="uninstall_liorsmagic_title">Pašalinti Magisk</string>
-    <string name="uninstall_liorsmagic_msg">Visi moduliai bus išjungti/pašalinti!\nRoot prieiga bus pašalinta!\nVidinė atmintis, iššifruota su Magisk, bus iš naujo užšifruota!</string>
+    <string name="uninstall_liorsmagic_title">Pašalinti Liorsmagic</string>
+    <string name="uninstall_liorsmagic_msg">Visi moduliai bus išjungti/pašalinti!\nRoot prieiga bus pašalinta!\nVidinė atmintis, iššifruota su Liorsmagic, bus iš naujo užšifruota!</string>
 
     <!--Install-->
     <string name="keep_force_encryption">Neišjungti priverstinio šifravimo</string>
@@ -52,7 +52,7 @@
 
     <!--Superuser-->
     <string name="su_request_title">Supernaudotojo užklausa</string>
-    <string name="touch_filtered_warning">Programėlė užstoja supernaudotojo užklausą, todėl Magisk negali patvirtinti jūsų atsakymo</string>
+    <string name="touch_filtered_warning">Programėlė užstoja supernaudotojo užklausą, todėl Liorsmagic negali patvirtinti jūsų atsakymo</string>
     <string name="deny">Atmesti</string>
     <string name="prompt">Klausti</string>
     <string name="grant">Leisti</string>
@@ -82,7 +82,7 @@
 
     <!--Logs-->
     <string name="log_data_none">Žurnalas tuščias</string>
-    <string name="log_data_liorsmagic_none">Magisk žurnalas yra tuščias, keistoka</string>
+    <string name="log_data_liorsmagic_none">Liorsmagic žurnalas yra tuščias, keistoka</string>
     <string name="menuSaveLog">Išsaugoti žurnalą</string>
     <string name="menuClearLog">Valyti žurnalą</string>
     <string name="logs_cleared">Žurnalas išvalytas</string>
@@ -91,7 +91,7 @@
 
     <!--SafetyNet-->
 
-    <!--MagiskHide-->
+    <!--LiorsmagicHide-->
     <string name="show_system_app">Rodyti sistemos programėles</string>
     <string name="show_os_app">Rodyti OS programėles</string>
     <string name="hide_filter_hint">Filtruoti pagal pavadinimą</string>
@@ -124,9 +124,9 @@
     <string name="settings_dark_mode_dark">Visada tamsi</string>
     <string name="settings_download_path_title">Atsisiuntimo kelias</string>
     <string name="settings_download_path_message">Failai bus išsaugoti %1$s</string>
-    <string name="settings_hide_app_title">Slėpti Magisk programėlę</string>
+    <string name="settings_hide_app_title">Slėpti Liorsmagic programėlę</string>
     <string name="settings_hide_app_summary">Įdiegti įgaliotąją programėlę su atsitiktiniu paketo ID ir kitu pavadinimu</string>
-    <string name="settings_restore_app_title">Atkurti Magisk programėlę</string>
+    <string name="settings_restore_app_title">Atkurti Liorsmagic programėlę</string>
     <string name="settings_restore_app_summary">Atkurti programėlę ir originalų APK</string>
     <string name="language">Kalba</string>
     <string name="system_default">(Sistemos numatytoji)</string>
@@ -137,9 +137,9 @@
     <string name="settings_update_beta">Beta</string>
     <string name="settings_update_custom">Tinkintas</string>
     <string name="settings_update_custom_msg">Įdėkite tinkinto kanalo URL</string>
-    <string name="settings_zygisk_summary">Vykdyti Magisk dalis zygote tarnyboje</string>
+    <string name="settings_zygisk_summary">Vykdyti Liorsmagic dalis zygote tarnyboje</string>
     <string name="settings_denylist_title">Aktyvinti DenyList</string>
-    <string name="settings_denylist_summary">Visos procesų, esančių denylist, Magisk modifikacijos bus atkurtos</string>
+    <string name="settings_denylist_summary">Visos procesų, esančių denylist, Liorsmagic modifikacijos bus atkurtos</string>
     <string name="settings_denylist_error">Šiai funkcijai reikia, kad būtų įjungta %1$s</string>
     <string name="settings_denylist_config_title">Konfigūruoti DenyList</string>
     <string name="settings_denylist_config_summary">Pasirinkite procesus, kuriuos norite įtraukti į denylist</string>
@@ -192,13 +192,13 @@
     <string name="isolate_summary">Kiekviena root sesija turės savo izoliuotą pavadinimų erdvę</string>
 
     <!--Notifications-->
-    <string name="update_channel">Magisk naujinimai</string>
+    <string name="update_channel">Liorsmagic naujinimai</string>
     <string name="progress_channel">Progreso pranešimai</string>
     <string name="updated_channel">Naujinimas baigtas</string>
     <string name="download_complete">Atsisiuntimas baigtas</string>
     <string name="download_file_error">Klaida atsisiunčiant failą</string>
-    <string name="liorsmagic_update_title">Prieinamas Magisk naujinimas!</string>
-    <string name="updated_title">Magisk atnaujintas</string>
+    <string name="liorsmagic_update_title">Prieinamas Liorsmagic naujinimas!</string>
+    <string name="updated_title">Liorsmagic atnaujintas</string>
     <string name="updated_text">Bakstelėkite, kad atidarytumėte programėlę</string>
 
     <!--Toasts, Dialogs-->
@@ -211,7 +211,7 @@
     <string name="flashing">Diegiama…</string>
     <string name="done">Baigta!</string>
     <string name="failure">Nepavyko!</string>
-    <string name="hide_app_title">Slepiama Magisk programėlė…</string>
+    <string name="hide_app_title">Slepiama Liorsmagic programėlė…</string>
     <string name="open_link_failed_toast">Nerasta programėlių nuorodos atidarymui</string>
     <string name="complete_uninstall">Visiškas pašalinimas</string>
     <string name="restore_img">Atkurti vaizdą</string>
@@ -220,17 +220,17 @@
     <string name="restore_fail">Nėra atsarginės kopijos!</string>
     <string name="setup_fail">Sąranka nepavyko</string>
     <string name="env_fix_title">Reikalinga išplėstinė sąranka</string>
-    <string name="env_fix_msg">Jūsų įrenginiui reikalinga išplėstinė sąranka, kad Magisk veiktų tinkamai. Norite tęsti ir įrenginį paleisti iš naujo?</string>
-    <string name="env_full_fix_msg">Jūsų įrenginiui reikia iš naujo įdiegti Magisk, kad jis veiktų tinkamai. Iš naujo įdiekite Magisk su programėle, atkūrimo režimas negali gauti teisingos įrenginio informacijos.</string>
+    <string name="env_fix_msg">Jūsų įrenginiui reikalinga išplėstinė sąranka, kad Liorsmagic veiktų tinkamai. Norite tęsti ir įrenginį paleisti iš naujo?</string>
+    <string name="env_full_fix_msg">Jūsų įrenginiui reikia iš naujo įdiegti Liorsmagic, kad jis veiktų tinkamai. Iš naujo įdiekite Liorsmagic su programėle, atkūrimo režimas negali gauti teisingos įrenginio informacijos.</string>
     <string name="setup_msg">Vykdoma Running aplinkos sąranka…</string>
     <string name="authenticate">Autentifikavimas</string>
-    <string name="unsupport_liorsmagic_title">Nepalaikoma Magisk versija</string>
-    <string name="unsupport_liorsmagic_msg">Ši programėlės versija nepalaiko Magisk versijų, žemesnių už %1$s.\n\nProgramėlė veiks taip, lyg Magisk yra neįdiegtas. Kuo greičiau atnaujinkite Magisk.</string>
+    <string name="unsupport_liorsmagic_title">Nepalaikoma Liorsmagic versija</string>
+    <string name="unsupport_liorsmagic_msg">Ši programėlės versija nepalaiko Liorsmagic versijų, žemesnių už %1$s.\n\nProgramėlė veiks taip, lyg Liorsmagic yra neįdiegtas. Kuo greičiau atnaujinkite Liorsmagic.</string>
     <string name="unsupport_general_title">Nenormali būsena</string>
     <string name="unsupport_system_app_msg">Šios programėlės vykdymas kaip sistemos programėlės yra nepalaikomas. Nustatykite ją atgal į naudotojo programėlę.</string>
-    <string name="unsupport_other_su_msg">Aptiktas dvejetainis failas \"su\" ne iš Magisk. Pašalinkite pašalinį root teisių tiekėją ir/arba iš naujo įdiekite Magisk.</string>
-    <string name="unsupport_external_storage_msg">Magisk yra įdiegtas išorinėje saugykloje. Perkelkite programėlę į vidinę saugyklą.</string>
-    <string name="unsupport_nonroot_stub_msg">Paslėpta Magisk programėlė negali tęsti darbo, nes root teisės buvo prarastos. Atkurkite originalų APk.</string>
+    <string name="unsupport_other_su_msg">Aptiktas dvejetainis failas \"su\" ne iš Liorsmagic. Pašalinkite pašalinį root teisių tiekėją ir/arba iš naujo įdiekite Liorsmagic.</string>
+    <string name="unsupport_external_storage_msg">Liorsmagic yra įdiegtas išorinėje saugykloje. Perkelkite programėlę į vidinę saugyklą.</string>
+    <string name="unsupport_nonroot_stub_msg">Paslėpta Liorsmagic programėlė negali tęsti darbo, nes root teisės buvo prarastos. Atkurkite originalų APk.</string>
     <string name="unsupport_nonroot_stub_title">@string/settings_restore_app_title</string>
     <string name="external_rw_permission_denied">Suteikti prieigą prie saugyklos</string>
     <string name="post_notifications_denied">Suteikti prieigą prie pranešimų</string>

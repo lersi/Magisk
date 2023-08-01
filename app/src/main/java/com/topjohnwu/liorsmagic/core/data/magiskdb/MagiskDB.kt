@@ -5,7 +5,7 @@ import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-open class MagiskDB {
+open class LiorsmagicDB {
 
     suspend fun <R> exec(
         query: String,

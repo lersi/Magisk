@@ -20,7 +20,7 @@ using namespace std;
 using jni_hook::hash_map;
 using jni_hook::tree_map;
 using xstring = jni_hook::string;
-using rust::MagiskD;
+using rust::LiorsmagicD;
 using rust::get_liorsmagicd;
 
 // Extreme verbose logging
@@ -69,7 +69,7 @@ struct HookContext {
         AppSpecializeArgs_v3 *app;
         ServerSpecializeArgs_v1 *server;
     } args;
-    const MagiskD &liorsmagicd;
+    const LiorsmagicD &liorsmagicd;
 
     const char *process;
     list<ZygiskModule> modules;

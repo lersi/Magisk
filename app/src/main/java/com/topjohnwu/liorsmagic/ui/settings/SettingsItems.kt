@@ -24,7 +24,7 @@ import com.topjohnwu.liorsmagic.databinding.DialogSettingsDownloadPathBinding
 import com.topjohnwu.liorsmagic.databinding.DialogSettingsUpdateChannelBinding
 import com.topjohnwu.liorsmagic.databinding.set
 import com.topjohnwu.liorsmagic.utils.asText
-import com.topjohnwu.liorsmagic.view.MagiskDialog
+import com.topjohnwu.liorsmagic.view.LiorsmagicDialog
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -110,16 +110,16 @@ object Restore : BaseSettingsItem.Blank() {
 
     override fun onPressed(view: View, handler: Handler) {
         handler.onItemPressed(view, this) {
-            MagiskDialog(view.activity).apply {
+            LiorsmagicDialog(view.activity).apply {
                 setTitle(R.string.settings_restore_app_title)
                 setMessage(R.string.restore_app_confirmation)
-                setButton(MagiskDialog.ButtonType.POSITIVE) {
+                setButton(LiorsmagicDialog.ButtonType.POSITIVE) {
                     text = android.R.string.ok
                     onClick {
                         handler.onItemAction(view, this@Restore)
                     }
                 }
-                setButton(MagiskDialog.ButtonType.NEGATIVE) {
+                setButton(LiorsmagicDialog.ButtonType.NEGATIVE) {
                     text = android.R.string.cancel
                 }
                 setCancelable(true)
@@ -214,9 +214,9 @@ object SystemlessHosts : BaseSettingsItem.Blank() {
     override val description = R.string.settings_hosts_summary.asText()
 }
 
-// --- Magisk
+// --- Liorsmagic
 
-object Magisk : BaseSettingsItem.Section() {
+object Liorsmagic : BaseSettingsItem.Section() {
     override val title = R.string.liorsmagic.asText()
 }
 

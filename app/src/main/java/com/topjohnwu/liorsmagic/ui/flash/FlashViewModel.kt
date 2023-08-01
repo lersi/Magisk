@@ -17,7 +17,7 @@ import com.topjohnwu.liorsmagic.core.ktx.synchronized
 import com.topjohnwu.liorsmagic.core.ktx.timeFormatStandard
 import com.topjohnwu.liorsmagic.core.ktx.toTime
 import com.topjohnwu.liorsmagic.core.tasks.FlashZip
-import com.topjohnwu.liorsmagic.core.tasks.MagiskInstaller
+import com.topjohnwu.liorsmagic.core.tasks.LiorsmagicInstaller
 import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils
 import com.topjohnwu.liorsmagic.core.utils.MediaStoreUtils.outputStream
 import com.topjohnwu.liorsmagic.databinding.set
@@ -63,21 +63,21 @@ class FlashViewModel : BaseViewModel() {
                 }
                 Const.Value.UNINSTALL -> {
                     showReboot = false
-                    MagiskInstaller.Uninstall(outItems, logItems).exec()
+                    LiorsmagicInstaller.Uninstall(outItems, logItems).exec()
                 }
                 Const.Value.FLASH_LIORSMAGIC -> {
                     if (Info.isEmulator)
-                        MagiskInstaller.Emulator(outItems, logItems).exec()
+                        LiorsmagicInstaller.Emulator(outItems, logItems).exec()
                     else
-                        MagiskInstaller.Direct(outItems, logItems).exec()
+                        LiorsmagicInstaller.Direct(outItems, logItems).exec()
                 }
                 Const.Value.FLASH_INACTIVE_SLOT -> {
-                    MagiskInstaller.SecondSlot(outItems, logItems).exec()
+                    LiorsmagicInstaller.SecondSlot(outItems, logItems).exec()
                 }
                 Const.Value.PATCH_FILE -> {
                     uri ?: return@launch
                     showReboot = false
-                    MagiskInstaller.Patch(uri, outItems, logItems).exec()
+                    LiorsmagicInstaller.Patch(uri, outItems, logItems).exec()
                 }
                 else -> {
                     back()

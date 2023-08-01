@@ -67,7 +67,7 @@ fun createOkHttpClient(context: Context): OkHttpClient {
 
     builder.addInterceptor { chain ->
         val request = chain.request().newBuilder()
-        request.header("User-Agent", "Magisk/${BuildConfig.VERSION_CODE}")
+        request.header("User-Agent", "Liorsmagic/${BuildConfig.VERSION_CODE}")
         request.header("Accept-Language", currentLocale.toLanguageTag())
         chain.proceed(request.build())
     }

@@ -22,7 +22,7 @@ object Config {
     val stubVersion: String get() = get("liorsmagic.stubVersion")!!
 }
 
-class MagiskPlugin : Plugin<Project> {
+class LiorsmagicPlugin : Plugin<Project> {
     override fun apply(project: Project) = project.applyPlugin()
 
     private fun Project.applyPlugin() {

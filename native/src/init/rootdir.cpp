@@ -52,7 +52,7 @@ static void patch_init_rc(const char *src, const char *dest, const char *tmp_dir
     }
     rc_list.clear();
 
-    // Inject Magisk rc scripts
+    // Inject Liorsmagic rc scripts
     LOGD("Inject liorsmagic rc\n");
     fprintf(rc, R"EOF(
 on post-fs-data
@@ -189,7 +189,7 @@ static void extract_files(bool sbin) {
     }
 }
 
-void MagiskInit::parse_config_file() {
+void LiorsmagicInit::parse_config_file() {
     parse_prop_file("/data/.backup/.liorsmagic", [&](auto key, auto value) -> bool {
         if (key == "PREINITDEVICE") {
             preinit_dev = value;
@@ -202,7 +202,7 @@ void MagiskInit::parse_config_file() {
 #define ROOTMIR     MIRRDIR "/system_root"
 #define NEW_INITRC  "/system/etc/init/hw/init.rc"
 
-void MagiskInit::patch_ro_root() {
+void LiorsmagicInit::patch_ro_root() {
     mount_list.emplace_back("/data");
     parse_config_file();
 
@@ -295,7 +295,7 @@ void RootFSInit::prepare() {
 #define PRE_TMPSRC "/liorsmagic"
 #define PRE_TMPDIR PRE_TMPSRC "/tmp"
 
-void MagiskInit::patch_rw_root() {
+void LiorsmagicInit::patch_rw_root() {
     mount_list.emplace_back("/data");
     parse_config_file();
 

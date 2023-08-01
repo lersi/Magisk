@@ -261,8 +261,8 @@ void BaseInit::prepare_data() {
     cp_afc("/overlay.d", "/data/overlay.d");
 }
 
-void MagiskInit::setup_tmp(const char *path) {
-    LOGD("Setup Magisk tmp at %s\n", path);
+void LiorsmagicInit::setup_tmp(const char *path) {
+    LOGD("Setup Liorsmagic tmp at %s\n", path);
     chdir("/data");
 
     xmkdir(INTLROOT, 0711);

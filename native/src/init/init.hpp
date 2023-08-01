@@ -50,7 +50,7 @@ public:
     virtual void start() = 0;
 };
 
-class MagiskInit : public BaseInit {
+class LiorsmagicInit : public BaseInit {
 private:
     std::string preinit_dev;
 
@@ -82,11 +82,11 @@ public:
     }
 };
 
-class SecondStageInit : public MagiskInit {
+class SecondStageInit : public LiorsmagicInit {
 private:
     bool prepare();
 public:
-    SecondStageInit(char *argv[]) : MagiskInit(argv) {
+    SecondStageInit(char *argv[]) : LiorsmagicInit(argv) {
         LOGD("%s\n", __FUNCTION__);
     };
 
@@ -104,12 +104,12 @@ public:
  * Legacy SAR
  *************/
 
-class LegacySARInit : public MagiskInit {
+class LegacySARInit : public LiorsmagicInit {
 private:
     bool mount_system_root();
     void first_stage_prep();
 public:
-    LegacySARInit(char *argv[], BootConfig *config) : MagiskInit(argv, config) {
+    LegacySARInit(char *argv[], BootConfig *config) : LiorsmagicInit(argv, config) {
         LOGD("%s\n", __FUNCTION__);
     };
     void start() override {
@@ -127,11 +127,11 @@ public:
  * Initramfs
  ************/
 
-class RootFSInit : public MagiskInit {
+class RootFSInit : public LiorsmagicInit {
 private:
     void prepare();
 public:
-    RootFSInit(char *argv[], BootConfig *config) : MagiskInit(argv, config) {
+    RootFSInit(char *argv[], BootConfig *config) : LiorsmagicInit(argv, config) {
         LOGD("%s\n", __FUNCTION__);
     }
     void start() override {

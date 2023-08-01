@@ -6,12 +6,12 @@ import kotlinx.parcelize.Parcelize
 
 @JsonClass(generateAdapter = true)
 data class UpdateInfo(
-    val liorsmagic: MagiskJson = MagiskJson(),
+    val liorsmagic: LiorsmagicJson = LiorsmagicJson(),
 )
 
 @Parcelize
 @JsonClass(generateAdapter = true)
-data class MagiskJson(
+data class LiorsmagicJson(
     val version: String = "",
     val versionCode: Int = -1,
     val link: String = "",

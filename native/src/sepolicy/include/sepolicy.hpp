@@ -50,7 +50,7 @@ struct sepolicy {
     // File system labeling
     bool genfscon(c_str fs_name, c_str path, c_str ctx);
 
-    // Magisk
+    // Liorsmagic
     void liorsmagic_rules();
 
     // Deprecate

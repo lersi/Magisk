@@ -22,12 +22,12 @@ class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
     override val layoutRes = R.layout.fragment_log_md2
     override val viewModel by viewModel<LogViewModel>()
     override val snackbarView: View?
-        get() = if (isMagiskLogVisible) binding.logFilterSuperuser.snackbarContainer
+        get() = if (isLiorsmagicLogVisible) binding.logFilterSuperuser.snackbarContainer
                 else super.snackbarView
     override val snackbarAnchorView get() = binding.logFilterToggle
 
     private var actionSave: MenuItem? = null
-    private var isMagiskLogVisible
+    private var isLiorsmagicLogVisible
         get() = binding.logFilter.isVisible
         set(value) {
             MotionRevealHelper.withViews(binding.logFilter, binding.logFilterToggle, value)
@@ -47,7 +47,7 @@ class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.logFilterToggle.setOnClickListener {
-            isMagiskLogVisible = true
+            isLiorsmagicLogVisible = true
         }
 
         binding.logFilterSuperuser.logSuperuser.apply {
@@ -61,15 +61,15 @@ class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
     override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_log_md2, menu)
         actionSave = menu.findItem(R.id.action_save)?.also {
-            it.isVisible = !isMagiskLogVisible
+            it.isVisible = !isLiorsmagicLogVisible
         }
     }
 
     override fun onMenuItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_save -> viewModel.saveMagiskLog()
+            R.id.action_save -> viewModel.saveLiorsmagicLog()
             R.id.action_clear ->
-                if (!isMagiskLogVisible) viewModel.clearMagiskLog()
+                if (!isLiorsmagicLogVisible) viewModel.clearLiorsmagicLog()
                 else viewModel.clearLog()
         }
         return super.onOptionsItemSelected(item)
@@ -80,7 +80,7 @@ class LogFragment : BaseFragment<FragmentLogMd2Binding>(), MenuProvider {
 
     override fun onBackPressed(): Boolean {
         if (binding.logFilter.isVisible) {
-            isMagiskLogVisible = false
+            isLiorsmagicLogVisible = false
             return true
         }
         return super.onBackPressed()

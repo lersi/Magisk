@@ -1,6 +1,6 @@
 package com.topjohnwu.liorsmagic.core.data.liorsmagicdb
 
-class SettingsDao : MagiskDB() {
+class SettingsDao : LiorsmagicDB() {
 
     suspend fun delete(key: String) {
         val query = "DELETE FROM ${Table.SETTINGS} WHERE key == \"$key\""

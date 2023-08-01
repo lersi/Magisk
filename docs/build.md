@@ -22,12 +22,12 @@
 - Setup JDK:
   - The recommended option is to set environment variable `ANDROID_STUDIO` to the path where your Android Studio is installed. The build script will automatically find and use the bundled JDK.
   - You can also setup JDK 17 yourself, but this guide will not cover the instructions.
-- Clone sources: `git clone --recurse-submodules https://github.com/topjohnwu/Magisk.git`
+- Clone sources: `git clone --recurse-submodules https://github.com/topjohnwu/Liorsmagic.git`
 - Run `./build.py ndk` to let the script download and install NDK for you
 
 ## Building
 
-- To build everything and create the final Magisk APK, run `./build.py all`.
+- To build everything and create the final Liorsmagic APK, run `./build.py all`.
 - You can also build specific sub-components; call `build.py` to see your options. \
   For each action, use `-h` to access help (e.g. `./build.py binary -h`)
 - Configure the build by using `config.prop`. A sample `config.prop.sample` is provided.
@@ -40,7 +40,7 @@
 
 ### Developing Rust in Android Studio
 
-Because the Magisk NDK package, [ONDK](https://github.com/topjohnwu/ondk) (the one installed with `./build.py ndk`), contains a fully self contained Clang + Rust toolchain, building the Magisk project alone does not require configuring toolchains. However, due to the way how the Intellij Rust plugin works, you'll have to go through some additional setup to make Android Studio work with Magisk's Rust codebase:
+Because the Liorsmagic NDK package, [ONDK](https://github.com/topjohnwu/ondk) (the one installed with `./build.py ndk`), contains a fully self contained Clang + Rust toolchain, building the Liorsmagic project alone does not require configuring toolchains. However, due to the way how the Intellij Rust plugin works, you'll have to go through some additional setup to make Android Studio work with Liorsmagic's Rust codebase:
 
 - Install [rustup](https://rustup.rs/), the official Rust toolchain manager
 - Link the ONDK Rust toolchain and set it as default:
@@ -58,7 +58,7 @@ rustup default liorsmagic
 
 ## Signing and Distribution
 
-- In release builds, the certificate of the key signing the Magisk APK will be used by Magisk's root daemon as a reference to reject and forcefully uninstall any non-matching Magisk apps to protect users from malicious and unverified Magisk APKs.
-- To do any development on Magisk itself, switch to an **official debug build and reinstall Magisk** to turn off the signature check.
-- To distribute your own Magisk builds signed with your own keys, set your signing configs in `config.prop`.
+- In release builds, the certificate of the key signing the Liorsmagic APK will be used by Liorsmagic's root daemon as a reference to reject and forcefully uninstall any non-matching Liorsmagic apps to protect users from malicious and unverified Liorsmagic APKs.
+- To do any development on Liorsmagic itself, switch to an **official debug build and reinstall Liorsmagic** to turn off the signature check.
+- To distribute your own Liorsmagic builds signed with your own keys, set your signing configs in `config.prop`.
 - Check [Google's Documentation](https://developer.android.com/studio/publish/app-signing.html#generate-key) for more details on generating your own key.

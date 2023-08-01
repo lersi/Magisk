@@ -5,7 +5,7 @@ import com.topjohnwu.liorsmagic.core.di.AppContext
 import com.topjohnwu.liorsmagic.core.model.su.SuPolicy
 import java.util.concurrent.TimeUnit
 
-class PolicyDao : MagiskDB() {
+class PolicyDao : LiorsmagicDB() {
 
     suspend fun deleteOutdated() {
         val nowSeconds = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())

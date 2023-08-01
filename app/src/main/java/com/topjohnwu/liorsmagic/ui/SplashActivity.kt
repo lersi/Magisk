@@ -21,7 +21,7 @@ import com.topjohnwu.liorsmagic.core.ktx.toast
 import com.topjohnwu.liorsmagic.core.tasks.HideAPK
 import com.topjohnwu.liorsmagic.core.utils.RootUtils
 import com.topjohnwu.liorsmagic.ui.theme.Theme
-import com.topjohnwu.liorsmagic.view.MagiskDialog
+import com.topjohnwu.liorsmagic.view.LiorsmagicDialog
 import com.topjohnwu.liorsmagic.view.Shortcuts
 import com.topjohnwu.superuser.Shell
 import kotlinx.coroutines.launch
@@ -72,10 +72,10 @@ abstract class SplashActivity<Binding : ViewDataBinding> : NavigationActivity<Bi
 
     @SuppressLint("InlinedApi")
     private fun showInvalidStateMessage(): Unit = runOnUiThread {
-        MagiskDialog(this).apply {
+        LiorsmagicDialog(this).apply {
             setTitle(R.string.unsupport_nonroot_stub_title)
             setMessage(R.string.unsupport_nonroot_stub_msg)
-            setButton(MagiskDialog.ButtonType.POSITIVE) {
+            setButton(LiorsmagicDialog.ButtonType.POSITIVE) {
                 text = R.string.install
                 onClick {
                     withPermission(REQUEST_INSTALL_PACKAGES) {

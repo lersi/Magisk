@@ -88,7 +88,7 @@
 
     <!--SafetyNet-->
 
-    <!--MagiskHide-->
+    <!--LiorsmagicHide-->
     <string name="show_system_app">தொலைபேசி பயன்பாடுகளைக் காட்டு</string>
     <string name="show_os_app">OS பயன்பாடுகளைக் காட்டு</string>
     <string name="hide_filter_hint">பெயரால் வடிகட்டவும்</string>

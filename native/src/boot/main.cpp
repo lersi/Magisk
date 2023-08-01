@@ -14,7 +14,7 @@ static void print_formats() {
 
 static void usage(char *arg0) {
     fprintf(stderr,
-R"EOF(MagiskBoot - Boot Image Modification Tool
+R"EOF(LiorsmagicBoot - Boot Image Modification Tool
 
 Usage: %s <action> [args...]
 

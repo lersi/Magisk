@@ -24,7 +24,7 @@ class RootUtils(stub: Any?) : RootService() {
     constructor() : this(null) {
         Timber.plant(object : Timber.DebugTree() {
             override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
-                super.log(priority, "Magisk", message, t)
+                super.log(priority, "Liorsmagic", message, t)
             }
         })
     }

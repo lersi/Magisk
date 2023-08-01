@@ -3,7 +3,7 @@
 
 use base::Utf8CStr;
 use cert::read_certificate;
-use daemon::{daemon_entry, find_apk_path, get_liorsmagicd, zygisk_entry, MagiskD};
+use daemon::{daemon_entry, find_apk_path, get_liorsmagicd, zygisk_entry, LiorsmagicD};
 use logging::{android_logging, liorsmagic_logging, zygisk_logging};
 
 mod cert;
@@ -33,11 +33,11 @@ pub mod ffi {
         fn daemon_entry();
         fn zygisk_entry();
 
-        type MagiskD;
-        fn get_liorsmagicd() -> &'static MagiskD;
-        fn get_log_pipe(self: &MagiskD) -> i32;
-        fn close_log_pipe(self: &MagiskD);
-        fn setup_logfile(self: &MagiskD);
+        type LiorsmagicD;
+        fn get_liorsmagicd() -> &'static LiorsmagicD;
+        fn get_log_pipe(self: &LiorsmagicD) -> i32;
+        fn close_log_pipe(self: &LiorsmagicD);
+        fn setup_logfile(self: &LiorsmagicD);
     }
 }
 

@@ -91,7 +91,7 @@
 
     <!--SafetyNet-->
 
-    <!-- MagiskHide -->
+    <!-- LiorsmagicHide -->
     <string name="show_system_app">सिस्टम ऐप्स दिखाएं</string>
     <string name="show_os_app">OS एप्लिकेशन दिखाएं</string>
     <string name="hide_filter_hint">नाम से फ़िल्टर करें</string>

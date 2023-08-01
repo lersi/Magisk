@@ -48,7 +48,7 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
 import java.util.zip.ZipInputStream
 
-abstract class MagiskInstallImpl protected constructor(
+abstract class LiorsmagicInstallImpl protected constructor(
     protected val console: MutableList<String> = NOPList.getInstance(),
     private val logs: MutableList<String> = NOPList.getInstance()
 ) {
@@ -553,10 +553,10 @@ abstract class MagiskInstallImpl protected constructor(
     }
 }
 
-abstract class MagiskInstaller(
+abstract class LiorsmagicInstaller(
     console: MutableList<String>,
     logs: MutableList<String>
-) : MagiskInstallImpl(console, logs) {
+) : LiorsmagicInstallImpl(console, logs) {
 
     override suspend fun exec(): Boolean {
         val success = super.exec()
@@ -573,35 +573,35 @@ abstract class MagiskInstaller(
         private val uri: Uri,
         console: MutableList<String>,
         logs: MutableList<String>
-    ) : MagiskInstaller(console, logs) {
+    ) : LiorsmagicInstaller(console, logs) {
         override suspend fun operations() = patchFile(uri)
     }
 
     class SecondSlot(
         console: MutableList<String>,
         logs: MutableList<String>
-    ) : MagiskInstaller(console, logs) {
+    ) : LiorsmagicInstaller(console, logs) {
         override suspend fun operations() = secondSlot()
     }
 
     class Direct(
         console: MutableList<String>,
         logs: MutableList<String>
-    ) : MagiskInstaller(console, logs) {
+    ) : LiorsmagicInstaller(console, logs) {
         override suspend fun operations() = direct()
     }
 
     class Emulator(
         console: MutableList<String>,
         logs: MutableList<String>
-    ) : MagiskInstaller(console, logs) {
+    ) : LiorsmagicInstaller(console, logs) {
         override suspend fun operations() = fixEnv()
     }
 
     class Uninstall(
         console: MutableList<String>,
         logs: MutableList<String>
-    ) : MagiskInstallImpl(console, logs) {
+    ) : LiorsmagicInstallImpl(console, logs) {
         override suspend fun operations() = uninstall()
 
         override suspend fun exec(): Boolean {
@@ -615,7 +615,7 @@ abstract class MagiskInstaller(
         }
     }
 
-    class FixEnv(private val callback: () -> Unit) : MagiskInstallImpl() {
+    class FixEnv(private val callback: () -> Unit) : LiorsmagicInstallImpl() {
         override suspend fun operations() = fixEnv()
 
         override suspend fun exec(): Boolean {

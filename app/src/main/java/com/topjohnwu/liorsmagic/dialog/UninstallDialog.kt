@@ -8,20 +8,20 @@ import com.topjohnwu.liorsmagic.arch.NavigationActivity
 import com.topjohnwu.liorsmagic.core.ktx.toast
 import com.topjohnwu.liorsmagic.events.DialogBuilder
 import com.topjohnwu.liorsmagic.ui.flash.FlashFragment
-import com.topjohnwu.liorsmagic.view.MagiskDialog
+import com.topjohnwu.liorsmagic.view.LiorsmagicDialog
 import com.topjohnwu.superuser.Shell
 
 class UninstallDialog : DialogBuilder {
 
-    override fun build(dialog: MagiskDialog) {
+    override fun build(dialog: LiorsmagicDialog) {
         dialog.apply {
             setTitle(R.string.uninstall_liorsmagic_title)
             setMessage(R.string.uninstall_liorsmagic_msg)
-            setButton(MagiskDialog.ButtonType.POSITIVE) {
+            setButton(LiorsmagicDialog.ButtonType.POSITIVE) {
                 text = R.string.restore_img
                 onClick { restore(dialog.context) }
             }
-            setButton(MagiskDialog.ButtonType.NEGATIVE) {
+            setButton(LiorsmagicDialog.ButtonType.NEGATIVE) {
                 text = R.string.complete_uninstall
                 onClick { completeUninstall(dialog) }
             }
@@ -45,7 +45,7 @@ class UninstallDialog : DialogBuilder {
         }
     }
 
-    private fun completeUninstall(dialog: MagiskDialog) {
+    private fun completeUninstall(dialog: LiorsmagicDialog) {
         (dialog.ownerActivity as NavigationActivity<*>)
             .navigation.navigate(FlashFragment.uninstall())
     }

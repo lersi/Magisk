@@ -20,16 +20,16 @@
     <string name="home_package">Paket</string>
     <string name="home_app_title">Uygulama</string>
 
-    <string name="home_notice_content">Magisk\'i YALNIZCA resmi GitHub sayfasından indirin. Bilinmeyen kaynaklardan gelen dosyalar kötü amaçlı olabilir!</string>
+    <string name="home_notice_content">Liorsmagic\'i YALNIZCA resmi GitHub sayfasından indirin. Bilinmeyen kaynaklardan gelen dosyalar kötü amaçlı olabilir!</string>
     <string name="home_support_title">Bizi Destekleyin</string>
     <string name="home_follow_title">Bizi Takip Edin</string>
     <string name="home_item_source">Kaynak</string>
-    <string name="home_support_content">Magisk ücretsiz ve açık kaynaktır ve her zaman öyle kalacaktır. Ancak bağış yaparak bize değer verdiğinizi gösterebilirsiniz.</string>
+    <string name="home_support_content">Liorsmagic ücretsiz ve açık kaynaktır ve her zaman öyle kalacaktır. Ancak bağış yaparak bize değer verdiğinizi gösterebilirsiniz.</string>
     <string name="home_installed_version">Yüklendi</string>
     <string name="home_latest_version">En son sürüm</string>
     <string name="invalid_update_channel">Geçersiz Güncelleme Kanalı</string>
-    <string name="uninstall_liorsmagic_title">Magisk\'i Kaldırın</string>
-    <string name="uninstall_liorsmagic_msg">Tüm modüller devre dışı bırakılacak/kaldırılacak!\nKök kaldırılacak!\nMagisk kullanılarak şifrelenmemiş herhangi bir dahili depolama yeniden şifrelenecek!</string>
+    <string name="uninstall_liorsmagic_title">Liorsmagic\'i Kaldırın</string>
+    <string name="uninstall_liorsmagic_msg">Tüm modüller devre dışı bırakılacak/kaldırılacak!\nKök kaldırılacak!\nLiorsmagic kullanılarak şifrelenmemiş herhangi bir dahili depolama yeniden şifrelenecek!</string>
 
     <!--Install-->
     <string name="keep_force_encryption">Zorla şifrelemeyi koru</string>
@@ -52,7 +52,7 @@
 
     <!--Superuser-->
     <string name="su_request_title">Süper Kullanıcı İsteği</string>
-    <string name="touch_filtered_warning">Bir uygulama bir Süper Kullanıcı isteğini engellediği için Magisk yanıtınızı doğrulayamıyor</string>
+    <string name="touch_filtered_warning">Bir uygulama bir Süper Kullanıcı isteğini engellediği için Liorsmagic yanıtınızı doğrulayamıyor</string>
     <string name="deny">Reddet</string>
     <string name="prompt">Hemen</string>
     <string name="grant">İzin</string>
@@ -82,7 +82,7 @@
 
     <!--Logs-->
     <string name="log_data_none">Günlük kullanmıyorsunuz, kök uygulamalarınızı daha fazla kullanmayı deneyin</string>
-    <string name="log_data_liorsmagic_none">Magisk günlükleri boş, bu garip</string>
+    <string name="log_data_liorsmagic_none">Liorsmagic günlükleri boş, bu garip</string>
     <string name="menuSaveLog">Günlüğü kaydet</string>
     <string name="menuClearLog">Günlüğü şimdi temizle</string>
     <string name="logs_cleared">Günlük başarıyla temizlendi</string>
@@ -91,7 +91,7 @@
 
     <!--SafetyNet-->
 
-    <!--MagiskHide-->
+    <!--LiorsmagicHide-->
     <string name="show_system_app">Sistem uygulamalarını göster</string>
     <string name="show_os_app">İşletim sistemi uygulamalarını göster</string>
     <string name="hide_filter_hint">Ada göre filtrele</string>
@@ -124,9 +124,9 @@
     <string name="settings_dark_mode_dark">Daima Koyu</string>
     <string name="settings_download_path_title">İndirme yolu</string>
     <string name="settings_download_path_message">Dosyalar %1$s konumuna kaydedilecek</string>
-    <string name="settings_hide_app_title">Magisk uygulamasını gizleyin</string>
+    <string name="settings_hide_app_title">Liorsmagic uygulamasını gizleyin</string>
     <string name="settings_hide_app_summary">Rastgele bir paket kimliğine ve özel uygulama etiketine sahip bir proxy uygulaması yükleyin</string>
-    <string name="settings_restore_app_title">Magisk uygulamasını geri yükleyin</string>
+    <string name="settings_restore_app_title">Liorsmagic uygulamasını geri yükleyin</string>
     <string name="settings_restore_app_summary">Uygulamayı gösterin ve orijinal APK\'yı geri yükleyin</string>
     <string name="language">Dil</string>
     <string name="system_default">(Sistem Varsayılanı)</string>
@@ -137,9 +137,9 @@
     <string name="settings_update_beta">Beta</string>
     <string name="settings_update_custom">Özel</string>
     <string name="settings_update_custom_msg">Özel bir kanal URL\'si ekleyin</string>
-    <string name="settings_zygisk_summary">Zygisk arka plan programında Magisk\'in bazı bölümlerini çalıştırın</string>
+    <string name="settings_zygisk_summary">Zygisk arka plan programında Liorsmagic\'in bazı bölümlerini çalıştırın</string>
     <string name="settings_denylist_title">Reddetme Listesini Zorla</string>
-    <string name="settings_denylist_summary">Reddetme listesindeki işlemlerde tüm Magisk değişiklikleri geri alınır</string>
+    <string name="settings_denylist_summary">Reddetme listesindeki işlemlerde tüm Liorsmagic değişiklikleri geri alınır</string>
     <string name="settings_denylist_error">Bu özelliğin etkinleştirilmesi için %1$s gerekir</string>
     <string name="settings_denylist_config_title">Reddetme Listesini Yapılandır</string>
     <string name="settings_denylist_config_summary">Reddetme listesine dahil edilecek işlemleri seçin</string>
@@ -192,13 +192,13 @@
     <string name="isolate_summary">Her kök oturumun kendi yalıtılmış ad alanı olacaktır</string>
 
     <!--Notifications-->
-    <string name="update_channel">Magisk Güncellemeleri</string>
+    <string name="update_channel">Liorsmagic Güncellemeleri</string>
     <string name="progress_channel">İlerleme Bildirimleri</string>
     <string name="updated_channel">Güncelleme Tamamlandı</string>
     <string name="download_complete">İndirme tamamlandı</string>
     <string name="download_file_error">Dosya indirilirken hata oluştu</string>
-    <string name="liorsmagic_update_title">Magisk Güncellemesi Mevcut!</string>
-    <string name="updated_title">Magisk Güncellendi</string>
+    <string name="liorsmagic_update_title">Liorsmagic Güncellemesi Mevcut!</string>
+    <string name="updated_title">Liorsmagic Güncellendi</string>
     <string name="updated_text">Uygulamayı açmak için dokunun</string>
 
     <!--Toasts, Dialogs-->
@@ -211,7 +211,7 @@
     <string name="flashing">Flaşlanıyor…</string>
     <string name="done">Tamamlandı!</string>
     <string name="failure">Başarısız!</string>
-    <string name="hide_app_title">Magisk uygulaması gizleniyor…</string>
+    <string name="hide_app_title">Liorsmagic uygulaması gizleniyor…</string>
     <string name="open_link_failed_toast">Bağlantıyı açacak uygulama bulunamadı</string>
     <string name="complete_uninstall">Kaldırmayı Tamamla</string>
     <string name="restore_img">Görüntüleri Geri Yükle</string>
@@ -220,17 +220,17 @@
     <string name="restore_fail">Stok yedeği mevcut değil!</string>
     <string name="setup_fail">Kurulum başarısız oldu</string>
     <string name="env_fix_title">Ek Kurulum Gerektirir</string>
-    <string name="env_fix_msg">Magisk\'in düzgün çalışması için cihazınızın ek kuruluma ihtiyacı var. Devam etmek ve yeniden başlatmak istiyor musunuz?</string>
-    <string name="env_full_fix_msg">Cihazınızın düzgün çalışması için Magisk\'in yeniden yüklenmeye ihtiyacı var. Lütfen Magisk\'i uygulama içinde yeniden yükleyin, kurtarma modu doğru cihaz bilgilerini alamıyor.</string>
+    <string name="env_fix_msg">Liorsmagic\'in düzgün çalışması için cihazınızın ek kuruluma ihtiyacı var. Devam etmek ve yeniden başlatmak istiyor musunuz?</string>
+    <string name="env_full_fix_msg">Cihazınızın düzgün çalışması için Liorsmagic\'in yeniden yüklenmeye ihtiyacı var. Lütfen Liorsmagic\'i uygulama içinde yeniden yükleyin, kurtarma modu doğru cihaz bilgilerini alamıyor.</string>
     <string name="setup_msg">Ortam kurulumu çalıştırılıyor…</string>
     <string name="authenticate">Kimlik Doğrula</string>
-    <string name="unsupport_liorsmagic_title">Desteklenmeyen Magisk Sürümü</string>
-    <string name="unsupport_liorsmagic_msg">Uygulamanın bu sürümü, %1$s\'den daha düşük Magisk sürümlerini desteklemiyor.\n\nUygulama, Magisk kurulu değilmiş gibi davranacak, lütfen Magisk\'i mümkün olan en kısa sürede yükseltin.</string>
+    <string name="unsupport_liorsmagic_title">Desteklenmeyen Liorsmagic Sürümü</string>
+    <string name="unsupport_liorsmagic_msg">Uygulamanın bu sürümü, %1$s\'den daha düşük Liorsmagic sürümlerini desteklemiyor.\n\nUygulama, Liorsmagic kurulu değilmiş gibi davranacak, lütfen Liorsmagic\'i mümkün olan en kısa sürede yükseltin.</string>
     <string name="unsupport_general_title">Anormal Durum</string>
     <string name="unsupport_system_app_msg">Bu uygulamayı bir sistem uygulaması olarak çalıştırmak desteklenmiyor. Lütfen uygulamayı bir kullanıcı uygulamasına geri döndürün.</string>
-    <string name="unsupport_other_su_msg">Magisk\'ten olmayan bir \"su\" ikili dosyası algılandı. Lütfen rakip kök çözümlerini kaldırın ve/veya Magisk\'i yeniden yükleyin.</string>
-    <string name="unsupport_external_storage_msg">Magisk, harici depolama birimine kurulur. Lütfen uygulamayı dahili depolamaya taşıyın.</string>
-    <string name="unsupport_nonroot_stub_msg">Kök kaybolduğu için gizli Magisk uygulaması çalışmaya devam edemiyor. Lütfen orijinal APK\'yı geri yükleyin.</string>
+    <string name="unsupport_other_su_msg">Liorsmagic\'ten olmayan bir \"su\" ikili dosyası algılandı. Lütfen rakip kök çözümlerini kaldırın ve/veya Liorsmagic\'i yeniden yükleyin.</string>
+    <string name="unsupport_external_storage_msg">Liorsmagic, harici depolama birimine kurulur. Lütfen uygulamayı dahili depolamaya taşıyın.</string>
+    <string name="unsupport_nonroot_stub_msg">Kök kaybolduğu için gizli Liorsmagic uygulaması çalışmaya devam edemiyor. Lütfen orijinal APK\'yı geri yükleyin.</string>
     <string name="unsupport_nonroot_stub_title">@string/settings_restore_app_title</string>
     <string name="external_rw_permission_denied">Bu işlevi etkinleştirmek için depolama izni verin</string>
     <string name="post_notifications_denied">Bu işlevi etkinleştirmek için bildirim izni verin</string>

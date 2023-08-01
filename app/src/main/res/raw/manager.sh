@@ -1,5 +1,5 @@
 ##################################
-# Magisk app internal scripts
+# Liorsmagic app internal scripts
 ##################################
 
 run_delay() {
@@ -124,8 +124,8 @@ id=hosts
 name=Systemless Hosts
 version=1.0
 versionCode=1
-author=Magisk
-description=Magisk app built-in systemless hosts module
+author=Liorsmagic
+description=Liorsmagic app built-in systemless hosts module
 EOF
   liorsmagic --clone /system/etc/hosts hosts/system/etc/hosts
   touch hosts/update

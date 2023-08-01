@@ -6,11 +6,11 @@
 
         <variable
             name="item"
-            type="com.topjohnwu.liorsmagic.view.MagiskDialog.DialogItem" />
+            type="com.topjohnwu.liorsmagic.view.LiorsmagicDialog.DialogItem" />
 
         <variable
             name="listener"
-            type="com.topjohnwu.liorsmagic.view.MagiskDialog.DialogClickListener" />
+            type="com.topjohnwu.liorsmagic.view.LiorsmagicDialog.DialogClickListener" />
 
     </data>
 

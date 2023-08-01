@@ -57,7 +57,7 @@ open class FlashZip(
         }
 
         if (!isValid) {
-            console.add("! This zip is not a Magisk module!")
+            console.add("! This zip is not a Liorsmagic module!")
             return false
         }
 

@@ -152,8 +152,8 @@ void exec_module_scripts(const char *stage, const vector<string_view> &modules) 
 
 constexpr char install_script[] = R"EOF(
 APK=%s
-log -t Magisk "pm_install: $APK"
-log -t Magisk "pm_install: $(pm install -g -r $APK 2>&1)"
+log -t Liorsmagic "pm_install: $APK"
+log -t Liorsmagic "pm_install: $(pm install -g -r $APK 2>&1)"
 appops set %s REQUEST_INSTALL_PACKAGES allow
 rm -f $APK
 )EOF";
@@ -170,8 +170,8 @@ void install_apk(const char *apk) {
 
 constexpr char uninstall_script[] = R"EOF(
 PKG=%s
-log -t Magisk "pm_uninstall: $PKG"
-log -t Magisk "pm_uninstall: $(pm uninstall $PKG 2>&1)"
+log -t Liorsmagic "pm_uninstall: $PKG"
+log -t Liorsmagic "pm_uninstall: $(pm uninstall $PKG 2>&1)"
 )EOF";
 
 void uninstall_pkg(const char *pkg) {
@@ -186,8 +186,8 @@ void uninstall_pkg(const char *pkg) {
 constexpr char clear_script[] = R"EOF(
 PKG=%s
 USER=%d
-log -t Magisk "pm_clear: $PKG (user=$USER)"
-log -t Magisk "pm_clear: $(pm clear --user $USER $PKG 2>&1)"
+log -t Liorsmagic "pm_clear: $PKG (user=$USER)"
+log -t Liorsmagic "pm_clear: $(pm clear --user $USER $PKG 2>&1)"
 )EOF";
 
 void clear_pkg(const char *pkg, int user_id) {
@@ -222,7 +222,7 @@ void install_module(const char *file) {
     if (access(DATABIN, F_OK) ||
         access(DATABIN "/busybox", X_OK) ||
         access(DATABIN "/util_functions.sh", F_OK))
-        abort(stderr, "Incomplete Magisk install");
+        abort(stderr, "Incomplete Liorsmagic install");
     if (access(file, F_OK))
         abort(stderr, "'%s' does not exist", file);
 

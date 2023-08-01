@@ -8,31 +8,31 @@ use base::{copy_str, cstr, Directory, ResultExt, Utf8CStr, WalkResult};
 use crate::logging::{liorsmagic_logging, zygisk_logging};
 
 // Global liorsmagicd singleton
-pub static LIORSMAGICD: OnceLock<MagiskD> = OnceLock::new();
+pub static LIORSMAGICD: OnceLock<LiorsmagicD> = OnceLock::new();
 
 #[derive(Default)]
-pub struct MagiskD {
+pub struct LiorsmagicD {
     pub logd: Mutex<RefCell<Option<File>>>,
 }
 
 pub fn daemon_entry() {
-    let liorsmagicd = MagiskD::default();
+    let liorsmagicd = LiorsmagicD::default();
     liorsmagicd.start_log_daemon();
     LIORSMAGICD.set(liorsmagicd).ok();
     liorsmagic_logging();
 }
 
 pub fn zygisk_entry() {
-    let liorsmagicd = MagiskD::default();
+    let liorsmagicd = LiorsmagicD::default();
     LIORSMAGICD.set(liorsmagicd).ok();
     zygisk_logging();
 }
 
-pub fn get_liorsmagicd() -> &'static MagiskD {
+pub fn get_liorsmagicd() -> &'static LiorsmagicD {
     LIORSMAGICD.get().unwrap()
 }
 
-impl MagiskD {}
+impl LiorsmagicD {}
 
 pub fn find_apk_path(pkg: &[u8], data: &mut [u8]) -> usize {
     use WalkResult::*;
