@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/expanded"
-        android:drawable="@drawable/ic_liorsmagic_outline" />
+        android:drawable="@drawable/ic_magisk_outline" />
 
     <transition
         android:drawable="@drawable/avd_liorsmagic_delete"

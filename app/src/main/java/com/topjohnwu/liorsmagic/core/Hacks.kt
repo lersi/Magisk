@@ -66,7 +66,7 @@ val shouldKeepResources = listOf(
     R.string.update_available,
     R.drawable.ic_device,
     R.drawable.ic_more,
-    R.drawable.ic_liorsmagic_delete,
+    R.drawable.ic_magisk_delete,
     R.drawable.ic_refresh_data_md2,
     R.drawable.ic_order_date,
     R.drawable.ic_order_name,

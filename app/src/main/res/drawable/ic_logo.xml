@@ -6,6 +6,6 @@
         </shape>
     </item>
 
-    <item android:drawable="@drawable/ic_liorsmagic" />
+    <item android:drawable="@drawable/ic_magisk" />
 
 </layer-list>
